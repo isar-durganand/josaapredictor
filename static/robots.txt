@@ -1,11 +1,11 @@
 # robots.txt for JoSAA College Predictor
-# https://josaa-predictor.onrender.com
+# https://josaapredictor.onrender.com
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://josaa-predictor.onrender.com/sitemap.xml
+Sitemap: https://josaapredictor.onrender.com/sitemap.xml
 
 # Disallow API routes
 Disallow: /predict

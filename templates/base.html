@@ -15,8 +15,8 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
 
-    <!-- Google Site Verification - Replace with your verification code -->
-    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE">
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="83-tgvKHNkD9DFArbi7wpYfKQvdTfI-bS6MCsXEkE2I">
 
     <!-- Theme Color for mobile browsers -->
     <meta name="theme-color" content="#14b8a6">
@@ -24,7 +24,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://josaapredictor.vercel.app{{ request.path }}">
+    <meta property="og:url" content="https://josaapredictor.onrender.com{{ request.path }}">
     <meta property="og:title"
         content="{% block og_title %}JoSAA College Predictor 2026{% endblock %} | Find Your Dream College">
     <meta property="og:description"
@@ -40,7 +40,7 @@
         content="Find your best-fit IIT, NIT, IIIT or GFTI with our AI-powered college prediction tool. Based on official JoSAA 2025 cutoffs.">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://josaapredictor.vercel.app{{ request.path }}">
+    <link rel="canonical" href="https://josaapredictor.onrender.com{{ request.path }}">
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
@@ -59,23 +59,23 @@
         "@type": "WebSite",
         "name": "JoSAA College Predictor",
         "alternateName": "JoSAA Predictor 2026",
-        "url": "https://josaapredictor.vercel.app",
+        "url": "https://josaapredictor.onrender.com",
         "description": "Predict your college admission chances for JoSAA 2026 counseling with AI-powered analysis of IIT, NIT, IIIT & GFTI cutoffs.",
         "potentialAction": {
             "@type": "SearchAction",
             "target": {
                 "@type": "EntryPoint",
-                "urlTemplate": "https://josaapredictor.vercel.app/predictor?rank={search_term_string}"
+                "urlTemplate": "https://josaapredictor.onrender.com/predictor?rank={search_term_string}"
             },
             "query-input": "required name=search_term_string"
         },
         "publisher": {
             "@type": "Organization",
             "name": "JoSAA Predictor",
-            "url": "https://josaapredictor.vercel.app",
+            "url": "https://josaapredictor.onrender.com",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://josaapredictor.vercel.app/static/logo.png"
+                "url": "https://josaapredictor.onrender.com/static/logo.png"
             }
         }
     }
@@ -86,12 +86,12 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "JoSAA College Predictor",
-        "url": "https://josaapredictor.vercel.app",
+        "url": "https://josaapredictor.onrender.com",
         "description": "Free AI-powered college prediction tool for JoSAA counseling",
         "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "Customer Support",
-            "url": "https://josaapredictor.vercel.app/contact"
+            "url": "https://josaapredictor.onrender.com/contact"
         }
     }
     </script>
@@ -106,14 +106,14 @@
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://josaapredictor.vercel.app/"
+                "item": "https://josaapredictor.onrender.com/"
             }
             {% if request.endpoint != 'index' %}
             ,{
                 "@type": "ListItem",
                 "position": 2,
                 "name": "{{ request.endpoint|replace('_', ' ')|title }}",
-                "item": "https://josaapredictor.vercel.app{{ request.path }}"
+                "item": "https://josaapredictor.onrender.com{{ request.path }}"
             }
             {% endif %}
         ]
