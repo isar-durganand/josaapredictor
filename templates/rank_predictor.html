@@ -1,0 +1,598 @@
+{% extends "base.html" %}
+
+{% block title %}JEE Main 2025 Rank & Percentile Predictor{% endblock %}
+
+{% block meta_description %}Predict your JEE Main 2025 rank from percentile or marks. Use our calculator based on
+official 2025 data to estimate your All India Rank.{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">
+            <i class="bi bi-calculator-fill text-gradient me-2"></i>
+            Rank & Percentile <span class="text-gradient">Predictor</span>
+        </h1>
+        <p class="page-subtitle">
+            Estimate your JEE Main 2025 rank from marks or percentile using official data
+        </p>
+    </div>
+</section>
+
+<!-- Calculator Section -->
+<section class="calculator-section">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Calculator Card -->
+            <div class="col-lg-6">
+                <div class="calc-card">
+                    <div class="calc-header">
+                        <div class="calc-icon">
+                            <i class="bi bi-sliders"></i>
+                        </div>
+                        <div>
+                            <h2>Enter Your Score</h2>
+                            <p>Input marks or percentile to predict rank</p>
+                        </div>
+                    </div>
+
+                    <div class="calc-body">
+                        <!-- Input Type Toggle -->
+                        <div class="input-toggle">
+                            <button class="toggle-btn active" data-type="marks" id="btnMarks">
+                                <i class="bi bi-pencil-square me-2"></i>By Marks
+                            </button>
+                            <button class="toggle-btn" data-type="percentile" id="btnPercentile">
+                                <i class="bi bi-percent me-2"></i>By Percentile
+                            </button>
+                        </div>
+
+                        <!-- Marks Input -->
+                        <div class="input-group-custom" id="marksInput">
+                            <label for="marks">
+                                <i class="bi bi-123 me-1"></i>Enter Your Marks (out of 300)
+                            </label>
+                            <input type="number" id="marks" class="form-control" placeholder="e.g., 180" min="0"
+                                max="300" step="1">
+                            <small class="input-hint">Enter marks between 0 and 300</small>
+                        </div>
+
+                        <!-- Percentile Input (hidden by default) -->
+                        <div class="input-group-custom d-none" id="percentileInput">
+                            <label for="percentile">
+                                <i class="bi bi-percent me-1"></i>Enter Your Percentile
+                            </label>
+                            <input type="number" id="percentile" class="form-control" placeholder="e.g., 98.5" min="0"
+                                max="100" step="0.01">
+                            <small class="input-hint">Enter percentile between 0 and 100</small>
+                        </div>
+
+                        <button class="btn-calculate" id="calculateBtn">
+                            <i class="bi bi-lightning-charge-fill me-2"></i>Calculate Rank
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Card -->
+            <div class="col-lg-6">
+                <div class="result-card" id="resultCard">
+                    <div class="result-placeholder" id="resultPlaceholder">
+                        <div class="placeholder-icon">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <h3>Your Results Will Appear Here</h3>
+                        <p>Enter your marks or percentile and click Calculate</p>
+                    </div>
+
+                    <div class="result-content d-none" id="resultContent">
+                        <div class="result-header">
+                            <i class="bi bi-trophy-fill"></i>
+                            <span>Prediction Results</span>
+                        </div>
+
+                        <div class="result-grid">
+                            <div class="result-item">
+                                <span class="result-label">Marks Range</span>
+                                <span class="result-value" id="resultMarks">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Percentile Range</span>
+                                <span class="result-value" id="resultPercentile">-</span>
+                            </div>
+                            <div class="result-item highlight">
+                                <span class="result-label">Expected Rank Range</span>
+                                <span class="result-value rank" id="resultRank">-</span>
+                            </div>
+                        </div>
+
+                        <div class="result-cta">
+                            <p>Now check colleges you can get with this rank:</p>
+                            <a href="/predictor" class="btn-predictor">
+                                <i class="bi bi-search me-2"></i>College Predictor
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="data-table-card mt-5">
+            <div class="table-header">
+                <h3><i class="bi bi-table me-2"></i>JEE Main 2025 Marks vs Rank vs Percentile</h3>
+                <p>Complete reference table based on official JEE Main 2025 data</p>
+            </div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Marks Range</th>
+                            <th>Percentile Range</th>
+                            <th>Rank Range</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in data %}
+                        <tr>
+                            <td><span class="marks-badge">{{ row.marks }}</span></td>
+                            <td>{{ row.percentile }}</td>
+                            <td><span class="rank-badge">{{ row.rank }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block head_extra %}
+<style>
+    .calculator-section {
+        padding: 0 0 4rem;
+    }
+
+    .calc-card,
+    .result-card {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        height: 100%;
+    }
+
+    .calc-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem 2rem;
+        background: var(--primary);
+        color: white;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+
+    .calc-icon {
+        width: 56px;
+        height: 56px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    .calc-header h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+
+    .calc-header p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 0.95rem;
+    }
+
+    .calc-body {
+        padding: 2rem;
+    }
+
+    .input-toggle {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .toggle-btn {
+        flex: 1;
+        padding: 0.85rem 1rem;
+        background: var(--bg-primary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        color: var(--text-secondary);
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+    }
+
+    .toggle-btn.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+    }
+
+    .input-group-custom {
+        margin-bottom: 1.5rem;
+    }
+
+    .input-group-custom label {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    .input-hint {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    .btn-calculate {
+        width: 100%;
+        padding: 1rem;
+        background: var(--primary);
+        border: none;
+        border-radius: var(--radius-md);
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .btn-calculate:hover {
+        background: var(--primary-dark);
+    }
+
+    .result-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 4rem 2rem;
+        height: 100%;
+    }
+
+    .placeholder-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-muted);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--primary);
+        margin-bottom: 1.5rem;
+    }
+
+    .result-placeholder h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .result-placeholder p {
+        color: var(--text-muted);
+        font-size: 1rem;
+    }
+
+    .result-content {
+        padding: 0;
+    }
+
+    .result-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1.25rem 2rem;
+        background: var(--success);
+        color: white;
+        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        font-size: 1.15rem;
+        font-weight: 600;
+    }
+
+    .result-grid {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .result-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.25rem;
+        background: var(--bg-primary);
+        border-radius: var(--radius-md);
+    }
+
+    .result-item.highlight {
+        background: var(--primary-muted);
+        border: 1px solid var(--primary);
+    }
+
+    .result-label {
+        font-weight: 500;
+        color: var(--text-secondary);
+        font-size: 1rem;
+    }
+
+    .result-value {
+        font-weight: 700;
+        color: var(--text-primary);
+        font-size: 1.1rem;
+    }
+
+    .result-value.rank {
+        color: var(--primary);
+        font-size: 1.25rem;
+    }
+
+    .result-cta {
+        padding: 1.5rem 2rem;
+        background: var(--bg-primary);
+        border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+        text-align: center;
+    }
+
+    .result-cta p {
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+
+    .btn-predictor {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 2rem;
+        background: var(--primary);
+        color: white;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .btn-predictor:hover {
+        background: var(--primary-dark);
+        color: white;
+    }
+
+    .data-table-card {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+    }
+
+    .table-header {
+        padding: 1.5rem 2rem;
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .table-header h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+
+    .table-header p {
+        color: var(--text-muted);
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .data-table th {
+        padding: 1rem 1.5rem;
+        text-align: left;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .data-table td {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        font-size: 1rem;
+    }
+
+    .data-table tbody tr:hover {
+        background: var(--primary-muted);
+    }
+
+    .marks-badge {
+        display: inline-block;
+        padding: 0.35rem 0.75rem;
+        background: var(--primary);
+        color: white;
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .rank-badge {
+        display: inline-block;
+        padding: 0.35rem 0.75rem;
+        background: rgba(16, 185, 129, 0.15);
+        color: var(--success);
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 991px) {
+
+        .calc-header,
+        .calc-body {
+            padding: 1.25rem 1.5rem;
+        }
+
+        .input-toggle {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Data from CSV (parsed and cleaned)
+    const rankData = [
+        { marksMin: 281, marksMax: 300, percMin: 99.99989145, percMax: 100, rankMin: 1, rankMax: 20 },
+        { marksMin: 271, marksMax: 280, percMin: 99.994681, percMax: 99.997394, rankMin: 24, rankMax: 80 },
+        { marksMin: 263, marksMax: 270, percMin: 99.990990, percMax: 99.994029, rankMin: 55, rankMax: 83 },
+        { marksMin: 250, marksMax: 262, percMin: 99.977205, percMax: 99.988819, rankMin: 85, rankMax: 210 },
+        { marksMin: 241, marksMax: 250, percMin: 99.960163, percMax: 99.975034, rankMin: 215, rankMax: 367 },
+        { marksMin: 231, marksMax: 240, percMin: 99.934980, percMax: 99.956364, rankMin: 375, rankMax: 599 },
+        { marksMin: 221, marksMax: 230, percMin: 99.901113, percMax: 99.928901, rankMin: 610, rankMax: 911 },
+        { marksMin: 211, marksMax: 220, percMin: 99.851616, percMax: 99.893732, rankMin: 920, rankMax: 1367 },
+        { marksMin: 201, marksMax: 210, percMin: 99.795063, percMax: 99.845212, rankMin: 1375, rankMax: 1888 },
+        { marksMin: 191, marksMax: 200, percMin: 99.710831, percMax: 99.782472, rankMin: 1900, rankMax: 2664 },
+        { marksMin: 181, marksMax: 190, percMin: 99.597399, percMax: 99.688579, rankMin: 2700, rankMax: 3710 },
+        { marksMin: 171, marksMax: 180, percMin: 99.456939, percMax: 99.573193, rankMin: 3800, rankMax: 5003 },
+        { marksMin: 161, marksMax: 170, percMin: 99.272084, percMax: 99.431214, rankMin: 5100, rankMax: 6706 },
+        { marksMin: 151, marksMax: 160, percMin: 99.028614, percMax: 99.239737, rankMin: 6800, rankMax: 8949 },
+        { marksMin: 141, marksMax: 150, percMin: 98.732389, percMax: 98.990296, rankMin: 9000, rankMax: 11678 },
+        { marksMin: 131, marksMax: 140, percMin: 98.317414, percMax: 98.666935, rankMin: 11800, rankMax: 15501 },
+        { marksMin: 121, marksMax: 130, percMin: 97.811260, percMax: 98.254132, rankMin: 15700, rankMax: 20164 },
+        { marksMin: 111, marksMax: 120, percMin: 97.142937, percMax: 97.685672, rankMin: 20500, rankMax: 26321 },
+        { marksMin: 101, marksMax: 110, percMin: 96.204550, percMax: 96.978272, rankMin: 26500, rankMax: 34966 },
+        { marksMin: 91, marksMax: 100, percMin: 94.998594, percMax: 96.064850, rankMin: 35000, rankMax: 46076 },
+        { marksMin: 81, marksMax: 90, percMin: 93.471231, percMax: 94.749479, rankMin: 46500, rankMax: 60147 },
+        { marksMin: 71, marksMax: 80, percMin: 91.072128, percMax: 93.152971, rankMin: 61000, rankMax: 82249 },
+        { marksMin: 61, marksMax: 70, percMin: 87.512225, percMax: 90.702200, rankMin: 83000, rankMax: 115045 },
+        { marksMin: 51, marksMax: 60, percMin: 82.016062, percMax: 86.907944, rankMin: 117000, rankMax: 165679 },
+        { marksMin: 41, marksMax: 50, percMin: 73.287808, percMax: 80.982153, rankMin: 166000, rankMax: 246089 },
+        { marksMin: 31, marksMax: 40, percMin: 58.151490, percMax: 71.302052, rankMin: 264383, rankMax: 385534 },
+        { marksMin: 21, marksMax: 30, percMin: 37.694529, percMax: 56.569310, rankMin: 400000, rankMax: 600000 },
+        { marksMin: 11, marksMax: 20, percMin: 13.495849, percMax: 33.229128, rankMin: 600000, rankMax: 800000 },
+        { marksMin: 0, marksMax: 10, percMin: 0.8435177, percMax: 9.6954066, rankMin: 800000, rankMax: 920000 }
+    ];
+
+    let inputType = 'marks';
+
+    // Toggle buttons
+    document.getElementById('btnMarks').addEventListener('click', function () {
+        inputType = 'marks';
+        this.classList.add('active');
+        document.getElementById('btnPercentile').classList.remove('active');
+        document.getElementById('marksInput').classList.remove('d-none');
+        document.getElementById('percentileInput').classList.add('d-none');
+    });
+
+    document.getElementById('btnPercentile').addEventListener('click', function () {
+        inputType = 'percentile';
+        this.classList.add('active');
+        document.getElementById('btnMarks').classList.remove('active');
+        document.getElementById('percentileInput').classList.remove('d-none');
+        document.getElementById('marksInput').classList.add('d-none');
+    });
+
+    // Calculate button
+    document.getElementById('calculateBtn').addEventListener('click', function () {
+        let result = null;
+
+        if (inputType === 'marks') {
+            const marks = parseFloat(document.getElementById('marks').value);
+            if (isNaN(marks) || marks < 0 || marks > 300) {
+                alert('Please enter valid marks between 0 and 300');
+                return;
+            }
+            result = findByMarks(marks);
+        } else {
+            const percentile = parseFloat(document.getElementById('percentile').value);
+            if (isNaN(percentile) || percentile < 0 || percentile > 100) {
+                alert('Please enter valid percentile between 0 and 100');
+                return;
+            }
+            result = findByPercentile(percentile);
+        }
+
+        if (result) {
+            displayResult(result);
+        } else {
+            alert('Could not find matching data. Please check your input.');
+        }
+    });
+
+    function findByMarks(marks) {
+        for (const row of rankData) {
+            if (marks >= row.marksMin && marks <= row.marksMax) {
+                return row;
+            }
+        }
+        // Handle edge case for marks below minimum
+        if (marks < rankData[rankData.length - 1].marksMin) {
+            return rankData[rankData.length - 1];
+        }
+        return null;
+    }
+
+    function findByPercentile(percentile) {
+        for (const row of rankData) {
+            if (percentile >= row.percMin && percentile <= row.percMax) {
+                return row;
+            }
+        }
+        // Find closest match
+        let closestMatch = null;
+        let minDiff = Infinity;
+        for (const row of rankData) {
+            const diff = Math.min(Math.abs(percentile - row.percMin), Math.abs(percentile - row.percMax));
+            if (diff < minDiff) {
+                minDiff = diff;
+                closestMatch = row;
+            }
+        }
+        return closestMatch;
+    }
+
+    function displayResult(data) {
+        document.getElementById('resultPlaceholder').classList.add('d-none');
+        document.getElementById('resultContent').classList.remove('d-none');
+
+        document.getElementById('resultMarks').textContent = `${data.marksMin} - ${data.marksMax}`;
+        document.getElementById('resultPercentile').textContent = `${data.percMin.toFixed(4)} - ${data.percMax.toFixed(4)}`;
+        document.getElementById('resultRank').textContent = `${data.rankMin.toLocaleString()} - ${data.rankMax.toLocaleString()}`;
+    }
+</script>
+{% endblock %}

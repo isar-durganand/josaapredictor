@@ -1,0 +1,596 @@
+{% extends "base.html" %}
+
+{% block title %}College Predictor Tool{% endblock %}
+
+{% block meta_description %}Use our advanced JoSAA College Predictor to find colleges based on your JEE rank. Filter by
+institute type, category, program, and compare across all 6 counseling rounds.{% endblock %}
+
+{% block head_extra %}
+<!-- Tom Select CSS for searchable dropdowns -->
+<link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+<style>
+    /* ===== Flat Minimal Tom Select Styles ===== */
+
+    /* Tom Select Control */
+    .ts-wrapper.single .ts-control {
+        background: #0f172a !important;
+        border: 1px solid rgba(148, 163, 184, 0.15) !important;
+        border-radius: 8px;
+        padding: 0.6rem 1rem;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+
+    .ts-wrapper.single .ts-control:hover {
+        border-color: rgba(148, 163, 184, 0.25) !important;
+    }
+
+    .ts-wrapper.single.focus .ts-control {
+        border-color: #0d9488 !important;
+        box-shadow: none !important;
+        background: #0f172a !important;
+    }
+
+    /* Tom Select Input Text */
+    .ts-wrapper .ts-control,
+    .ts-wrapper .ts-control input,
+    .ts-wrapper .ts-control>input,
+    .ts-control input[type="text"],
+    .ts-wrapper input {
+        color: #f1f5f9 !important;
+        font-size: 0.95rem !important;
+        font-weight: 500 !important;
+        caret-color: #14b8a6 !important;
+    }
+
+    .ts-wrapper .ts-control input::placeholder,
+    .ts-control input[type="text"]::placeholder {
+        color: #64748b !important;
+        opacity: 1 !important;
+    }
+
+    /* Tom Select Dropdown */
+    .ts-dropdown {
+        background: #0f172a !important;
+        border: 1px solid rgba(148, 163, 184, 0.2) !important;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+        margin-top: 4px;
+        overflow: hidden;
+    }
+
+    .ts-dropdown .ts-dropdown-content {
+        max-height: 300px;
+        padding: 0.4rem;
+    }
+
+    .ts-dropdown .option {
+        padding: 0.7rem 1rem;
+        color: #94a3b8;
+        border-radius: 6px;
+        margin-bottom: 2px;
+        transition: all 0.15s ease;
+        font-weight: 500;
+    }
+
+    .ts-dropdown .option:hover,
+    .ts-dropdown .option.active {
+        background: rgba(13, 148, 136, 0.15) !important;
+        color: #f1f5f9 !important;
+    }
+
+    .ts-dropdown .option.selected {
+        background: rgba(13, 148, 136, 0.2) !important;
+        color: #14b8a6 !important;
+    }
+
+    .ts-wrapper.single .ts-control .item {
+        color: #f1f5f9 !important;
+        font-weight: 500;
+    }
+
+    /* All Programs option */
+    .ts-dropdown .all-programs-option {
+        background: rgba(13, 148, 136, 0.1) !important;
+        border-bottom: 1px solid rgba(13, 148, 136, 0.2);
+        margin-bottom: 6px;
+        padding-bottom: 10px;
+        color: #14b8a6 !important;
+        font-weight: 600;
+    }
+
+    .ts-dropdown .all-programs-option:hover {
+        background: rgba(13, 148, 136, 0.2) !important;
+    }
+
+    /* No results */
+    .ts-dropdown .no-results {
+        padding: 1rem;
+        color: #64748b;
+        text-align: center;
+    }
+
+    .ts-dropdown .no-results i {
+        color: #0d9488;
+    }
+
+    /* Scrollbar */
+    .ts-dropdown .ts-dropdown-content::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .ts-dropdown .ts-dropdown-content::-webkit-scrollbar-track {
+        background: #1e293b;
+    }
+
+    .ts-dropdown .ts-dropdown-content::-webkit-scrollbar-thumb {
+        background: #0d9488;
+        border-radius: 6px;
+    }
+
+    /* Clear button */
+    .ts-wrapper .clear-button {
+        color: #64748b;
+    }
+
+    .ts-wrapper .clear-button:hover {
+        color: #ef4444;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header predictor-header">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h1 class="page-title animate-fadeIn">
+                    <i class="bi bi-search-heart me-2"></i>College Predictor
+                </h1>
+                <p class="page-subtitle animate-fadeIn delay-1">
+                    Enter your JEE rank and preferences to discover matching colleges with probability indicators
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Predictor Form Section -->
+<section class="predictor-section">
+    <div class="container">
+        <div class="predictor-card animate-fadeIn delay-2">
+            <form id="predictorForm" class="predictor-form">
+                <div class="form-grid">
+                    <!-- Row 1 -->
+                    <div class="form-group">
+                        <label for="rank">
+                            <i class="bi bi-trophy-fill"></i>Your JEE Rank
+                        </label>
+                        <input type="number" class="form-control" id="rank" name="rank" placeholder="Enter your rank"
+                            min="1" required>
+                        <div id="rankHint" class="form-hint" style="display: none;">
+                            <i class="bi bi-info-circle"></i>
+                            <span id="rankHintText">Enter your Category Rank</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="round">
+                            <i class="bi bi-calendar-check-fill"></i>Round
+                        </label>
+                        <select class="form-select" id="round" name="round" required>
+                            <option value="ALL">All Rounds (Compare Best)</option>
+                            <option value="1">Round 1</option>
+                            <option value="2">Round 2</option>
+                            <option value="3">Round 3</option>
+                            <option value="4">Round 4</option>
+                            <option value="5">Round 5</option>
+                            <option value="6">Round 6 (Final)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="institute_type">
+                            <i class="bi bi-building-fill"></i>Institute Type
+                        </label>
+                        <select class="form-select" id="institute_type" name="institute_type" required>
+                            <option value="ALL">All Institutes</option>
+                            <option value="IIT">IIT</option>
+                            <option value="NIT">NIT</option>
+                            <option value="IIIT">IIIT</option>
+                            <option value="GFTI">GFTI</option>
+                        </select>
+                    </div>
+
+                    <!-- Row 2 -->
+                    <div class="form-group">
+                        <label for="quota">
+                            <i class="bi bi-geo-alt-fill"></i>Quota
+                        </label>
+                        <select class="form-select" id="quota" name="quota" required>
+                            <option value="ALL">All Quotas</option>
+                            {% for q in quotas %}
+                            <option value="{{ q }}">{{ q }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">
+                            <i class="bi bi-people-fill"></i>Category
+                        </label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="ALL">All Categories</option>
+                            {% for cat in categories %}
+                            <option value="{{ cat }}">{{ cat }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">
+                            <i class="bi bi-gender-ambiguous"></i>Gender
+                        </label>
+                        <select class="form-select" id="gender" name="gender" required>
+                            <option value="ALL">All</option>
+                            <option value="Gender-Neutral">Gender-Neutral</option>
+                            <option value="Female-only">Female-only</option>
+                        </select>
+                    </div>
+
+                    <!-- Row 3 - Full Width Program Selector -->
+                    <div class="form-group full-width">
+                        <label for="program">
+                            <i class="bi bi-book-fill"></i>Program (Optional)
+                        </label>
+                        <select class="form-select" id="program" name="program"
+                            placeholder="Search or select a program...">
+                            <option value="ALL">All Programs - Search to filter...</option>
+                            {% for prog in programs %}
+                            <option value="{{ prog }}">{{ prog }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-predict" id="predictBtn">
+                        <span class="btn-text">
+                            <i class="bi bi-magic me-2"></i>Predict Colleges
+                        </span>
+                        <span class="btn-loader" style="display: none;">
+                            <span class="spinner-border spinner-border-sm me-2"></span>Analyzing...
+                        </span>
+                    </button>
+                    <button type="reset" class="btn btn-reset">
+                        <i class="bi bi-arrow-counterclockwise me-1"></i>Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Results Section -->
+<section id="resultsSection" class="results-section" style="display: none;">
+    <div class="container">
+        <div class="results-card animate-fadeIn">
+            <!-- Results Header -->
+            <div class="results-header">
+                <div class="results-info">
+                    <h3><i class="bi bi-list-check me-2"></i>Matching Colleges</h3>
+                    <p>
+                        Found <span id="resultCount" class="highlight">0</span> colleges for rank
+                        <span id="displayRank" class="highlight">0</span>
+                    </p>
+                </div>
+                <div class="results-actions">
+                    <button class="btn btn-export" onclick="exportToCSV()">
+                        <i class="bi bi-download me-1"></i>Export CSV
+                    </button>
+                </div>
+            </div>
+
+            <!-- Probability Legend -->
+            <div class="probability-legend">
+                <div class="legend-item safe">
+                    <span class="legend-dot"></span>
+                    <span>Safe (1000+ margin)</span>
+                </div>
+                <div class="legend-item moderate">
+                    <span class="legend-dot"></span>
+                    <span>Moderate (100-1000)</span>
+                </div>
+                <div class="legend-item risky">
+                    <span class="legend-dot"></span>
+                    <span>Risky (&lt;100)</span>
+                </div>
+            </div>
+
+            <!-- Results Table -->
+            <div class="table-container">
+                <table class="results-table" id="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Institute</th>
+                            <th>Program</th>
+                            <th>Quota</th>
+                            <th>Category</th>
+                            <th>Gender</th>
+                            <th>Closing Rank</th>
+                            <th>Chance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <div class="no-results-icon">
+                    <i class="bi bi-search"></i>
+                </div>
+                <h4>No Colleges Found</h4>
+                <p>Try adjusting your filters or entering a different rank</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Global variable to store results for export
+    let currentResults = [];
+
+    // Category rank hint logic
+    const categorySelect = document.getElementById('category');
+    const rankHint = document.getElementById('rankHint');
+    const rankHintText = document.getElementById('rankHintText');
+
+    categorySelect.addEventListener('change', function () {
+        const category = this.value;
+        if (category !== 'OPEN' && category !== 'ALL' && !category.includes('PwD')) {
+            rankHint.style.display = 'flex';
+            rankHintText.textContent = `Enter your ${category} Category Rank for accurate predictions`;
+        } else if (category.includes('PwD')) {
+            rankHint.style.display = 'flex';
+            rankHintText.textContent = `Enter your PwD Category Rank for accurate predictions`;
+        } else {
+            rankHint.style.display = 'none';
+        }
+    });
+
+    // Form submission
+    document.getElementById('predictorForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('predictBtn');
+        const btnText = btn.querySelector('.btn-text');
+        const btnLoader = btn.querySelector('.btn-loader');
+
+        // Show loading state
+        btnText.style.display = 'none';
+        btnLoader.style.display = 'inline-flex';
+        btn.disabled = true;
+
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch('/predict', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                showError(data.error);
+            } else {
+                displayResults(data);
+            }
+        } catch (error) {
+            showError('An error occurred. Please try again.');
+            console.error('Error:', error);
+        } finally {
+            // Hide loading state
+            btnText.style.display = 'inline-flex';
+            btnLoader.style.display = 'none';
+            btn.disabled = false;
+        }
+    });
+
+    function showError(message) {
+        const resultsSection = document.getElementById('resultsSection');
+        const noResults = document.getElementById('noResults');
+        const resultsBody = document.getElementById('resultsBody');
+
+        resultsSection.style.display = 'block';
+        resultsBody.innerHTML = '';
+        noResults.innerHTML = `
+            <div class="no-results-icon error">
+                <i class="bi bi-exclamation-circle"></i>
+            </div>
+            <h4>Error</h4>
+            <p>${message}</p>
+        `;
+        noResults.style.display = 'flex';
+        document.getElementById('resultCount').textContent = '0';
+
+        resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function displayResults(data) {
+        const resultsSection = document.getElementById('resultsSection');
+        const resultsBody = document.getElementById('resultsBody');
+        const noResults = document.getElementById('noResults');
+        const tableContainer = document.querySelector('.table-container');
+
+        currentResults = data.results;
+
+        resultsSection.style.display = 'block';
+        document.getElementById('resultCount').textContent = data.count.toLocaleString();
+        document.getElementById('displayRank').textContent = data.user_rank.toLocaleString();
+
+        if (data.results.length === 0) {
+            resultsBody.innerHTML = '';
+            tableContainer.style.display = 'none';
+            noResults.style.display = 'flex';
+        } else {
+            noResults.style.display = 'none';
+            tableContainer.style.display = 'block';
+
+            let html = '';
+            data.results.forEach((result, index) => {
+                const probabilityClass = result.probability.toLowerCase();
+                const instituteType = getInstituteType(result.institute);
+                const roundBadge = result.round ? `<span class="round-badge">R${result.round}</span>` : '';
+
+                html += `
+                    <tr class="result-row">
+                        <td class="row-number">${index + 1}</td>
+                        <td class="institute-cell">
+                            <div class="institute-info">
+                                <span class="institute-name">${result.institute}</span>
+                                <span class="institute-badge ${instituteType.toLowerCase()}">${instituteType}</span>
+                                ${roundBadge}
+                            </div>
+                        </td>
+                        <td class="program-cell">${result.program}</td>
+                        <td><span class="quota-badge">${result.quota}</span></td>
+                        <td><span class="category-badge">${result.seat_type}</span></td>
+                        <td class="gender-cell">${result.gender}</td>
+                        <td class="rank-cell">${result.closing_rank}</td>
+                        <td>
+                            <span class="probability-badge ${probabilityClass}">
+                                ${getProbabilityIcon(result.probability)}
+                                ${result.probability}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            resultsBody.innerHTML = html;
+        }
+
+        resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function getProbabilityIcon(probability) {
+        switch (probability) {
+            case 'Safe': return '<i class="bi bi-check-circle-fill"></i>';
+            case 'Moderate': return '<i class="bi bi-dash-circle-fill"></i>';
+            case 'Risky': return '<i class="bi bi-exclamation-circle-fill"></i>';
+            default: return '<i class="bi bi-question-circle-fill"></i>';
+        }
+    }
+
+    function getInstituteType(name) {
+        const upper = name.toUpperCase();
+        // Check IIT first
+        if (upper.startsWith('IIT') || upper.includes('INDIAN INSTITUTE OF TECHNOLOGY')) return 'IIT';
+        // Check IIIT before NIT (to avoid IIIT matching NIT check)
+        if (upper.includes('IIIT') || upper.includes('INDIAN INSTITUTE OF INFORMATION TECHNOLOGY')) return 'IIIT';
+        // Check NIT - matches 'NIT ', 'NIT,', starts with 'NIT', or full name
+        // This catches: 'NIT Agartala', 'Malaviya NIT Jaipur', 'Dr. B R Ambedkar NIT, Jalandhar'
+        if (upper.includes('NIT ') || upper.includes('NIT,') || upper.startsWith('NIT') ||
+            upper.includes('NATIONAL INSTITUTE OF TECHNOLOGY')) return 'NIT';
+        return 'GFTI';
+    }
+
+    function exportToCSV() {
+        if (currentResults.length === 0) {
+            alert('No results to export!');
+            return;
+        }
+
+        const headers = ['#', 'Institute', 'Program', 'Quota', 'Seat Type', 'Gender', 'Closing Rank', 'Probability'];
+        if (currentResults[0].round) {
+            headers.push('Round');
+        }
+
+        const rows = currentResults.map((r, i) => {
+            const row = [
+                i + 1,
+                `"${r.institute}"`,
+                `"${r.program}"`,
+                r.quota,
+                r.seat_type,
+                r.gender,
+                r.closing_rank,
+                r.probability
+            ];
+            if (r.round) {
+                row.push(r.round);
+            }
+            return row;
+        });
+
+        let csv = headers.join(',') + '\n';
+        rows.forEach(row => {
+            csv += row.join(',') + '\n';
+        });
+
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `josaa_predictions_rank_${document.getElementById('displayRank').textContent}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }
+
+    // Check URL params for initial institute type
+    const urlParams = new URLSearchParams(window.location.search);
+    const typeParam = urlParams.get('type');
+    if (typeParam) {
+        document.getElementById('institute_type').value = typeParam;
+    }
+</script>
+
+<!-- Tom Select JS for searchable dropdowns -->
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+<script>
+    // Initialize Tom Select for Program dropdown with search
+    new TomSelect('#program', {
+        create: false,
+        maxItems: 1,
+        sortField: {
+            field: 'text',
+            direction: 'asc'
+        },
+        allowEmptyOption: true,
+        closeAfterSelect: true,
+        maxOptions: 300,
+        highlight: true,
+        openOnFocus: true,
+        selectOnTab: true,
+        render: {
+            option: function (data, escape) {
+                // Highlight the "All Programs" option differently
+                if (data.value === 'ALL') {
+                    return '<div class="option all-programs-option"><i class="bi bi-collection me-2"></i>' + escape(data.text) + '</div>';
+                }
+                return '<div class="option">' + escape(data.text) + '</div>';
+            },
+            item: function (data, escape) {
+                if (data.value === 'ALL') {
+                    return '<div class="item">All Programs</div>';
+                }
+                return '<div class="item">' + escape(data.text) + '</div>';
+            },
+            no_results: function (data, escape) {
+                return '<div class="no-results"><i class="bi bi-search me-2"></i>No programs found for "' + escape(data.input) + '"</div>';
+            }
+        }
+    });
+</script>
+{% endblock %}

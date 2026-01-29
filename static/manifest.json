@@ -1,0 +1,29 @@
+{
+    "name": "JoSAA College Predictor 2026",
+    "short_name": "JoSAA Predictor",
+    "description": "Predict your college admission chances for JoSAA 2026 counseling with AI-powered analysis of IIT, NIT, IIIT & GFTI cutoffs.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0a0a0f",
+    "theme_color": "#14b8a6",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/static/favicon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/static/favicon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "education",
+        "utilities"
+    ],
+    "lang": "en-IN"
+}

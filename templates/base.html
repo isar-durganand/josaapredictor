@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}JoSAA College Predictor 2026{% endblock %} | Find Your Dream IIT, NIT, IIIT</title>
+    <meta name="description"
+        content="{% block meta_description %}Predict your college admission chances for JoSAA 2026 counseling. Use our AI-powered tool with 70,000+ cutoff records from IITs, NITs, IIITs & GFTIs.{% endblock %}">
+    <meta name="keywords"
+        content="JoSAA, JoSAA 2026, JEE Main, JEE Advanced, IIT, NIT, IIIT, GFTI, College Predictor, Cutoff, Counseling 2026, JEE Rank Predictor, IIT Admission, NIT Cutoff, IIIT Cutoff, JoSAA Counseling">
+    <meta name="author" content="JoSAA Predictor">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+
+    <!-- Google Site Verification - Replace with your verification code -->
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE">
+
+    <!-- Theme Color for mobile browsers -->
+    <meta name="theme-color" content="#14b8a6">
+    <meta name="msapplication-TileColor" content="#14b8a6">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://josaapredictor.vercel.app{{ request.path }}">
+    <meta property="og:title"
+        content="{% block og_title %}JoSAA College Predictor 2026{% endblock %} | Find Your Dream College">
+    <meta property="og:description"
+        content="Predict your college admission chances with our AI-powered tool using official JoSAA 2025 cutoff data. 70,000+ records from IITs, NITs, IIITs & GFTIs.">
+    <meta property="og:site_name" content="JoSAA Predictor">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@josaapredictor">
+    <meta name="twitter:title" content="JoSAA College Predictor 2026 - Find Your Dream IIT, NIT, IIIT">
+    <meta name="twitter:description"
+        content="Find your best-fit IIT, NIT, IIIT or GFTI with our AI-powered college prediction tool. Based on official JoSAA 2025 cutoffs.">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://josaapredictor.vercel.app{{ request.path }}">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='%2314b8a6' viewBox='0 0 16 16'%3E%3Cpath d='M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z'/%3E%3Cpath d='M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z'/%3E%3C/svg%3E">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "JoSAA College Predictor",
+        "alternateName": "JoSAA Predictor 2026",
+        "url": "https://josaapredictor.vercel.app",
+        "description": "Predict your college admission chances for JoSAA 2026 counseling with AI-powered analysis of IIT, NIT, IIIT & GFTI cutoffs.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://josaapredictor.vercel.app/predictor?rank={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "JoSAA Predictor",
+            "url": "https://josaapredictor.vercel.app",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://josaapredictor.vercel.app/static/logo.png"
+            }
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "JoSAA College Predictor",
+        "url": "https://josaapredictor.vercel.app",
+        "description": "Free AI-powered college prediction tool for JoSAA counseling",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Support",
+            "url": "https://josaapredictor.vercel.app/contact"
+        }
+    }
+    </script>
+
+    <!-- Breadcrumb Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://josaapredictor.vercel.app/"
+            }
+            {% if request.endpoint != 'index' %}
+            ,{
+                "@type": "ListItem",
+                "position": 2,
+                "name": "{{ request.endpoint|replace('_', ' ')|title }}",
+                "item": "https://josaapredictor.vercel.app{{ request.path }}"
+            }
+            {% endif %}
+        ]
+    }
+    </script>
+
+    <!-- Google AdSense - Replace with your AdSense code after approval -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+    <!-- DNS Prefetch for performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    {% block head_extra %}{% endblock %}
+</head>
+
+
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-mortarboard-fill brand-icon"></i>
+                <span class="brand-text">JoSAA <span class="text-gradient">Predictor</span></span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" href="/">
+                            <i class="bi bi-house me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'predictor' %}active{% endif %}" href="/predictor">
+                            <i class="bi bi-search-heart me-1"></i>Predictor
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'cutoffs' %}active{% endif %}" href="/cutoffs">
+                            <i class="bi bi-bar-chart-steps me-1"></i>Cutoffs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'rank_predictor' %}active{% endif %}"
+                            href="/rank-predictor">
+                            <i class="bi bi-calculator me-1"></i>Rank Predictor
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="/about">
+                            <i class="bi bi-info-circle me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}" href="/contact">
+                            <i class="bi bi-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="navbar-cta d-flex align-items-center">
+                    <!-- Theme Toggle Button -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="bi bi-moon"></i>
+                        <i class="bi bi-sun"></i>
+                    </button>
+                    <a href="/predictor" class="btn btn-cta-nav">
+                        <i class="bi bi-lightning-charge-fill me-1"></i>Start Predicting
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-wrapper">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-top">
+                <div class="row g-4">
+                    <!-- Brand Column -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-brand">
+                            <a href="/" class="footer-logo">
+                                <i class="bi bi-mortarboard-fill brand-icon"></i>
+                                <span class="brand-text">JoSAA Predictor</span>
+                            </a>
+                            <p class="footer-tagline">
+                                Helping JEE aspirants find their dream college with data-driven predictions based on
+                                official JoSAA cutoffs.
+                            </p>
+                            <div class="social-links">
+                                <a href="#" class="social-link" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                                <a href="#" class="social-link" aria-label="Instagram"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="#" class="social-link" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                                <a href="#" class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="footer-links">
+                            <h5>Quick Links</h5>
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/predictor">Predictor</a></li>
+                                <li><a href="/about">About</a></li>
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Institute Types -->
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="footer-links">
+                            <h5>Institute Types</h5>
+                            <ul>
+                                <li><a href="/predictor?type=IIT">IITs</a></li>
+                                <li><a href="/predictor?type=NIT">NITs</a></li>
+                                <li><a href="/predictor?type=IIIT">IIITs</a></li>
+                                <li><a href="/predictor?type=GFTI">GFTIs</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Resources -->
+                    <div class="col-lg-2 col-md-6 col-6">
+                        <div class="footer-links">
+                            <h5>Resources</h5>
+                            <ul>
+                                <li><a href="https://josaa.nic.in" target="_blank" rel="noopener">JoSAA Official</a>
+                                </li>
+                                <li><a href="https://jeemain.nta.ac.in" target="_blank" rel="noopener">JEE Main</a></li>
+                                <li><a href="https://jeeadv.ac.in" target="_blank" rel="noopener">JEE Advanced</a></li>
+                                <li><a href="/cutoffs">Cutoff Analysis</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-newsletter">
+                            <h5>Stay Updated</h5>
+                            <p>Get latest updates on cutoffs and counseling dates.</p>
+                            <form class="newsletter-form">
+                                <input type="email" placeholder="Your email" required>
+                                <button type="submit"><i class="bi bi-arrow-right"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <p class="copyright">
+                            © 2026 JoSAA Predictor. Made with <i class="bi bi-heart-fill text-danger"></i> for JEE
+                            Aspirants
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="footer-legal-links">
+                            <a href="/privacy">Privacy Policy</a>
+                            <span class="separator">•</span>
+                            <a href="/terms">Terms of Service</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="disclaimer">
+                            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+                            Predictions based on JoSAA 2025 data. Actual cutoffs may vary.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Bubble & Window -->
+    <div id="chat-bubble" class="chat-bubble">
+        <i class="bi bi-chat-dots-fill"></i>
+    </div>
+
+    <div id="chat-window" class="chat-window d-none">
+        <div class="chat-header">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-robot me-2"></i>
+                <span>JoSAA Assistant</span>
+            </div>
+            <button id="close-chat" class="btn-close-chat"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    Hello! I'm your AI assistant. Ask me about cutoffs, ranks, or colleges!
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask a question..." autocomplete="off">
+            <button id="send-btn"><i class="bi bi-send-fill"></i></button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Chat Script -->
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
+
+    <!-- Global Scripts -->
+    <script>
+        // Theme Toggle - Load saved theme immediately
+        (function () {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar-custom');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Theme Toggle Button Handler
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeToggle = document.getElementById('themeToggle');
+
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function () {
+                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
+        });
+    </script>
+
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

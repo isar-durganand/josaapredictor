@@ -1,0 +1,13 @@
+# robots.txt for JoSAA College Predictor
+# https://josaapredictor.vercel.app
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /chat
+
+# Sitemap
+Sitemap: https://josaapredictor.vercel.app/sitemap.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1

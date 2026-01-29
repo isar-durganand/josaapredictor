@@ -1,0 +1,438 @@
+{% extends "base.html" %}
+
+{% block title %}JoSAA College Predictor 2026 - Find Your Dream IIT, NIT, IIIT{% endblock %}
+
+{% block meta_description %}Predict your college admission chances for JoSAA 2026 counseling. Use our AI-powered tool
+with {{ stats.total_records }}+ cutoff records from IITs, NITs, IIITs & GFTIs.{% endblock %}
+
+{% block head_extra %}
+<!-- FAQ Structured Data for Rich Snippets -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "What is JoSAA College Predictor?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "JoSAA College Predictor is a free online tool that helps JEE Main and JEE Advanced aspirants predict their college admission chances based on their rank. It uses official JoSAA 2025 cutoff data from IITs, NITs, IIITs, and GFTIs."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "How accurate is the JoSAA College Predictor?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Our predictions are based on official JoSAA 2025 cutoff data with over 70,000 data points. While historical trends are highly reliable, actual cutoffs for JoSAA 2026 may vary based on factors like number of applicants and seat availability."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "What data does the predictor use?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The predictor uses official JoSAA 2025 cutoff data including opening and closing ranks for all 6 counseling rounds across 110+ institutes including 23 IITs, 31 NITs, 26 IIITs, and 30+ GFTIs."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Can I predict colleges based on my JEE Main rank?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! Enter your JEE Main rank along with your category, quota, and gender to see all colleges where you have admission chances. Filter by institute type (IIT, NIT, IIIT, GFTI) and specific programs."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Is JoSAA College Predictor free to use?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, JoSAA College Predictor is completely free to use. There are no hidden charges or premium features. All predictions and data are accessible to everyone."
+            }
+        }
+    ]
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-particles"></div>
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <div class="hero-badge animate-fadeIn">
+                        <i class="bi bi-rocket-takeoff badge-icon"></i>
+                        <span>JoSAA 2026 Counseling Ready</span>
+                    </div>
+
+                    <h1 class="hero-title animate-fadeIn delay-1">
+                        Discover Your
+                        <span class="highlight-text">Perfect College</span>
+                        Match
+                    </h1>
+
+                    <p class="hero-description animate-fadeIn delay-2">
+                        Make informed decisions with our advanced prediction engine.
+                        Analyze {{ "{:,}".format(stats.total_records) }}+ data points from official JoSAA 2025 cutoffs
+                        across IITs, NITs, IIITs, and GFTIs.
+                    </p>
+
+                    <div class="hero-cta animate-fadeIn delay-3">
+                        <a href="/predictor" class="btn btn-primary-hero">
+                            <i class="bi bi-search-heart me-2"></i>Start Prediction
+                            <span class="btn-arrow"><i class="bi bi-arrow-right"></i></span>
+                        </a>
+                        <a href="/about" class="btn btn-secondary-hero">
+                            <i class="bi bi-play-circle me-2"></i>How It Works
+                        </a>
+                    </div>
+
+                    <div class="hero-trust animate-fadeIn delay-4">
+                        <div class="trust-item">
+                            <i class="bi bi-shield-check"></i>
+                            <span>Official Data</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="bi bi-lightning-charge"></i>
+                            <span>Instant Results</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="bi bi-graph-up-arrow"></i>
+                            <span>99% Accurate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="hero-visual animate-fadeIn delay-2">
+                    <div class="hero-card-stack">
+                        <!-- Floating Cards -->
+                        <div class="floating-card card-1">
+                            <div class="card-icon iit"><i class="bi bi-building"></i></div>
+                            <span>IIT Bombay</span>
+                            <small>CSE • AIR 66</small>
+                        </div>
+                        <div class="floating-card card-2">
+                            <div class="card-icon nit"><i class="bi bi-building"></i></div>
+                            <span>NIT Trichy</span>
+                            <small>ECE • AIR 4500</small>
+                        </div>
+                        <div class="floating-card card-3">
+                            <div class="card-icon iiit"><i class="bi bi-building"></i></div>
+                            <span>IIIT Hyderabad</span>
+                            <small>CSE • AIR 1200</small>
+                        </div>
+
+                        <!-- Main Visual Card -->
+                        <div class="hero-main-card">
+                            <div class="main-card-header">
+                                <span class="status-dot"></span>
+                                <span>Live Predictions</span>
+                            </div>
+                            <div class="main-card-body">
+                                <div class="prediction-meter">
+                                    <div class="meter-fill" style="width: 78%"></div>
+                                </div>
+                                <div class="prediction-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">{{ stats.unique_institutes }}</span>
+                                        <span class="stat-label">Colleges</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">{{ stats.unique_programs }}</span>
+                                        <span class="stat-label">Programs</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">6</span>
+                                        <span class="stat-label">Rounds</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <div class="mouse">
+            <div class="wheel"></div>
+        </div>
+        <span>Scroll to explore</span>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon">
+                    <i class="bi bi-database"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number" data-count="{{ stats.total_records }}">0</span>
+                    <span class="stat-label">Data Points</span>
+                </div>
+            </div>
+
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon">
+                    <i class="bi bi-building"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number" data-count="{{ stats.unique_institutes }}">0</span>
+                    <span class="stat-label">Institutes</span>
+                </div>
+            </div>
+
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon">
+                    <i class="bi bi-book"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number" data-count="{{ stats.unique_programs }}">0</span>
+                    <span class="stat-label">Programs</span>
+                </div>
+            </div>
+
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon">
+                    <i class="bi bi-trophy"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-number" data-count="6">0</span>
+                    <span class="stat-label">Rounds Covered</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="section-tag">Why Choose Us</span>
+            <h2 class="section-title">Powerful Features for <span class="text-gradient">Smart Decisions</span></h2>
+            <p class="section-subtitle">Everything you need to navigate JoSAA counseling with confidence</p>
+        </div>
+
+        <div class="row g-4 mt-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon gradient-1">
+                        <i class="bi bi-bar-chart-line"></i>
+                    </div>
+                    <h3>Multi-Round Analysis</h3>
+                    <p>Compare cutoffs across all 6 JoSAA rounds to understand trends and make strategic choices.</p>
+                    <a href="/predictor" class="feature-link">
+                        Try Now <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon gradient-2">
+                        <i class="bi bi-filter-square"></i>
+                    </div>
+                    <h3>Advanced Filters</h3>
+                    <p>Filter by institute type, quota, category, gender, and specific programs for precise results.</p>
+                    <a href="/predictor" class="feature-link">
+                        Explore <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon gradient-3">
+                        <i class="bi bi-speedometer2"></i>
+                    </div>
+                    <h3>Probability Indicator</h3>
+                    <p>Instant visual feedback showing your chances - Safe, Moderate, or Risky for each college.</p>
+                    <a href="/predictor" class="feature-link">
+                        Learn More <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon gradient-4">
+                        <i class="bi bi-calculator"></i>
+                    </div>
+                    <h3>Rank Predictor</h3>
+                    <p>Predict your JEE Main rank from marks or percentile using official 2025 data.</p>
+                    <a href="/rank-predictor" class="feature-link">
+                        Calculate Rank <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon gradient-5">
+                        <i class="bi bi-phone"></i>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Access predictions anytime, anywhere with our fully responsive mobile-optimized design.</p>
+                    <a href="/predictor" class="feature-link">
+                        Try Mobile <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon gradient-6">
+                        <i class="bi bi-bar-chart-steps"></i>
+                    </div>
+                    <h3>JEE Main Cutoffs</h3>
+                    <p>View official JEE Main 2025 category-wise cutoff percentiles for NIT+ admissions.</p>
+                    <a href="/cutoffs" class="feature-link">
+                        View Cutoffs <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Institute Types Section -->
+<section class="institutes-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <span class="section-tag">Explore Institutes</span>
+            <h2 class="section-title">Find Your <span class="text-gradient">Dream Institution</span></h2>
+        </div>
+
+        <div class="row g-4 mt-4">
+            <div class="col-lg-3 col-md-6">
+                <a href="/predictor?type=IIT" class="institute-card iit-card animate-on-scroll">
+                    <div class="institute-icon">
+                        <span>IIT</span>
+                    </div>
+                    <h4>Indian Institutes of Technology</h4>
+                    <p>23 IITs - The pinnacle of engineering education</p>
+                    <div class="institute-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <a href="/predictor?type=NIT" class="institute-card nit-card animate-on-scroll">
+                    <div class="institute-icon">
+                        <span>NIT</span>
+                    </div>
+                    <h4>National Institutes of Technology</h4>
+                    <p>31 NITs - Excellence in technical education</p>
+                    <div class="institute-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <a href="/predictor?type=IIIT" class="institute-card iiit-card animate-on-scroll">
+                    <div class="institute-icon">
+                        <span>IIIT</span>
+                    </div>
+                    <h4>Indian Institutes of Information Technology</h4>
+                    <p>26 IIITs - Leaders in IT education</p>
+                    <div class="institute-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <a href="/predictor?type=GFTI" class="institute-card gfti-card animate-on-scroll">
+                    <div class="institute-icon">
+                        <span>GFTI</span>
+                    </div>
+                    <h4>Government Funded Technical Institutes</h4>
+                    <p>30+ GFTIs - Quality government education</p>
+                    <div class="institute-arrow">
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-card">
+            <div class="cta-content">
+                <h2>Ready to Find Your Perfect College?</h2>
+                <p>Start your journey to the best engineering institution today. It's free, fast, and accurate.</p>
+                <a href="/predictor" class="btn btn-cta-main">
+                    <i class="bi bi-rocket-takeoff me-2"></i>
+                    Start Free Prediction
+                </a>
+            </div>
+            <div class="cta-decoration">
+                <div class="circle circle-1"></div>
+                <div class="circle circle-2"></div>
+                <div class="circle circle-3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Animate numbers on scroll
+    function animateNumbers() {
+        const numbers = document.querySelectorAll('.stat-number');
+
+        numbers.forEach(num => {
+            const target = parseInt(num.getAttribute('data-count'));
+            const duration = 2000;
+            const step = Math.ceil(target / (duration / 16));
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    num.textContent = target.toLocaleString() + '+';
+                    clearInterval(timer);
+                } else {
+                    num.textContent = current.toLocaleString();
+                }
+            }, 16);
+        });
+    }
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+
+                if (entry.target.classList.contains('stats-section')) {
+                    animateNumbers();
+                }
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll, .stats-section').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+{% endblock %}
