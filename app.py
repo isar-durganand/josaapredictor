@@ -482,8 +482,11 @@ def chat():
         return jsonify({'response': "I encountered an error. Please try again."})
 
 
+# Load data at module level (important for gunicorn/production)
+print("Loading JoSAA 2025 Cutoff Data...")
+load_data()
+print(f"Data loaded successfully! Total rounds available: {len(data_frames)}")
+
 if __name__ == '__main__':
-    print("Loading JoSAA 2025 Cutoff Data...")
-    load_data()
-    print(f"Data loaded successfully! Total rounds available: {len(data_frames)}")
     app.run(debug=True, port=5000)
+
