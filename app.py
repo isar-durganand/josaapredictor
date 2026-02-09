@@ -1,10 +1,11 @@
 """
 JoSAA College Predictor - Enhanced Flask Application
 Multi-page architecture with stunning UI and advanced filtering features.
+Refactored to use built-in csv module for Vercel deployment (no pandas).
 """
 
 from flask import Flask, render_template, request, jsonify
-import pandas as pd
+import csv
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -25,18 +26,29 @@ else:
 app = Flask(__name__)
 
 # Data directory path - Works for both local and Vercel serverless
-# Get the base directory (where app.py is located)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, 'cutoff-data-2025')
 MARKS_DATA_FILE = os.path.join(BASE_DIR, 'marks-rank-percentile', 'marks-rank-percentile.csv')
 
-# Dictionary to store DataFrames for each round
+# Dictionary to store data for each round (list of dicts)
 data_frames = {}
-marks_df = None
+marks_data = None
+
+
+def parse_rank(rank_str):
+    """Parse rank string to numeric, handling 'P' suffix for PwD ranks."""
+    if rank_str is None:
+        return None
+    rank_str = str(rank_str).strip().replace('P', '')
+    try:
+        return int(rank_str)
+    except (ValueError, TypeError):
+        return None
+
 
 def load_data():
     """Load all 6 round CSV files into memory and marks data."""
-    global data_frames, marks_df
+    global data_frames, marks_data
 
     print(f"Loading data from: {DATA_DIR}")
     print(f"BASE_DIR is: {BASE_DIR}")
@@ -44,45 +56,46 @@ def load_data():
     for round_num in range(1, 7):
         file_path = os.path.join(DATA_DIR, f'josaa_cutoff_data_2025_round{round_num}.csv')
         if os.path.exists(file_path):
-            df = pd.read_csv(file_path)
-            # Clean the Closing Rank column - remove 'P' suffix for PwD ranks and convert to numeric
-            df['Closing Rank Numeric'] = df['Closing Rank'].astype(str).str.replace('P', '', regex=False)
-            df['Closing Rank Numeric'] = pd.to_numeric(df['Closing Rank Numeric'], errors='coerce')
-            df['Opening Rank Numeric'] = df['Opening Rank'].astype(str).str.replace('P', '', regex=False)
-            df['Opening Rank Numeric'] = pd.to_numeric(df['Opening Rank Numeric'], errors='coerce')
-            data_frames[round_num] = df
-            print(f"Loaded Round {round_num}: {len(df)} records")
+            with open(file_path, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                records = []
+                for row in reader:
+                    # Add numeric versions of ranks
+                    row['Closing Rank Numeric'] = parse_rank(row.get('Closing Rank'))
+                    row['Opening Rank Numeric'] = parse_rank(row.get('Opening Rank'))
+                    records.append(row)
+                data_frames[round_num] = records
+                print(f"Loaded Round {round_num}: {len(records)} records")
         else:
             print(f"WARNING: File not found: {file_path}")
 
     if os.path.exists(MARKS_DATA_FILE):
-        marks_df = pd.read_csv(MARKS_DATA_FILE)
-        print("Loaded Marks vs Rank data")
+        with open(MARKS_DATA_FILE, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            marks_data = list(reader)
+            print("Loaded Marks vs Rank data")
 
 
 def get_institute_type(institute_name):
     """Determine the institute type from its name."""
     name = institute_name.upper()
     
-    # Check for IIT first (most specific)
     if name.startswith('IIT') or 'INDIAN INSTITUTE OF TECHNOLOGY' in name:
         return 'IIT'
     
-    # Check for IIIT (before NIT to avoid 'IIIT' matching 'NIT')
     if 'IIIT' in name or 'INDIAN INSTITUTE OF INFORMATION TECHNOLOGY' in name:
         return 'IIIT'
     
-    # Check for NIT - matches "NIT ", "NIT,", starts with "NIT", or full name
-    # This catches: "NIT Agartala", "Malaviya NIT Jaipur", "Dr. B R Ambedkar NIT, Jalandhar"
     if ('NIT ' in name or 'NIT,' in name or name.startswith('NIT') or 
         'NATIONAL INSTITUTE OF TECHNOLOGY' in name):
         return 'NIT'
     
     return 'GFTI'
 
+
 def get_probability(user_rank, closing_rank):
     """Calculate admission probability based on rank difference."""
-    if closing_rank is None or pd.isna(closing_rank):
+    if closing_rank is None:
         return 'Unknown'
     
     difference = closing_rank - user_rank
@@ -94,35 +107,48 @@ def get_probability(user_rank, closing_rank):
     else:
         return 'Risky'
 
+
 def get_unique_categories():
     """Get unique seat types/categories from all data."""
     all_categories = set()
-    for df in data_frames.values():
-        all_categories.update(df['Seat Type'].unique().tolist())
+    for records in data_frames.values():
+        for row in records:
+            if row.get('Seat Type'):
+                all_categories.add(row['Seat Type'])
     return sorted(list(all_categories))
+
 
 def get_unique_quotas():
     """Get unique quotas from all data."""
     all_quotas = set()
-    for df in data_frames.values():
-        all_quotas.update(df['Quota'].unique().tolist())
+    for records in data_frames.values():
+        for row in records:
+            if row.get('Quota'):
+                all_quotas.add(row['Quota'])
     return sorted(list(all_quotas))
+
 
 def get_unique_programs():
     """Get unique program names from all data."""
     all_programs = set()
-    for df in data_frames.values():
-        all_programs.update(df['Academic Program Name'].unique().tolist())
+    for records in data_frames.values():
+        for row in records:
+            if row.get('Academic Program Name'):
+                all_programs.add(row['Academic Program Name'])
     return sorted(list(all_programs))
+
 
 def get_stats():
     """Get statistics for the landing page."""
-    total_records = sum(len(df) for df in data_frames.values())
+    total_records = sum(len(records) for records in data_frames.values())
     unique_institutes = set()
     unique_programs = set()
-    for df in data_frames.values():
-        unique_institutes.update(df['Institute'].unique().tolist())
-        unique_programs.update(df['Academic Program Name'].unique().tolist())
+    for records in data_frames.values():
+        for row in records:
+            if row.get('Institute'):
+                unique_institutes.add(row['Institute'])
+            if row.get('Academic Program Name'):
+                unique_programs.add(row['Academic Program Name'])
     
     return {
         'total_records': total_records,
@@ -130,6 +156,7 @@ def get_stats():
         'unique_programs': len(unique_programs),
         'rounds': len(data_frames)
     }
+
 
 # ==================== ROUTES ====================
 
@@ -139,6 +166,7 @@ def index():
     stats = get_stats()
     return render_template('index.html', stats=stats)
 
+
 @app.route('/predictor')
 def predictor():
     """College predictor tool page."""
@@ -147,51 +175,59 @@ def predictor():
     programs = get_unique_programs()
     return render_template('predictor.html', categories=categories, quotas=quotas, programs=programs)
 
+
 @app.route('/about')
 def about():
     """About page."""
     stats = get_stats()
     return render_template('about.html', stats=stats)
 
+
 @app.route('/contact')
 def contact():
     """Contact page."""
     return render_template('contact.html')
+
 
 @app.route('/cutoffs')
 def cutoffs():
     """JEE Main Cutoff Details page."""
     return render_template('cutoffs.html')
 
+
 @app.route('/privacy')
 def privacy():
     """Privacy Policy page - Required for Google AdSense."""
     return render_template('privacy.html')
+
 
 @app.route('/terms')
 def terms():
     """Terms of Service page - Required for Google AdSense."""
     return render_template('terms.html')
 
+
 @app.route('/sitemap.xml')
 def sitemap():
     """Serve XML sitemap for search engines."""
     return app.send_static_file('sitemap.xml')
+
 
 @app.route('/robots.txt')
 def robots():
     """Serve robots.txt for search engines."""
     return app.send_static_file('robots.txt')
 
+
 @app.route('/manifest.json')
 def manifest():
     """Serve PWA manifest."""
     return app.send_static_file('manifest.json')
 
+
 @app.route('/rank-predictor')
 def rank_predictor():
     """JEE Main Rank & Percentile Predictor page."""
-    # Data for the table
     data = [
         {"marks": "281 - 300", "percentile": "99.99989145 - 100", "rank": "1 - 20"},
         {"marks": "271 - 280", "percentile": "99.994681 - 99.997394", "rank": "24 - 80"},
@@ -222,6 +258,7 @@ def rank_predictor():
     ]
     return render_template('rank_predictor.html', data=data)
 
+
 @app.route('/predict', methods=['POST'])
 def predict():
     """Handle prediction requests."""
@@ -242,76 +279,86 @@ def predict():
         if round_num == 'ALL':
             rounds_to_process = list(data_frames.keys())
         else:
-            round_num = int(round_num)
-            if round_num not in data_frames:
-                return jsonify({'error': f'Data for Round {round_num} not available', 'results': []})
-            rounds_to_process = [round_num]
+            round_num_int = int(round_num)
+            if round_num_int not in data_frames:
+                return jsonify({'error': f'Data for Round {round_num_int} not available', 'results': []})
+            rounds_to_process = [round_num_int]
         
         all_results = []
         
         for rnd in rounds_to_process:
-            df = data_frames[rnd].copy()
-            df['Round'] = rnd
+            records = data_frames[rnd]
             
-            # Filter by category (seat type)
-            if category != 'ALL':
-                df = df[df['Seat Type'] == category]
-            
-            # Filter by gender
-            if gender != 'ALL':
-                df = df[df['Gender'].str.contains(gender, case=False, na=False)]
-            
-            # Filter by quota
-            if quota != 'ALL':
-                df = df[df['Quota'] == quota]
-            
-            # Filter by program
-            if program != 'ALL':
-                df = df[df['Academic Program Name'] == program]
-            
-            # Filter by institute type
-            if institute_type != 'ALL':
-                df['Institute Type'] = df['Institute'].apply(get_institute_type)
-                df = df[df['Institute Type'] == institute_type]
-            
-            # Filter where user rank <= closing rank
-            df = df[df['Closing Rank Numeric'] >= user_rank]
-            
-            # Add probability indicator
-            df['Probability'] = df['Closing Rank Numeric'].apply(lambda x: get_probability(user_rank, x))
-            
-            all_results.append(df)
+            for row in records:
+                # Create a copy for this result
+                result_row = dict(row)
+                result_row['Round'] = rnd
+                
+                # Filter by category (seat type)
+                if category != 'ALL' and result_row.get('Seat Type') != category:
+                    continue
+                
+                # Filter by gender
+                if gender != 'ALL':
+                    row_gender = result_row.get('Gender', '')
+                    if gender.lower() not in row_gender.lower():
+                        continue
+                
+                # Filter by quota
+                if quota != 'ALL' and result_row.get('Quota') != quota:
+                    continue
+                
+                # Filter by program
+                if program != 'ALL' and result_row.get('Academic Program Name') != program:
+                    continue
+                
+                # Filter by institute type
+                if institute_type != 'ALL':
+                    row_inst_type = get_institute_type(result_row.get('Institute', ''))
+                    if row_inst_type != institute_type:
+                        continue
+                
+                # Filter where user rank <= closing rank
+                closing_rank_num = result_row.get('Closing Rank Numeric')
+                if closing_rank_num is None or closing_rank_num < user_rank:
+                    continue
+                
+                # Add probability indicator
+                result_row['Probability'] = get_probability(user_rank, closing_rank_num)
+                
+                all_results.append(result_row)
         
-        # Combine all results
-        if all_results:
-            combined_df = pd.concat(all_results, ignore_index=True)
+        # If "All Rounds" selected, keep only the best round for each unique combination
+        if round_num == 'ALL':
+            # Sort by closing rank descending first
+            all_results.sort(key=lambda x: x.get('Closing Rank Numeric') or 0, reverse=True)
             
-            # If "All Rounds" selected, keep only the best round for each unique combination
-            if round_num == 'ALL':
-                # Group by Institute, Program, Quota, Seat Type, Gender and keep the one with highest closing rank
-                combined_df = combined_df.sort_values('Closing Rank Numeric', ascending=False)
-                combined_df = combined_df.drop_duplicates(
-                    subset=['Institute', 'Academic Program Name', 'Quota', 'Seat Type', 'Gender'],
-                    keep='first'
-                )
-            
-            # Sort by closing rank (highest first = best chance)
-            combined_df = combined_df.sort_values('Closing Rank Numeric', ascending=False)
-        else:
-            combined_df = pd.DataFrame()
+            # Keep only first occurrence of each unique combination
+            seen = set()
+            unique_results = []
+            for row in all_results:
+                key = (row.get('Institute'), row.get('Academic Program Name'), 
+                       row.get('Quota'), row.get('Seat Type'), row.get('Gender'))
+                if key not in seen:
+                    seen.add(key)
+                    unique_results.append(row)
+            all_results = unique_results
+        
+        # Sort by closing rank (highest first = best chance)
+        all_results.sort(key=lambda x: x.get('Closing Rank Numeric') or 0, reverse=True)
         
         # Prepare results
         results = []
-        for _, row in combined_df.iterrows():
+        for row in all_results:
             result = {
-                'institute': row['Institute'],
-                'program': row['Academic Program Name'],
-                'quota': row['Quota'],
-                'seat_type': row['Seat Type'],
-                'gender': row['Gender'],
-                'opening_rank': row['Opening Rank'],
-                'closing_rank': row['Closing Rank'],
-                'probability': row['Probability']
+                'institute': row.get('Institute'),
+                'program': row.get('Academic Program Name'),
+                'quota': row.get('Quota'),
+                'seat_type': row.get('Seat Type'),
+                'gender': row.get('Gender'),
+                'opening_rank': row.get('Opening Rank'),
+                'closing_rank': row.get('Closing Rank'),
+                'probability': row.get('Probability')
             }
             if 'Round' in row:
                 result['round'] = int(row['Round'])
@@ -329,11 +376,13 @@ def predict():
         print(f"Error: {e}")
         return jsonify({'error': str(e), 'results': []})
 
+
 @app.route('/api/categories')
 def api_categories():
     """API endpoint to get all categories."""
     categories = get_unique_categories()
     return jsonify(categories)
+
 
 @app.route('/api/quotas')
 def api_quotas():
@@ -341,17 +390,20 @@ def api_quotas():
     quotas = get_unique_quotas()
     return jsonify(quotas)
 
+
 @app.route('/api/programs')
 def api_programs():
     """API endpoint to get all program names."""
     programs = get_unique_programs()
     return jsonify(programs)
 
+
 @app.route('/api/stats')
 def api_stats():
     """API endpoint to get statistics."""
     stats = get_stats()
     return jsonify(stats)
+
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -361,7 +413,7 @@ def chat():
 
     data = request.json
     user_message = data.get('message', '')
-    history = data.get('history', []) # Expect list of {role: 'user'/'model', parts: [text]}
+    history = data.get('history', [])
 
     if not user_message:
         return jsonify({'response': "Please say something!"})
@@ -376,10 +428,6 @@ def chat():
                 text = msg['parts'][0] if isinstance(msg['parts'], list) else msg['parts']
                 history_context += f"{role}: {text}\n"
 
-        # OPTIMIZATION: Single Prompt for Classification + General Chat
-        # If user asks for data -> Return JSON.
-        # If user chats generally -> Return simple text answer directly.
-        
         system_instruction = """
         You are an intelligent assistant for a College Predictor app.
         
@@ -412,18 +460,14 @@ def chat():
         response = model.generate_content(full_prompt)
         text_response = response.text.strip()
         
-        # Check if response is JSON (starts with { and ends with })
-        # We use a simple check; if it fails, we treat it as a general text response (1 call!)
-        json_pattern =r'\{.*\}'
+        json_pattern = r'\{.*\}'
         match = re.search(json_pattern, text_response, re.DOTALL)
         
         if match:
-            # It's a JSON intent! Process it.
             json_str = match.group()
             try:
                 parsed_intent = json.loads(json_str)
             except json.JSONDecodeError:
-                # Failed to parse JSON, treated as text answer
                 return jsonify({'response': text_response.replace('```json', '').replace('```', '')})
 
             intent = parsed_intent.get('intent')
@@ -431,44 +475,49 @@ def chat():
             context_data = ""
 
             if intent == 'missing_info':
-                # Optimization: Generate asking question locally or ask Gemini again?
-                # Faster to ask Gemini to generate the specific question based on missing fields involves another call.
-                # To save calls, we can try to return a template, OR just do the 2nd call.
-                # Let's do 2nd call for high quality natural language.
                 pass 
                 
             elif intent == 'cutoff':
                 round_num = entities.get('round') if entities.get('round') else 6
-                if round_num not in data_frames: round_num = 6
-                df = data_frames[round_num]
+                if round_num not in data_frames:
+                    round_num = 6
+                records = data_frames.get(round_num, [])
                 
-                filtered_df = df.copy()
+                filtered = records[:]
+                
                 if entities.get('institute'):
-                    filtered_df = filtered_df[filtered_df['Institute'].str.contains(entities['institute'], case=False, na=False)]
+                    inst_search = entities['institute'].lower()
+                    filtered = [r for r in filtered if inst_search in r.get('Institute', '').lower()]
+                
                 if entities.get('program'):
-                    filtered_df = filtered_df[filtered_df['Academic Program Name'].str.contains(entities['program'], case=False, na=False)]
+                    prog_search = entities['program'].lower()
+                    filtered = [r for r in filtered if prog_search in r.get('Academic Program Name', '').lower()]
+                
                 if entities.get('category'):
                     cat_map = {'OPEN': 'OPEN', 'GEN': 'OPEN', 'OBC': 'OBC-NCL', 'SC': 'SC', 'ST': 'ST', 'EWS': 'EWS'}
-                    search_cat = cat_map.get(entities['category'].upper(), entities['category'])
-                    filtered_df = filtered_df[filtered_df['Seat Type'].str.contains(search_cat, case=False, na=False)]
-                if entities.get('rank'):
-                     rank = int(entities['rank'])
-                     filtered_df = filtered_df[filtered_df['Closing Rank Numeric'] >= rank]
-                     filtered_df = filtered_df.sort_values('Closing Rank Numeric')
+                    search_cat = cat_map.get(entities['category'].upper(), entities['category']).lower()
+                    filtered = [r for r in filtered if search_cat in r.get('Seat Type', '').lower()]
                 
-                results = filtered_df.head(10).to_dict('records')
+                if entities.get('rank'):
+                    rank = int(entities['rank'])
+                    filtered = [r for r in filtered if (r.get('Closing Rank Numeric') or 0) >= rank]
+                    filtered.sort(key=lambda x: x.get('Closing Rank Numeric') or 0)
+                
+                results = filtered[:10]
                 if not results:
                     context_data = "No matching cutoff data found."
                 else:
-                    context_data = "Matches (Round 6):\n" + "\n".join([f"- {r['Institute']}, {r['Academic Program Name']}, {r['Seat Type']}, Closing Rank: {r['Closing Rank']}" for r in results])
+                    context_data = "Matches (Round 6):\n" + "\n".join([
+                        f"- {r.get('Institute')}, {r.get('Academic Program Name')}, {r.get('Seat Type')}, Closing Rank: {r.get('Closing Rank')}" 
+                        for r in results
+                    ])
 
             elif intent == 'rank_predict':
-                if marks_df is not None:
-                    context_data = "Reference Data:\n" + marks_df.to_string()
+                if marks_data:
+                    context_data = "Reference Data:\n" + "\n".join([str(row) for row in marks_data[:20]])
                 else:
                     context_data = "Rank data unavailable."
 
-            # Second Call: Generate Answer with Context
             final_prompt = f"""
             System: User asked: "{user_message}".
             Context found:
@@ -480,8 +529,6 @@ def chat():
             return jsonify({'response': final_resp.text})
             
         else:
-            # It's NOT JSON. It's a direct general answer.
-            # We saved a whole API call!
             return jsonify({'response': text_response})
 
     except Exception as e:
@@ -496,4 +543,3 @@ print(f"Data loaded successfully! Total rounds available: {len(data_frames)}")
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
-
