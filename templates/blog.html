@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - IIT & NIT Complete Guide 2026 | JoSAA College Predictor{% endblock %}
+
+{% block meta_description %}Complete guide to all IITs and NITs in India. Detailed information about courses, fees,
+placements, cutoffs, campus life, and admission process for JoSAA 2026 counseling.{% endblock %}
+
+{% block head_extra %}
+<!-- CollectionPage Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "IIT & NIT Complete Guide",
+    "description": "Comprehensive guides to all IITs and NITs in India with admission details, cutoffs, placements, and campus information.",
+    "url": "https://josaacollegepredictor.vercel.app/blog",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "JoSAA College Predictor",
+        "url": "https://josaacollegepredictor.vercel.app"
+    }
+}
+</script>
+
+<style>
+    .blog-section {
+        padding: 2rem 0 4rem;
+    }
+
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .blog-card {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        border-color: var(--primary);
+    }
+
+    .blog-card-header {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        padding: 1.5rem;
+        color: white;
+    }
+
+    .blog-card-header.nit {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    }
+
+    .blog-card-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-sm);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.75rem;
+    }
+
+    .blog-card-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .blog-card-body {
+        padding: 1.25rem 1.5rem;
+        flex: 1;
+    }
+
+    .blog-card-desc {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .blog-card-stats {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .blog-stat {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+    }
+
+    .blog-stat i {
+        color: var(--primary);
+    }
+
+    .blog-card-footer {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid var(--border);
+    }
+
+    .blog-read-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .blog-read-more:hover {
+        color: var(--primary-light);
+        gap: 0.75rem;
+    }
+
+    .filter-tabs {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .filter-tab {
+        padding: 0.6rem 1.25rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        color: var(--text-secondary);
+    }
+
+    .filter-tab:hover,
+    .filter-tab.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">
+            <i class="bi bi-journal-richtext text-gradient me-2"></i>
+            IIT & NIT <span class="text-gradient">Complete Guide</span>
+        </h1>
+        <p style="font-size: 1.1rem; color: var(--primary-light); margin-bottom: 0.5rem;">
+            📚 Colleges ki puri jaankari, ek jagah pe! 🎓
+        </p>
+        <p class="page-subtitle">
+            Detailed guides to help you choose the best engineering college for your career
+        </p>
+    </div>
+</section>
+
+<!-- Blog Grid Section -->
+<section class="blog-section">
+    <div class="container">
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All Institutes</button>
+            <button class="filter-tab" data-filter="iit">IITs ({{ institutes | selectattr('type', 'equalto', 'IIT') |
+                list | length }})</button>
+            <button class="filter-tab" data-filter="nit">NITs ({{ institutes | selectattr('type', 'equalto', 'NIT') |
+                list | length }})</button>
+        </div>
+
+        <!-- Blog Grid -->
+        <div class="blog-grid">
+            {% for inst in institutes %}
+            <article class="blog-card" data-type="{{ inst.type | lower }}">
+                <div class="blog-card-header {{ inst.type | lower }}">
+                    <span class="blog-card-badge">{{ inst.type }}</span>
+                    <h2 class="blog-card-title">{{ inst.name }}</h2>
+                </div>
+                <div class="blog-card-body">
+                    <p class="blog-card-desc">{{ inst.description[:150] }}...</p>
+                    <div class="blog-card-stats">
+                        <span class="blog-stat"><i class="bi bi-geo-alt"></i> {{ inst.location }}</span>
+                        <span class="blog-stat"><i class="bi bi-calendar"></i> Est. {{ inst.established }}</span>
+                    </div>
+                </div>
+                <div class="blog-card-footer">
+                    <a href="/blog/{{ inst.slug }}" class="blog-read-more">
+                        Read Complete Guide <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Filter functionality
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const blogCards = document.querySelectorAll('.blog-card');
+
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Update active tab
+            filterTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const filter = tab.dataset.filter;
+
+            blogCards.forEach(card => {
+                if (filter === 'all' || card.dataset.type === filter) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

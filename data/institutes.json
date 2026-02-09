@@ -1,0 +1,1180 @@
+{
+    "institutes": [
+        {
+            "slug": "iit-bombay",
+            "name": "Indian Institute of Technology Bombay",
+            "short_name": "IIT Bombay",
+            "type": "IIT",
+            "location": "Mumbai, Maharashtra",
+            "established": 1958,
+            "nirf_rank": "3",
+            "description": "IIT Bombay is one of India's most prestigious engineering institutions, located in Powai, Mumbai. Established in 1958 with UNESCO assistance, it has evolved into a world-class institute known for cutting-edge research, exceptional placements, and producing industry leaders. The sprawling 550-acre campus hosts over 16,000 students and offers state-of-the-art facilities. IIT Bombay consistently ranks among the top 3 engineering colleges in India and is recognized globally for its academic excellence, entrepreneurial ecosystem, and vibrant campus culture.",
+            "fees": "2.31L",
+            "hostel_fee": "25K",
+            "mess_fee": "4K",
+            "total_cost": "12-15",
+            "avg_package": "23.5",
+            "highest_package": "3.67 Cr",
+            "placement_rate": "95",
+            "top_recruiters": "Google, Microsoft, Apple, Goldman Sachs, Uber, Flipkart, Amazon, McKinsey, BCG, DE Shaw, Tower Research",
+            "campus_life": "IIT Bombay's campus is a vibrant ecosystem with 18 hostels (including girls' hostels), world-class sports facilities, a swimming pool, and numerous clubs. The annual cultural festival 'Mood Indigo' and tech fest 'Techfest' are Asia's largest college festivals. Students enjoy access to multiple cafeterias, a lake, and beautiful gardens. The campus has a strong startup culture with multiple successful companies born here.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "110"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "145"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "169"
+                },
+                {
+                    "name": "B.Tech Chemical Engineering",
+                    "duration": "4 Years",
+                    "seats": "91"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "72"
+                },
+                {
+                    "name": "B.Tech Aerospace Engineering",
+                    "duration": "4 Years",
+                    "seats": "57"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>68</td><td>43</td><td>18</td><td>8</td></tr><tr><td>EE</td><td>489</td><td>242</td><td>86</td><td>44</td></tr><tr><td>ME</td><td>1,423</td><td>698</td><td>306</td><td>158</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Nandan Nilekani",
+                    "designation": "Co-founder of Infosys, Former Chairman of UIDAI"
+                },
+                {
+                    "name": "Raghuram Rajan",
+                    "designation": "Former RBI Governor, Professor at Chicago Booth"
+                },
+                {
+                    "name": "Parag Agrawal",
+                    "designation": "Former CEO of Twitter"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "What is the JEE Advanced cutoff for IIT Bombay CSE?",
+                    "answer": "For JoSAA 2025, the closing rank for CSE at IIT Bombay was around 68 for OPEN category. This varies slightly each year based on difficulty and number of applicants."
+                },
+                {
+                    "question": "Is IIT Bombay better than IIT Delhi?",
+                    "answer": "Both are top-tier institutions. IIT Bombay excels in CS, EE, and has a stronger startup ecosystem. IIT Delhi has advantages in certain engineering and design fields. Your choice should depend on your preferred branch and career goals."
+                },
+                {
+                    "question": "What is the total cost of studying at IIT Bombay?",
+                    "answer": "The total cost for 4 years including tuition, hostel, mess, and other expenses is approximately ₹12-15 lakhs. Various scholarships are available for economically weaker students."
+                },
+                {
+                    "question": "How is campus life at IIT Bombay?",
+                    "answer": "IIT Bombay has one of the most vibrant campus cultures with 100+ clubs, Asia's largest college festivals (Mood Indigo, Techfest), excellent sports facilities, and a beautiful lakeside campus."
+                }
+            ]
+        },
+        {
+            "slug": "iit-delhi",
+            "name": "Indian Institute of Technology Delhi",
+            "short_name": "IIT Delhi",
+            "type": "IIT",
+            "location": "New Delhi, Delhi",
+            "established": 1961,
+            "nirf_rank": "2",
+            "description": "IIT Delhi, established in 1961, is consistently ranked among India's top 2 engineering institutes. Located in the heart of India's capital near Hauz Khas, it offers unparalleled opportunities for internships, industry exposure, and networking. The 325-acre green campus is home to cutting-edge research facilities, incubation centers, and a diverse student body. IIT Delhi's proximity to government institutions, embassies, and corporate headquarters makes it unique among IITs.",
+            "fees": "2.30L",
+            "hostel_fee": "28K",
+            "mess_fee": "4K",
+            "total_cost": "12-14",
+            "avg_package": "24.2",
+            "highest_package": "2.5 Cr",
+            "placement_rate": "96",
+            "top_recruiters": "Google, Microsoft, Uber, Qualcomm, Samsung, Goldman Sachs, JP Morgan, Bain & Company, Adobe, Intel",
+            "campus_life": "IIT Delhi's campus features beautiful architecture, 14 hostels, excellent library facilities, and proximity to Delhi's cultural hotspots. The annual cultural fest 'Rendezvous' and tech fest 'Tryst' attract participants nationwide. Students benefit from Delhi's connectivity and access to numerous internship opportunities in NCR.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "96"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "111"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "133"
+                },
+                {
+                    "name": "B.Tech Chemical Engineering",
+                    "duration": "4 Years",
+                    "seats": "61"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "72"
+                },
+                {
+                    "name": "B.Tech Textile Engineering",
+                    "duration": "4 Years",
+                    "seats": "46"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>97</td><td>55</td><td>22</td><td>11</td></tr><tr><td>EE</td><td>525</td><td>276</td><td>102</td><td>52</td></tr><tr><td>ME</td><td>1,678</td><td>812</td><td>352</td><td>182</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Sundar Pichai",
+                    "designation": "CEO of Google and Alphabet (attended for M.S.)"
+                },
+                {
+                    "name": "Rajat Gupta",
+                    "designation": "Former Managing Director of McKinsey"
+                },
+                {
+                    "name": "Vinod Gupta",
+                    "designation": "Founder of InfoUSA"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "What rank is required for IIT Delhi CSE?",
+                    "answer": "For JoSAA 2025, CSE at IIT Delhi had a closing rank of around 97 for OPEN category. The cutoff fluctuates slightly each year."
+                },
+                {
+                    "question": "Is IIT Delhi worth it for non-CS branches?",
+                    "answer": "Absolutely! IIT Delhi's Electrical, Mechanical, and Chemical Engineering programs are world-class with excellent placements. The brand value and alumni network benefit all branches."
+                },
+                {
+                    "question": "What are hostel facilities like at IIT Delhi?",
+                    "answer": "IIT Delhi has 14 hostels with single and shared rooms. Hostels have common rooms, mess facilities, WiFi, and 24x7 security. AC rooms are available in some hostels."
+                },
+                {
+                    "question": "How are placements at IIT Delhi?",
+                    "answer": "IIT Delhi has one of the best placement records with 96%+ placement rate. The average package is around ₹24 LPA with many students receiving international offers exceeding ₹1 Cr."
+                }
+            ]
+        },
+        {
+            "slug": "iit-madras",
+            "name": "Indian Institute of Technology Madras",
+            "short_name": "IIT Madras",
+            "type": "IIT",
+            "location": "Chennai, Tamil Nadu",
+            "established": 1959,
+            "nirf_rank": "1",
+            "description": "IIT Madras has been ranked India's #1 engineering institute for 7 consecutive years by NIRF. Located on a 620-acre forested campus inside Guindy National Park, it offers a unique blend of academic excellence and natural beauty. Established in 1959 with German assistance, IIT Madras is known for its strong research culture, incubation ecosystem (largest in India), and exceptional faculty. The institute is home to several national research centers and has produced numerous successful entrepreneurs and researchers.",
+            "fees": "2.25L",
+            "hostel_fee": "22K",
+            "mess_fee": "3.5K",
+            "total_cost": "11-13",
+            "avg_package": "21.5",
+            "highest_package": "2.2 Cr",
+            "placement_rate": "94",
+            "top_recruiters": "Microsoft, Google, Amazon, Qualcomm, Texas Instruments, Samsung, Oracle, Cisco, DE Shaw, Sprinklr",
+            "campus_life": "IIT Madras campus is unique - located inside a deer park with spotted deer, blackbucks, and monkeys roaming freely. The 19 hostels, research park, and innovation hub create a perfect environment for learning. The annual fest 'Saarang' and tech fest 'Shaastra' are major attractions. Chennai's pleasant climate (compared to North India's extreme weather) is a bonus.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "105"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "135"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "168"
+                },
+                {
+                    "name": "B.Tech Chemical Engineering",
+                    "duration": "4 Years",
+                    "seats": "84"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "64"
+                },
+                {
+                    "name": "B.Tech Aerospace Engineering",
+                    "duration": "4 Years",
+                    "seats": "48"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>147</td><td>72</td><td>32</td><td>14</td></tr><tr><td>EE</td><td>823</td><td>412</td><td>165</td><td>78</td></tr><tr><td>ME</td><td>2,156</td><td>1,023</td><td>478</td><td>231</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Sridhar Vembu",
+                    "designation": "Founder of Zoho Corporation"
+                },
+                {
+                    "name": "Kris Gopalakrishnan",
+                    "designation": "Co-founder of Infosys"
+                },
+                {
+                    "name": "Narayan Murthy",
+                    "designation": "Co-founder of Infosys (Honorary)"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Why is IIT Madras ranked #1 in India?",
+                    "answer": "IIT Madras leads in research output, industry collaborations, faculty quality, and innovation metrics. Its Research Park and incubation center have spawned 400+ startups."
+                },
+                {
+                    "question": "What is special about IIT Madras campus?",
+                    "answer": "The campus is inside Guindy National Park with wildlife roaming freely. It's one of the most beautiful and serene campuses in India."
+                },
+                {
+                    "question": "Is IIT Madras good for startups?",
+                    "answer": "IIT Madras has India's largest tech incubator with 400+ startups. It provides funding, mentorship, and infrastructure for student entrepreneurs."
+                },
+                {
+                    "question": "How is the weather at IIT Madras?",
+                    "answer": "Chennai has tropical weather - warm throughout the year (25-40°C). It's preferable for those who don't like extreme cold. The monsoon season (Oct-Dec) brings pleasant weather."
+                }
+            ]
+        },
+        {
+            "slug": "iit-kanpur",
+            "name": "Indian Institute of Technology Kanpur",
+            "short_name": "IIT Kanpur",
+            "type": "IIT",
+            "location": "Kanpur, Uttar Pradesh",
+            "established": 1959,
+            "nirf_rank": "4",
+            "description": "IIT Kanpur, established in 1959 with American collaboration, is known for pioneering computer science education in India and its strong research culture. The 1,055-acre campus on the banks of the Ganges has produced numerous tech entrepreneurs, including the founders of Flipkart. IIT Kanpur introduced the first Computer Science department in India and continues to lead in AI/ML research. The institute is known for its rigorous academics and excellent peer learning culture.",
+            "fees": "2.28L",
+            "hostel_fee": "24K",
+            "mess_fee": "3.8K",
+            "total_cost": "11-14",
+            "avg_package": "21.8",
+            "highest_package": "2.5 Cr",
+            "placement_rate": "92",
+            "top_recruiters": "Google, Microsoft, Facebook, Amazon, Flipkart, Goldman Sachs, Tower Research, Uber, Qualcomm, Samsung",
+            "campus_life": "IIT Kanpur's massive campus includes an airstrip, golf course, and excellent sports facilities. The 13 hostels foster a close-knit community. Annual festivals 'Antaragni' (cultural) and 'Techkriti' (technical) are among India's largest. The night canteen culture and late-night coding sessions are legendary.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "104"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "186"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "210"
+                },
+                {
+                    "name": "B.Tech Chemical Engineering",
+                    "duration": "4 Years",
+                    "seats": "72"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "82"
+                },
+                {
+                    "name": "B.Tech Aerospace Engineering",
+                    "duration": "4 Years",
+                    "seats": "48"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>215</td><td>102</td><td>48</td><td>22</td></tr><tr><td>EE</td><td>912</td><td>456</td><td>189</td><td>92</td></tr><tr><td>ME</td><td>2,456</td><td>1,198</td><td>532</td><td>267</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Sachin Bansal",
+                    "designation": "Co-founder of Flipkart"
+                },
+                {
+                    "name": "Binny Bansal",
+                    "designation": "Co-founder of Flipkart"
+                },
+                {
+                    "name": "Manish Sabharwal",
+                    "designation": "Co-founder of TeamLease"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Is IIT Kanpur good for Computer Science?",
+                    "answer": "Absolutely! IIT Kanpur started India's first CS department and continues to be a leader in computer science education and research."
+                },
+                {
+                    "question": "What is the campus size of IIT Kanpur?",
+                    "answer": "IIT Kanpur has one of the largest campuses at 1,055 acres, including an airstrip, golf course, and various sports facilities."
+                },
+                {
+                    "question": "How are placements for non-CS branches at IIT Kanpur?",
+                    "answer": "All branches have excellent placements. The average package is around ₹18-20 LPA for non-CS branches as well, with top companies recruiting across disciplines."
+                },
+                {
+                    "question": "What is the nightlife like at IIT Kanpur?",
+                    "answer": "IIT Kanpur is famous for its night owl culture. The night canteen serves food until late, and many students prefer working/coding at night. The campus is safe 24x7."
+                }
+            ]
+        },
+        {
+            "slug": "iit-kharagpur",
+            "name": "Indian Institute of Technology Kharagpur",
+            "short_name": "IIT Kharagpur",
+            "type": "IIT",
+            "location": "Kharagpur, West Bengal",
+            "established": 1951,
+            "nirf_rank": "5",
+            "description": "IIT Kharagpur is the oldest and largest IIT, established in 1951 at the site of Hijli Detention Camp where freedom fighters were imprisoned. With 2,100 acres, it's a self-contained township with the largest number of departments (over 20) and the highest student intake. IIT Kharagpur offers unique programs like Law, Architecture, and Medicine (through its medical school). The Spring Fest at IIT KGP is Asia's largest college social and cultural fest.",
+            "fees": "2.15L",
+            "hostel_fee": "22K",
+            "mess_fee": "3.5K",
+            "total_cost": "10-12",
+            "avg_package": "19.8",
+            "highest_package": "2.1 Cr",
+            "placement_rate": "91",
+            "top_recruiters": "Google, Microsoft, Amazon, Goldman Sachs, BCG, McKinsey, Deloitte, Accenture, TCS, IBM",
+            "campus_life": "IIT Kharagpur is like a mini-city with 23 hostels, hospital, stadium, shopping complex, and even its own post office. The Gymkhana (student activities) is very active with 100+ clubs. Spring Fest and Kshitij (tech fest) are mega events. The hall culture and inter-hall competitions are legendary.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "120"
+                },
+                {
+                    "name": "B.Tech Electronics & Comm",
+                    "duration": "4 Years",
+                    "seats": "135"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "180"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "90"
+                },
+                {
+                    "name": "B.Arch (Architecture)",
+                    "duration": "5 Years",
+                    "seats": "35"
+                },
+                {
+                    "name": "Dual Degree (Various)",
+                    "duration": "5 Years",
+                    "seats": "300+"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>425</td><td>198</td><td>92</td><td>45</td></tr><tr><td>ECE</td><td>1,256</td><td>612</td><td>278</td><td>142</td></tr><tr><td>ME</td><td>3,125</td><td>1,523</td><td>712</td><td>356</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Sundar Pichai",
+                    "designation": "CEO of Google and Alphabet"
+                },
+                {
+                    "name": "Arvind Krishna",
+                    "designation": "CEO of IBM"
+                },
+                {
+                    "name": "Vinod Gupta",
+                    "designation": "Founder of Infogroup"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Is IIT Kharagpur the best for mechanical engineering?",
+                    "answer": "IIT Kharagpur has one of the strongest mechanical engineering departments in India with excellent labs, faculty, and industry connections."
+                },
+                {
+                    "question": "What makes IIT Kharagpur unique?",
+                    "answer": "It's the oldest and largest IIT with unique programs like Law (5-year), Architecture, and even a medical school. The campus is like a self-contained town."
+                },
+                {
+                    "question": "How is the location of IIT Kharagpur?",
+                    "answer": "Located in a small town in West Bengal, about 120 km from Kolkata. While remote, it leads to a focused academic environment and strong hostel bonding."
+                },
+                {
+                    "question": "What is the Spring Fest at IIT KGP?",
+                    "answer": "Spring Fest is Asia's largest college social and cultural festival with participants from across India. It features concerts by international artists, competitions, and exhibitions."
+                }
+            ]
+        },
+        {
+            "slug": "iit-roorkee",
+            "name": "Indian Institute of Technology Roorkee",
+            "short_name": "IIT Roorkee",
+            "type": "IIT",
+            "location": "Roorkee, Uttarakhand",
+            "established": 1847,
+            "nirf_rank": "6",
+            "description": "IIT Roorkee, formerly Thomason College of Engineering (established 1847), is Asia's oldest technical institution. With 175+ years of history, it has shaped India's infrastructure - from railways to major dams. Located at the foothills of the Himalayas, the 365-acre campus combines heritage architecture with modern facilities. IIT Roorkee excels in civil engineering, water resources, and earthquake engineering research.",
+            "fees": "2.30L",
+            "hostel_fee": "26K",
+            "mess_fee": "4K",
+            "total_cost": "12-14",
+            "avg_package": "18.5",
+            "highest_package": "1.8 Cr",
+            "placement_rate": "89",
+            "top_recruiters": "Google, Microsoft, Amazon, L&T, Tata Projects, Goldman Sachs, JP Morgan, Deloitte, ONGC, Samsung",
+            "campus_life": "IIT Roorkee's heritage campus features colonial-era buildings alongside modern facilities. The pleasant weather (near Dehradun and Haridwar) and proximity to hill stations make it unique. The 13 bhawans (hostels) have a strong tradition of cultural and sports activities. Thomso (cultural fest) and Cognizance (tech fest) are the major annual events.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "90"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "120"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "135"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "110"
+                },
+                {
+                    "name": "B.Arch (Architecture)",
+                    "duration": "5 Years",
+                    "seats": "40"
+                },
+                {
+                    "name": "B.Tech Chemical Engineering",
+                    "duration": "4 Years",
+                    "seats": "68"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>756</td><td>378</td><td>156</td><td>82</td></tr><tr><td>EE</td><td>1,856</td><td>912</td><td>412</td><td>198</td></tr><tr><td>Civil</td><td>4,523</td><td>2,156</td><td>1,023</td><td>512</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "MS Dhoni",
+                    "designation": "Former Indian Cricket Captain (Honorary Doctorate)"
+                },
+                {
+                    "name": "Naib Subedar Bana Singh",
+                    "designation": "Param Vir Chakra Awardee"
+                },
+                {
+                    "name": "Dr. APJ Abdul Kalam",
+                    "designation": "Former President of India (Honorary)"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Is IIT Roorkee the oldest IIT?",
+                    "answer": "Yes, IIT Roorkee (formerly Thomason College) was established in 1847, making it Asia's oldest technical institution. It became an IIT in 2001."
+                },
+                {
+                    "question": "Is IIT Roorkee good for civil engineering?",
+                    "answer": "IIT Roorkee is traditionally the best institute in India for civil engineering, with strong research in earthquake engineering, water resources, and infrastructure."
+                },
+                {
+                    "question": "How is the weather at IIT Roorkee?",
+                    "answer": "Located in Uttarakhand, IIT Roorkee has pleasant weather - cool winters, mild summers (compared to Delhi). Proximity to Haridwar and Dehradun is a plus."
+                },
+                {
+                    "question": "What are the hostels (bhawans) like at IIT Roorkee?",
+                    "answer": "IIT Roorkee has 13 bhawans with unique traditions. Each bhawan has its own culture, inter-bhawan competitions, and hostel festivals."
+                }
+            ]
+        },
+        {
+            "slug": "iit-guwahati",
+            "name": "Indian Institute of Technology Guwahati",
+            "short_name": "IIT Guwahati",
+            "type": "IIT",
+            "location": "Guwahati, Assam",
+            "established": 1994,
+            "nirf_rank": "7",
+            "description": "IIT Guwahati, established in 1994, is one of the newer IITs that has rapidly risen to prominence. Located on the scenic banks of the Brahmaputra River with the Himalayas visible in the backdrop, it offers a stunning 700-acre campus. Known for its focus on research, particularly in biotechnology, electronics, and design, IIT Guwahati has a vibrant campus culture and is the gateway to Northeast India's talent pool.",
+            "fees": "2.20L",
+            "hostel_fee": "20K",
+            "mess_fee": "3.5K",
+            "total_cost": "10-12",
+            "avg_package": "16.2",
+            "highest_package": "1.5 Cr",
+            "placement_rate": "88",
+            "top_recruiters": "Google, Microsoft, Amazon, Samsung, Flipkart, Qualcomm, Oracle, Adobe, Goldman Sachs, Deloitte",
+            "campus_life": "IIT Guwahati's riverside campus is arguably the most beautiful among IITs. The 14 hostels overlook the Brahmaputra with hills in the background. Alcheringa (cultural fest) and Techniche (tech fest) are major events. The campus has its own beach (river bank), amphitheatre, and excellent sports facilities.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "94"
+                },
+                {
+                    "name": "B.Tech Electronics & Comm",
+                    "duration": "4 Years",
+                    "seats": "120"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "98"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "56"
+                },
+                {
+                    "name": "B.Tech Chemical Engineering",
+                    "duration": "4 Years",
+                    "seats": "62"
+                },
+                {
+                    "name": "B.Des (Design)",
+                    "duration": "4 Years",
+                    "seats": "35"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>1,234</td><td>612</td><td>278</td><td>142</td></tr><tr><td>ECE</td><td>2,456</td><td>1,198</td><td>556</td><td>278</td></tr><tr><td>ME</td><td>4,789</td><td>2,345</td><td>1,078</td><td>545</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Sarvpriya Raj",
+                    "designation": "Google Software Engineer"
+                },
+                {
+                    "name": "Sachin Gupta",
+                    "designation": "Co-founder of HackerEarth"
+                },
+                {
+                    "name": "Multiple IAS Officers",
+                    "designation": "Civil Services (UPSC) Toppers"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Is IIT Guwahati campus really that beautiful?",
+                    "answer": "Yes! IIT Guwahati is often called the most scenic IIT campus. It's on the banks of Brahmaputra with hills in the backdrop and even has a beach (river bank)."
+                },
+                {
+                    "question": "Is IIT Guwahati worth it over older IITs?",
+                    "answer": "For ranks in the 1000-3000 range, IIT Guwahati's core branches are excellent choices. The campus, faculty, and placements are at par with older IITs."
+                },
+                {
+                    "question": "How is the weather at IIT Guwahati?",
+                    "answer": "Moderate climate with warm summers (28-35°C) and mild winters. The monsoon brings heavy rainfall. Overall pleasant compared to extreme North Indian weather."
+                },
+                {
+                    "question": "What is special about IIT Guwahati?",
+                    "answer": "Besides the beautiful campus, IIT Guwahati is strong in Design, Biotech, and has a growing startup ecosystem. It's the premier tech institute for Northeast India."
+                }
+            ]
+        },
+        {
+            "slug": "nit-trichy",
+            "name": "National Institute of Technology Tiruchirappalli",
+            "short_name": "NIT Trichy",
+            "type": "NIT",
+            "location": "Tiruchirappalli, Tamil Nadu",
+            "established": 1964,
+            "nirf_rank": "9",
+            "description": "NIT Trichy is consistently ranked as India's #1 NIT and often competes with lower-ranked IITs. Established in 1964 as Regional Engineering College, it became an NIT (Institute of National Importance) in 2003. Located on a 800-acre campus, NIT Trichy is known for its excellent academics, competitive placements (often matching IITs), and vibrant campus culture. It's the preferred choice for students who miss top IITs by a small margin.",
+            "fees": "1.80L",
+            "hostel_fee": "18K",
+            "mess_fee": "3K",
+            "total_cost": "8-10",
+            "avg_package": "12.5",
+            "highest_package": "65 LPA",
+            "placement_rate": "92",
+            "top_recruiters": "Google, Microsoft, Amazon, Goldman Sachs, Oracle, Cisco, Samsung, Qualcomm, TCS, Infosys",
+            "campus_life": "NIT Trichy's sprawling campus has 18 hostels, a large sports complex, and beautiful gardens. Festember (cultural fest) and Pragyan (tech fest) are nationally recognized. The strong alumni network and competitive environment push students to excel. The mess food is famously good (South Indian cuisine).",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "127"
+                },
+                {
+                    "name": "B.Tech Electronics & Comm",
+                    "duration": "4 Years",
+                    "seats": "105"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "117"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "66"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "78"
+                },
+                {
+                    "name": "B.Tech Chemical Engineering",
+                    "duration": "4 Years",
+                    "seats": "44"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>4,567</td><td>2,234</td><td>1,023</td><td>512</td></tr><tr><td>ECE</td><td>7,890</td><td>3,856</td><td>1,789</td><td>892</td></tr><tr><td>ME</td><td>12,345</td><td>6,023</td><td>2,834</td><td>1,423</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "R. Chidambaram",
+                    "designation": "Former Principal Scientific Adviser to PM"
+                },
+                {
+                    "name": "EAS Sarma",
+                    "designation": "Former Power Secretary of India"
+                },
+                {
+                    "name": "Multiple ISRO Scientists",
+                    "designation": "Key contributors to India's space program"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Is NIT Trichy better than new IITs?",
+                    "answer": "NIT Trichy often has better placements and infrastructure than some newer IITs. For ranks in the 4000-10000 range, NIT Trichy CSE is an excellent choice."
+                },
+                {
+                    "question": "What JEE Main rank is needed for NIT Trichy CSE?",
+                    "answer": "For JoSAA 2025, CSE at NIT Trichy had a closing rank of around 4,500-5,000 for OPEN category. This varies based on quota and category."
+                },
+                {
+                    "question": "How are placements at NIT Trichy?",
+                    "answer": "Placements are excellent with average package around ₹12.5 LPA. Top students receive offers from Google, Microsoft, and other tech giants with packages exceeding ₹60 LPA."
+                },
+                {
+                    "question": "What is campus life like at NIT Trichy?",
+                    "answer": "Very vibrant with 18 hostels, competitive academics, 100+ clubs, and major festivals. The South Indian food in mess is a highlight!"
+                }
+            ]
+        },
+        {
+            "slug": "nit-surathkal",
+            "name": "National Institute of Technology Karnataka (Surathkal)",
+            "short_name": "NIT Surathkal",
+            "type": "NIT",
+            "location": "Mangalore, Karnataka",
+            "established": 1960,
+            "nirf_rank": "10",
+            "description": "NIT Karnataka (commonly called NIT Surathkal or NITK) is ranked among India's top 10 engineering colleges and top 3 NITs. Located on a beautiful beachside campus in Surathkal near Mangalore, it was established in 1960 as Karnataka Regional Engineering College. Known for its strong CS and IT programs, NITK has a wonderful campus overlooking the Arabian Sea and has produced numerous tech leaders and entrepreneurs.",
+            "fees": "1.75L",
+            "hostel_fee": "16K",
+            "mess_fee": "3K",
+            "total_cost": "7-9",
+            "avg_package": "11.8",
+            "highest_package": "52 LPA",
+            "placement_rate": "90",
+            "top_recruiters": "Google, Microsoft, Amazon, Oracle, Cisco, Samsung, Goldman Sachs, JP Morgan, Flipkart, Uber",
+            "campus_life": "NITK's campus is literally on the beach with the Arabian Sea at one end. The 295-acre campus has excellent hostels, sports facilities, and a famous lighthouse. Engineer (tech fest) and Incident (cultural fest) are major events. The beach cricket and sunset views are campus highlights.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "130"
+                },
+                {
+                    "name": "B.Tech Information Technology",
+                    "duration": "4 Years",
+                    "seats": "68"
+                },
+                {
+                    "name": "B.Tech Electronics & Comm",
+                    "duration": "4 Years",
+                    "seats": "117"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "111"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "78"
+                },
+                {
+                    "name": "B.Tech Chemical Engineering",
+                    "duration": "4 Years",
+                    "seats": "52"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>5,234</td><td>2,567</td><td>1,189</td><td>598</td></tr><tr><td>IT</td><td>7,456</td><td>3,623</td><td>1,689</td><td>845</td></tr><tr><td>ECE</td><td>9,123</td><td>4,456</td><td>2,089</td><td>1,045</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Satya Nadella",
+                    "designation": "CEO of Microsoft (attended briefly)"
+                },
+                {
+                    "name": "Multiple ISRO Engineers",
+                    "designation": "Indian Space Research Organisation"
+                },
+                {
+                    "name": "Numerous Tech Founders",
+                    "designation": "Startups across India and Silicon Valley"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Is NIT Surathkal campus really on a beach?",
+                    "answer": "Yes! NITK Surathkal is one of the few engineering colleges in India with a beachfront campus. The Arabian Sea is right at the campus boundary."
+                },
+                {
+                    "question": "How does NIT Surathkal compare to NIT Trichy?",
+                    "answer": "Both are top NITs with similar placement records. NIT Trichy is slightly better ranked, but NITK has the beach campus advantage and is strong in CS/IT."
+                },
+                {
+                    "question": "What is the weather like at NIT Surathkal?",
+                    "answer": "Coastal Karnataka weather - warm and humid year-round (25-35°C). Heavy monsoons from June-September. The sea breeze makes it pleasant."
+                },
+                {
+                    "question": "Is NIT Surathkal good for IT branch?",
+                    "answer": "Yes! NITK's IT department is one of the best among NITs with excellent placements, often comparable to CSE in terms of packages and companies."
+                }
+            ]
+        },
+        {
+            "slug": "nit-warangal",
+            "name": "National Institute of Technology Warangal",
+            "short_name": "NIT Warangal",
+            "type": "NIT",
+            "location": "Warangal, Telangana",
+            "established": 1959,
+            "nirf_rank": "11",
+            "description": "NIT Warangal (NITW), established in 1959 as one of the original 17 RECs, is among India's top 3 NITs. Known for its legacy, strong alumni network, and excellent academics, NITW has produced numerous successful engineers, entrepreneurs, and leaders. The 248-acre campus near Kazipet has excellent infrastructure and a competitive academic environment. NITW is particularly strong in Computer Science and Electronics.",
+            "fees": "1.70L",
+            "hostel_fee": "18K",
+            "mess_fee": "3K",
+            "total_cost": "8-10",
+            "avg_package": "11.2",
+            "highest_package": "48 LPA",
+            "placement_rate": "88",
+            "top_recruiters": "Microsoft, Google, Amazon, Goldman Sachs, Oracle, Samsung, Qualcomm, TCS, Infosys, Wipro",
+            "campus_life": "NIT Warangal has 10 hostels (8 for boys, 2 for girls) with a strong hostel culture. Technozion (tech fest) and SpringSpree (cultural fest) are major events. The campus has a beautiful lake, sports complex, and is known for its competitive coding culture. Proximity to Hyderabad (3 hours) is advantageous for internships.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "117"
+                },
+                {
+                    "name": "B.Tech Electronics & Comm",
+                    "duration": "4 Years",
+                    "seats": "125"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "85"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "117"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "68"
+                },
+                {
+                    "name": "B.Tech Chemical Engineering",
+                    "duration": "4 Years",
+                    "seats": "52"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>5,890</td><td>2,889</td><td>1,345</td><td>678</td></tr><tr><td>ECE</td><td>9,456</td><td>4,623</td><td>2,156</td><td>1,078</td></tr><tr><td>EE</td><td>15,678</td><td>7,623</td><td>3,523</td><td>1,767</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Satya Nadella",
+                    "designation": "CEO of Microsoft (studied at REC Warangal)"
+                },
+                {
+                    "name": "P. Jayapal Reddy",
+                    "designation": "Former Lok Sabha MP"
+                },
+                {
+                    "name": "Numerous CEOs and CTOs",
+                    "designation": "Tech companies in India and abroad"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Did Satya Nadella study at NIT Warangal?",
+                    "answer": "Yes! Satya Nadella completed his B.Tech in Electrical Engineering from Regional Engineering College Warangal (now NIT Warangal) in 1988."
+                },
+                {
+                    "question": "How is the placement at NIT Warangal?",
+                    "answer": "Placements are excellent with 88%+ placement rate. CSE and ECE have the best packages with top companies like Microsoft, Google, and Amazon visiting regularly."
+                },
+                {
+                    "question": "What is special about NIT Warangal?",
+                    "answer": "Strong legacy (one of the original RECs), competitive coding culture, excellent alumni network, and proximity to Hyderabad for internship opportunities."
+                },
+                {
+                    "question": "Is NIT Warangal better than newer IITs?",
+                    "answer": "For CSE and ECE, NIT Warangal often has comparable or better placements than some newer IITs. It depends on individual goals and the specific IIT being compared."
+                }
+            ]
+        },
+        {
+            "slug": "nit-allahabad",
+            "name": "Motilal Nehru National Institute of Technology Allahabad",
+            "short_name": "MNNIT Allahabad",
+            "type": "NIT",
+            "location": "Prayagraj (Allahabad), Uttar Pradesh",
+            "established": 1961,
+            "nirf_rank": "15",
+            "description": "MNNIT Allahabad (formerly MNREC) is one of the original 17 RECs established in 1961. Named after Motilal Nehru, it's located in the historic city of Prayagraj near the Sangam (confluence of Ganga, Yamuna, and Saraswati). Known for its strong alumni network and excellent technical education, MNNIT has a beautiful 220-acre campus and produces quality engineers who excel in various fields.",
+            "fees": "1.68L",
+            "hostel_fee": "16K",
+            "mess_fee": "2.8K",
+            "total_cost": "7-9",
+            "avg_package": "10.8",
+            "highest_package": "44 LPA",
+            "placement_rate": "86",
+            "top_recruiters": "Google, Microsoft, Amazon, Goldman Sachs, Oracle, Samsung, Infosys, TCS, L&T, Wipro",
+            "campus_life": "MNNIT's campus is serene and beautiful with the Ganga river nearby. The 8 hostels have a strong community culture. Avishkar (tech fest) and Culrav (cultural fest) are major events. The city's religious significance (Kumbh Mela) adds a unique cultural dimension.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "120"
+                },
+                {
+                    "name": "B.Tech Electronics & Comm",
+                    "duration": "4 Years",
+                    "seats": "110"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "78"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "102"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "62"
+                },
+                {
+                    "name": "B.Tech Information Technology",
+                    "duration": "4 Years",
+                    "seats": "68"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>8,456</td><td>4,123</td><td>1,923</td><td>967</td></tr><tr><td>ECE</td><td>14,567</td><td>7,123</td><td>3,324</td><td>1,667</td></tr><tr><td>IT</td><td>11,234</td><td>5,489</td><td>2,556</td><td>1,278</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "VK Saraswat",
+                    "designation": "Former DRDO Chief, NITI Aayog Member"
+                },
+                {
+                    "name": "Multiple IAS Officers",
+                    "designation": "Civil Services (UPSC) Toppers"
+                },
+                {
+                    "name": "Numerous Tech Leaders",
+                    "designation": "CTOs and VPs at major tech companies"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Is MNNIT Allahabad a good college?",
+                    "answer": "Yes! MNNIT is among the top 5 NITs with excellent academics, placements, and alumni network. It's one of the original RECs with a strong legacy."
+                },
+                {
+                    "question": "What is the JEE Main cutoff for MNNIT CSE?",
+                    "answer": "For JoSAA 2025, CSE at MNNIT had a closing rank of around 8,000-9,000 for OPEN category. Home state quota cutoffs are slightly higher."
+                },
+                {
+                    "question": "How is the campus location?",
+                    "answer": "Located in Prayagraj (Allahabad), a historic city known for the Sangam. Well-connected by rail and 2 hours from Varanasi, 3 hours from Lucknow."
+                },
+                {
+                    "question": "Is MNNIT good for Computer Science?",
+                    "answer": "CSE at MNNIT has excellent placements with companies like Google, Microsoft, and Amazon recruiting regularly. Average package for CSE is around ₹12-15 LPA."
+                }
+            ]
+        },
+        {
+            "slug": "nit-rourkela",
+            "name": "National Institute of Technology Rourkela",
+            "short_name": "NIT Rourkela",
+            "type": "NIT",
+            "location": "Rourkela, Odisha",
+            "established": 1961,
+            "nirf_rank": "12",
+            "description": "NIT Rourkela (NITR), established in 1961, is among India's top 5 NITs and is known for its strong metallurgical engineering and research culture. Located in the steel city of Rourkela in Odisha, the 645-acre campus is well-planned with excellent infrastructure. NITR is particularly renowned for its materials science, metallurgy, and mining engineering programs, leveraging its proximity to major steel plants.",
+            "fees": "1.72L",
+            "hostel_fee": "18K",
+            "mess_fee": "3K",
+            "total_cost": "8-10",
+            "avg_package": "10.5",
+            "highest_package": "42 LPA",
+            "placement_rate": "85",
+            "top_recruiters": "Google, Microsoft, Amazon, Goldman Sachs, Tata Steel, L&T, Samsung, Oracle, JSW, Vedanta",
+            "campus_life": "NIT Rourkela has one of the largest NIT campuses with 12 hostels, central library, and excellent sports facilities. Innovision (tech fest) and NitRutsav (cultural fest) are major events. The proximity to Tata Steel plant adds industrial relevance to metallurgy and materials programs.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "117"
+                },
+                {
+                    "name": "B.Tech Electronics & Comm",
+                    "duration": "4 Years",
+                    "seats": "78"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "125"
+                },
+                {
+                    "name": "B.Tech Metallurgical Engineering",
+                    "duration": "4 Years",
+                    "seats": "72"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "68"
+                },
+                {
+                    "name": "B.Tech Mining Engineering",
+                    "duration": "4 Years",
+                    "seats": "52"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>9,234</td><td>4,512</td><td>2,123</td><td>1,067</td></tr><tr><td>ECE</td><td>16,789</td><td>8,212</td><td>3,823</td><td>1,912</td></tr><tr><td>Meta</td><td>35,678</td><td>17,456</td><td>8,123</td><td>4,067</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Dharmendra Pradhan",
+                    "designation": "Union Minister (Education)"
+                },
+                {
+                    "name": "Multiple ISRO Scientists",
+                    "designation": "Indian Space Research Organisation"
+                },
+                {
+                    "name": "Numerous Steel Industry Leaders",
+                    "designation": "Tata Steel, JSW, SAIL executives"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Is NIT Rourkela good for metallurgical engineering?",
+                    "answer": "NIT Rourkela has one of the best metallurgical engineering departments in India. Proximity to Tata Steel and other plants provides excellent industrial exposure."
+                },
+                {
+                    "question": "How is the campus at NIT Rourkela?",
+                    "answer": "One of the largest NIT campuses at 645 acres with 12 hostels, excellent sports facilities, and a beautiful academic environment."
+                },
+                {
+                    "question": "What companies recruit from NIT Rourkela?",
+                    "answer": "Mix of tech companies (Google, Microsoft, Amazon) and core companies (Tata Steel, L&T, ONGC). The diversity of recruiters is a key advantage."
+                },
+                {
+                    "question": "Is the location of NIT Rourkela a disadvantage?",
+                    "answer": "While Rourkela is a relatively small industrial city, the campus is self-sufficient. Good connectivity by train to Kolkata, Bhubaneswar, and other cities."
+                }
+            ]
+        },
+        {
+            "slug": "nit-calicut",
+            "name": "National Institute of Technology Calicut",
+            "short_name": "NIT Calicut",
+            "type": "NIT",
+            "location": "Kozhikode, Kerala",
+            "established": 1961,
+            "nirf_rank": "13",
+            "description": "NIT Calicut (NITC) is one of the original RECs established in 1961 and is among India's top 5 NITs. Located on a beautiful 120-acre campus in God's Own Country (Kerala), NITC is known for its academic excellence, beautiful campus, and strong placements. The institute has particularly strong programs in Computer Science, Electronics, and Electrical Engineering.",
+            "fees": "1.65L",
+            "hostel_fee": "15K",
+            "mess_fee": "2.8K",
+            "total_cost": "7-9",
+            "avg_package": "10.2",
+            "highest_package": "40 LPA",
+            "placement_rate": "87",
+            "top_recruiters": "Google, Microsoft, Amazon, Oracle, Samsung, Goldman Sachs, Deloitte, TCS, Infosys, UST Global",
+            "campus_life": "NIT Calicut's campus is nestled in the hills near Kozhikode with lush greenery everywhere. The 11 hostels (including 3 for girls) have excellent facilities. Ragam (cultural fest) and Tathva (tech fest) are major events. The proximity to beaches and backwaters adds to the experience.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "117"
+                },
+                {
+                    "name": "B.Tech Electronics & Comm",
+                    "duration": "4 Years",
+                    "seats": "105"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "78"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "117"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "68"
+                },
+                {
+                    "name": "B.Tech Chemical Engineering",
+                    "duration": "4 Years",
+                    "seats": "52"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>7,345</td><td>3,589</td><td>1,678</td><td>845</td></tr><tr><td>ECE</td><td>13,456</td><td>6,578</td><td>3,067</td><td>1,534</td></tr><tr><td>EE</td><td>18,789</td><td>9,178</td><td>4,278</td><td>2,145</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Dr. Radhakrishnan",
+                    "designation": "Former ISRO Chairman"
+                },
+                {
+                    "name": "Rajan Anandan",
+                    "designation": "Former VP of Google India"
+                },
+                {
+                    "name": "Numerous Tech Entrepreneurs",
+                    "designation": "Successful startups in India and abroad"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Is NIT Calicut a good college?",
+                    "answer": "Yes! NIT Calicut is consistently ranked among top 5 NITs with excellent academics, placements, and one of the most beautiful campuses in India."
+                },
+                {
+                    "question": "How is the campus of NIT Calicut?",
+                    "answer": "The 120-acre campus is in the hills near Kozhikode with beautiful greenery, mist-covered mornings, and great weather. It's one of the most scenic NIT campuses."
+                },
+                {
+                    "question": "What is the weather like at NIT Calicut?",
+                    "answer": "Tropical Kerala weather - warm and humid (25-32°C) year-round. Monsoons are heavy (June-September). The climate is pleasant compared to North India."
+                },
+                {
+                    "question": "Is NIT Calicut good for Computer Science?",
+                    "answer": "CSE at NIT Calicut has excellent placements with companies like Google, Microsoft, and Amazon recruiting regularly. Kerala's IT ecosystem also provides good opportunities."
+                }
+            ]
+        },
+        {
+            "slug": "nit-kurukshetra",
+            "name": "National Institute of Technology Kurukshetra",
+            "short_name": "NIT Kurukshetra",
+            "type": "NIT",
+            "location": "Kurukshetra, Haryana",
+            "established": 1963,
+            "nirf_rank": "17",
+            "description": "NIT Kurukshetra (NITKKR) is one of the original RECs established in 1963 in the historic city of Kurukshetra - the land of the Mahabharata. Located 160 km north of Delhi, it has excellent connectivity to the NCR region for internships and placements. Known for its strong programs in Electrical, Electronics, and Computer Science, NIT Kurukshetra has a legacy of producing quality engineers.",
+            "fees": "1.62L",
+            "hostel_fee": "15K",
+            "mess_fee": "2.5K",
+            "total_cost": "7-8",
+            "avg_package": "9.5",
+            "highest_package": "36 LPA",
+            "placement_rate": "82",
+            "top_recruiters": "Google, Microsoft, Amazon, Samsung, Oracle, Goldman Sachs, Deloitte, TCS, Infosys, Maruti",
+            "campus_life": "NIT Kurukshetra has a 250-acre campus with 14 hostels and excellent sports facilities. Techspardha (tech fest) and Confluence (cultural fest) are major events. The historic significance of Kurukshetra adds a unique cultural element. Close proximity to Delhi is advantageous for internships.",
+            "courses": [
+                {
+                    "name": "B.Tech Computer Science",
+                    "duration": "4 Years",
+                    "seats": "127"
+                },
+                {
+                    "name": "B.Tech Electronics & Comm",
+                    "duration": "4 Years",
+                    "seats": "125"
+                },
+                {
+                    "name": "B.Tech Electrical Engineering",
+                    "duration": "4 Years",
+                    "seats": "98"
+                },
+                {
+                    "name": "B.Tech Mechanical Engineering",
+                    "duration": "4 Years",
+                    "seats": "137"
+                },
+                {
+                    "name": "B.Tech Civil Engineering",
+                    "duration": "4 Years",
+                    "seats": "82"
+                },
+                {
+                    "name": "B.Tech Information Technology",
+                    "duration": "4 Years",
+                    "seats": "68"
+                }
+            ],
+            "cutoff_html": "<table class='table'><tr><th>Branch</th><th>OPEN</th><th>OBC-NCL</th><th>SC</th><th>ST</th></tr><tr><td>CSE</td><td>10,567</td><td>5,167</td><td>2,412</td><td>1,212</td></tr><tr><td>ECE</td><td>18,456</td><td>9,023</td><td>4,212</td><td>2,112</td></tr><tr><td>IT</td><td>13,789</td><td>6,734</td><td>3,145</td><td>1,578</td></tr></table>",
+            "notable_alumni": [
+                {
+                    "name": "Multiple DRDO Scientists",
+                    "designation": "Defence Research and Development Organisation"
+                },
+                {
+                    "name": "Numerous IAS/IPS Officers",
+                    "designation": "Civil Services (UPSC)"
+                },
+                {
+                    "name": "Tech Industry Leaders",
+                    "designation": "VPs and Directors at major tech companies"
+                }
+            ],
+            "faqs": [
+                {
+                    "question": "Is NIT Kurukshetra a good college?",
+                    "answer": "Yes! NIT Kurukshetra is among the top 10 NITs with good academics and decent placements. Its proximity to Delhi-NCR is a major advantage."
+                },
+                {
+                    "question": "What is special about NIT Kurukshetra's location?",
+                    "answer": "Located in the historic city of Kurukshetra (from Mahabharata) and just 160 km from Delhi. Great for internships and weekend trips to the capital."
+                },
+                {
+                    "question": "How are placements at NIT Kurukshetra?",
+                    "answer": "Placements are good with 82%+ placement rate. CSE and ECE have the best packages. Companies like Google, Microsoft, and Amazon recruit regularly."
+                },
+                {
+                    "question": "What is campus life like at NIT Kurukshetra?",
+                    "answer": "Active campus with 14 hostels, good sports facilities, and regular cultural events. The historic temples nearby add cultural significance."
+                }
+            ]
+        }
+    ]
+}

@@ -2,26 +2,26 @@
 JoSAA College Predictor - Enhanced Flask Application
 Multi-page architecture with stunning UI and advanced filtering features.
 Refactored to use built-in csv module for Vercel deployment (no pandas).
+Now using OpenRouter API with DeepSeek model for chat.
 """
 
 from flask import Flask, render_template, request, jsonify
 import csv
 import os
-import google.generativeai as genai
+import requests
 from dotenv import load_dotenv
 import json
 import re
 
 load_dotenv()
 
-# Configure Gemini
-api_key = os.getenv("GEMINI_API_KEY")
-if api_key:
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-2.0-flash')
-else:
-    print("WARNING: GEMINI_API_KEY not found in .env file")
-    model = None
+# Configure OpenRouter API
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+MODEL = "deepseek/deepseek-r1-0528:free"
+
+if not OPENROUTER_API_KEY:
+    print("WARNING: OPENROUTER_API_KEY not found in .env file")
 
 app = Flask(__name__)
 
@@ -219,6 +219,46 @@ def robots():
     return app.send_static_file('robots.txt')
 
 
+# ==================== BLOG ROUTES ====================
+
+def load_institutes():
+    """Load institute data from JSON file."""
+    institutes_file = os.path.join(BASE_DIR, 'data', 'institutes.json')
+    if os.path.exists(institutes_file):
+        with open(institutes_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data.get('institutes', [])
+    return []
+
+
+@app.route('/blog')
+def blog():
+    """Blog listing page with all IIT and NIT guides."""
+    institutes = load_institutes()
+    return render_template('blog.html', institutes=institutes)
+
+
+@app.route('/blog/<slug>')
+def blog_post(slug):
+    """Individual blog post for each institute."""
+    institutes = load_institutes()
+    
+    # Find the institute by slug
+    institute = None
+    for inst in institutes:
+        if inst['slug'] == slug:
+            institute = inst
+            break
+    
+    if not institute:
+        return render_template('404.html'), 404
+    
+    # Get related institutes (same type, different slug)
+    related = [i for i in institutes if i['type'] == institute['type'] and i['slug'] != slug][:3]
+    
+    return render_template('blog_post.html', institute=institute, related_institutes=related)
+
+
 @app.route('/manifest.json')
 def manifest():
     """Serve PWA manifest."""
@@ -407,9 +447,9 @@ def api_stats():
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    """Handle chat requests with Gemini AI."""
-    if not model:
-        return jsonify({'response': "AI service is not configured. Please set GEMINI_API_KEY."})
+    """Handle chat requests with OpenRouter AI (DeepSeek)."""
+    if not OPENROUTER_API_KEY:
+        return jsonify({'response': "AI service is not configured. Please set OPENROUTER_API_KEY."})
 
     data = request.json
     user_message = data.get('message', '')
@@ -418,48 +458,74 @@ def chat():
     if not user_message:
         return jsonify({'response': "Please say something!"})
 
-    try:
-        # Construct History Context
-        history_context = ""
-        if history:
-            history_context = "Conversation History:\n"
-            for msg in history[-5:]:
-                role = "User" if msg['role'] == 'user' else "Assistant"
-                text = msg['parts'][0] if isinstance(msg['parts'], list) else msg['parts']
-                history_context += f"{role}: {text}\n"
-
-        system_instruction = """
-        You are an intelligent assistant for a College Predictor app.
-        
-        Analyze the user's query and history.
-        
-        Scenario 1: DATA QUERY (Cutoffs, Ranks, Predictions)
-        If the user asks for cutoffs, rank predictions, or college chances, return a JSON object with the intent and entities. 
-        CRITICAL: If a prediction query lacks Rank (or Marks/Percentile) AND Category, return intent "missing_info".
-        
-        Scenario 2: GENERAL CHAT
-        If the user inputs a greeting, asks general questions, or follows up conversationally without needing data, DIRECTLY answer the user in natural language (text). Do NOT return JSON.
-        
-        JSON Structure (only for Scenario 1):
-        {
-            "intent": "cutoff" | "rank_predict" | "missing_info",
-            "entities": {
-                "institute": "string or null",
-                "program": "string or null",
-                "category": "string or null",
-                "rank": "integer or null",
-                "marks": "integer or null",
-                "percentile": "float or null",
-                "round": "integer or null (default 6)"
-            },
-            "missing_fields": ["rank", "category"] (if intent is missing_info)
+    def call_openrouter(messages):
+        """Call OpenRouter API and return response text."""
+        headers = {
+            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://josaacollegepredictor.vercel.app",
+            "X-Title": "JoSAA College Predictor"
         }
-        """
+        payload = {
+            "model": MODEL,
+            "messages": messages
+        }
+        try:
+            resp = requests.post(OPENROUTER_URL, headers=headers, json=payload, timeout=60)
+            resp.raise_for_status()
+            result = resp.json()
+            return result['choices'][0]['message']['content'].strip()
+        except Exception as e:
+            print(f"OpenRouter API Error: {e}")
+            return None
+
+    try:
+        # Construct messages for OpenRouter
+        messages = []
         
-        full_prompt = f"{system_instruction}\n{history_context}\nUser Query: {user_message}"
-        response = model.generate_content(full_prompt)
-        text_response = response.text.strip()
+        system_instruction = """You are a friendly, helpful assistant for a JoSAA College Predictor app. You help students with JEE counseling, college predictions, cutoff queries, and general guidance.
+
+Analyze the user's query:
+
+Scenario 1: DATA QUERY (Cutoffs, Ranks, Predictions)
+If the user asks for cutoffs, rank predictions, or college chances, return a JSON object with the intent and entities. 
+CRITICAL: If a prediction query lacks Rank (or Marks/Percentile) AND Category, return intent "missing_info".
+
+Scenario 2: GENERAL CHAT
+If the user inputs a greeting, asks general questions, or follows up conversationally without needing data, DIRECTLY answer the user in natural language. Be friendly and encouraging. Do NOT return JSON.
+
+JSON Structure (only for Scenario 1):
+{
+    "intent": "cutoff" | "rank_predict" | "missing_info",
+    "entities": {
+        "institute": "string or null",
+        "program": "string or null",
+        "category": "string or null",
+        "rank": "integer or null",
+        "marks": "integer or null",
+        "percentile": "float or null",
+        "round": "integer or null (default 6)"
+    },
+    "missing_fields": ["rank", "category"] (if intent is missing_info)
+}"""
+
+        messages.append({"role": "system", "content": system_instruction})
         
+        # Add conversation history (last 5 messages)
+        for msg in history[-5:]:
+            role = "user" if msg['role'] == 'user' else "assistant"
+            text = msg['parts'][0] if isinstance(msg['parts'], list) else msg['parts']
+            messages.append({"role": role, "content": text})
+        
+        # Add current user message
+        messages.append({"role": "user", "content": user_message})
+        
+        text_response = call_openrouter(messages)
+        
+        if not text_response:
+            return jsonify({'response': "I encountered an error connecting to the AI service. Please try again."})
+        
+        # Parse response for JSON intent
         json_pattern = r'\{.*\}'
         match = re.search(json_pattern, text_response, re.DOTALL)
         
@@ -518,15 +584,13 @@ def chat():
                 else:
                     context_data = "Rank data unavailable."
 
-            final_prompt = f"""
-            System: User asked: "{user_message}".
-            Context found:
-            {context_data}
-            
-            Task: Answer the user naturally based on the context. If 'missing_info', ask for missing details.
-            """
-            final_resp = model.generate_content(final_prompt)
-            return jsonify({'response': final_resp.text})
+            # Get final response with context
+            final_messages = [
+                {"role": "system", "content": "You are a helpful JoSAA counseling assistant. Answer the user's question based on the provided context. Be friendly and encouraging."},
+                {"role": "user", "content": f"User asked: \"{user_message}\"\n\nContext found:\n{context_data}\n\nTask: Answer the user naturally based on the context. If 'missing_info', ask for missing details politely."}
+            ]
+            final_resp = call_openrouter(final_messages)
+            return jsonify({'response': final_resp if final_resp else "I couldn't process that. Please try again."})
             
         else:
             return jsonify({'response': text_response})

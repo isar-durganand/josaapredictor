@@ -1,0 +1,450 @@
+{% extends "base.html" %}
+
+{% block title %}{{ institute.name }} - Complete Guide 2026 | Admission, Cutoffs, Placements{% endblock %}
+
+{% block meta_description %}{{ institute.name }} complete guide: Admission process, JEE cutoff ranks, courses, fees (₹{{
+institute.fees }}), placements (₹{{ institute.avg_package }} LPA avg), campus life, hostels. Updated for JoSAA 2026.{%
+endblock %}
+
+{% block head_extra %}
+<!-- Article Schema for SEO -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{ institute.name }} - Complete Admission Guide 2026",
+    "description": "{{ institute.description }}",
+    "author": {
+        "@type": "Organization",
+        "name": "JoSAA College Predictor"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "JoSAA College Predictor",
+        "url": "https://josaacollegepredictor.vercel.app"
+    },
+    "datePublished": "2026-01-15",
+    "dateModified": "2026-02-09",
+    "url": "https://josaacollegepredictor.vercel.app/blog/{{ institute.slug }}"
+}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {% for faq in institute.faqs %}
+        {
+            "@type": "Question",
+            "name": "{{ faq.question }}",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ faq.answer }}"
+            }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+</script>
+
+<style>
+    .blog-post {
+        padding: 2rem 0 4rem;
+    }
+
+    .post-hero {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        padding: 3rem 0;
+        margin-bottom: 2rem;
+    }
+
+    .post-hero.nit {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    }
+
+    .post-badge {
+        display: inline-block;
+        padding: 0.35rem 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-md);
+        color: white;
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .post-title {
+        color: white;
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+    }
+
+    .post-meta {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .post-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 2rem;
+    }
+
+    @media (max-width: 992px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .post-content {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+    }
+
+    .post-content h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 2rem 0 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--primary);
+    }
+
+    .post-content h2:first-child {
+        margin-top: 0;
+    }
+
+    .post-content p {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
+
+    .post-content ul,
+    .post-content ol {
+        color: var(--text-secondary);
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .post-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+
+    .highlight-box {
+        background: var(--primary-muted);
+        border-left: 4px solid var(--primary);
+        padding: 1.25rem;
+        border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        margin: 1.5rem 0;
+    }
+
+    .highlight-box p {
+        margin: 0;
+        color: var(--text-primary);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .stat-card {
+        background: var(--bg-primary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-top: 0.25rem;
+    }
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .sidebar-card {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+    }
+
+    .sidebar-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .sidebar-title i {
+        color: var(--primary);
+    }
+
+    .quick-links a {
+        display: block;
+        padding: 0.6rem 0;
+        color: var(--text-secondary);
+        text-decoration: none;
+        border-bottom: 1px solid var(--border);
+        transition: var(--transition);
+    }
+
+    .quick-links a:last-child {
+        border-bottom: none;
+    }
+
+    .quick-links a:hover {
+        color: var(--primary);
+        padding-left: 0.5rem;
+    }
+
+    .cta-box {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        padding: 1.5rem;
+        border-radius: var(--radius-lg);
+        text-align: center;
+        color: white;
+    }
+
+    .cta-box h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .cta-box p {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+    }
+
+    .cta-box .btn {
+        background: white;
+        color: var(--primary);
+        padding: 0.6rem 1.25rem;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .faq-section {
+        margin-top: 2rem;
+    }
+
+    .faq-item {
+        background: var(--bg-primary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        margin-bottom: 1rem;
+        overflow: hidden;
+    }
+
+    .faq-question {
+        padding: 1rem 1.25rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .faq-question:hover {
+        background: var(--primary-muted);
+    }
+
+    .faq-answer {
+        padding: 0 1.25rem 1rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        display: none;
+    }
+
+    .faq-item.active .faq-answer {
+        display: block;
+    }
+
+    .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Post Hero -->
+<section class="post-hero {{ institute.type | lower }}">
+    <div class="container">
+        <span class="post-badge">{{ institute.type }} Guide</span>
+        <h1 class="post-title">{{ institute.name }}</h1>
+        <div class="post-meta">
+            <span class="post-meta-item"><i class="bi bi-geo-alt"></i> {{ institute.location }}</span>
+            <span class="post-meta-item"><i class="bi bi-calendar"></i> Established {{ institute.established }}</span>
+            <span class="post-meta-item"><i class="bi bi-award"></i> NIRF Rank: {{ institute.nirf_rank }}</span>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Content -->
+<section class="blog-post">
+    <div class="container">
+        <div class="content-grid">
+            <!-- Main Content -->
+            <article class="post-content">
+                <h2>🎓 About {{ institute.short_name }}</h2>
+                <p>{{ institute.description }}</p>
+
+                <div class="highlight-box">
+                    <p><strong>💡 Pro Tip:</strong> {{ institute.short_name }} is one of the top engineering institutes
+                        in India. If you're aiming for this college, make sure your JEE rank is within the cutoff range!
+                    </p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">{{ institute.nirf_rank }}</div>
+                        <div class="stat-label">NIRF Rank</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">₹{{ institute.fees }}</div>
+                        <div class="stat-label">Annual Fees</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">₹{{ institute.avg_package }} LPA</div>
+                        <div class="stat-label">Avg Package</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">₹{{ institute.highest_package }} LPA</div>
+                        <div class="stat-label">Highest Package</div>
+                    </div>
+                </div>
+
+                <h2>📚 Courses Offered</h2>
+                <p>{{ institute.short_name }} offers a wide range of undergraduate, postgraduate, and doctoral programs:
+                </p>
+                <ul>
+                    {% for course in institute.courses %}
+                    <li><strong>{{ course.name }}</strong> - {{ course.duration }} ({{ course.seats }} seats)</li>
+                    {% endfor %}
+                </ul>
+
+                <h2>💰 Fee Structure</h2>
+                <p>The fee structure at {{ institute.short_name }} is quite affordable compared to private engineering
+                    colleges:</p>
+                <ul>
+                    <li><strong>B.Tech Tuition Fee:</strong> ₹{{ institute.fees }} per year</li>
+                    <li><strong>Hostel Fee:</strong> ₹{{ institute.hostel_fee }} per year</li>
+                    <li><strong>Mess Fee:</strong> ₹{{ institute.mess_fee }} per month (approx)</li>
+                    <li><strong>Total 4-Year Cost:</strong> Approximately ₹{{ institute.total_cost }} lakhs</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>🎯 Financial Aid:</strong> Various scholarships are available including Merit-cum-Means
+                        Scholarship, SC/ST Scholarship, and Institute Free Studentship for economically weaker students.
+                    </p>
+                </div>
+
+                <h2>📊 JoSAA Cutoff Ranks (2025)</h2>
+                <p>Here are the approximate closing ranks for popular branches at {{ institute.short_name }}:</p>
+                {{ institute.cutoff_html | safe }}
+
+                <h2>💼 Placements</h2>
+                <p>{{ institute.short_name }} has an excellent placement record with top companies visiting the campus:
+                </p>
+                <ul>
+                    <li><strong>Average Package:</strong> ₹{{ institute.avg_package }} LPA</li>
+                    <li><strong>Highest Package:</strong> ₹{{ institute.highest_package }} LPA</li>
+                    <li><strong>Placement Rate:</strong> {{ institute.placement_rate }}%</li>
+                </ul>
+
+                <p><strong>Top Recruiters:</strong> {{ institute.top_recruiters }}</p>
+
+                <h2>🏠 Campus Life & Hostels</h2>
+                <p>{{ institute.campus_life }}</p>
+
+                <h2>🌟 Notable Alumni</h2>
+                <p>{{ institute.short_name }} has produced many successful professionals including:</p>
+                <ul>
+                    {% for alumni in institute.notable_alumni %}
+                    <li><strong>{{ alumni.name }}</strong> - {{ alumni.designation }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h2>❓ Frequently Asked Questions</h2>
+                <div class="faq-section">
+                    {% for faq in institute.faqs %}
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                            {{ faq.question }}
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">{{ faq.answer }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title"><i class="bi bi-list-ul"></i> Quick Links</h3>
+                    <div class="quick-links">
+                        <a href="#about">About {{ institute.short_name }}</a>
+                        <a href="#courses">Courses Offered</a>
+                        <a href="#fees">Fee Structure</a>
+                        <a href="#cutoffs">JoSAA Cutoffs</a>
+                        <a href="#placements">Placements</a>
+                        <a href="#campus">Campus Life</a>
+                        <a href="#faqs">FAQs</a>
+                    </div>
+                </div>
+
+                <div class="cta-box">
+                    <h3>🎯 Check Your Chances!</h3>
+                    <p>Find out if you can get into {{ institute.short_name }} based on your JEE rank.</p>
+                    <a href="/predictor" class="btn">Use Predictor Tool</a>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title"><i class="bi bi-link-45deg"></i> Related Institutes</h3>
+                    <div class="quick-links">
+                        {% for related in related_institutes %}
+                        <a href="/blog/{{ related.slug }}">{{ related.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}
