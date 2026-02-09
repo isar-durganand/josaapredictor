@@ -40,6 +40,387 @@ instantly. Based on official 2025 data with complete marks vs rank vs percentile
     "description": "Calculate your JEE Main 2025 All India Rank from your marks or percentile using official NTA data."
 }
 </script>
+
+<!-- Rank Predictor Page Styles -->
+<style>
+    /* Calculator Section */
+    .calculator-section {
+        padding: 3rem 0;
+    }
+
+    /* Calculator Card */
+    .calc-card {
+        background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .calc-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+        border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .calc-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: white;
+    }
+
+    .calc-header h2 {
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .calc-header p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .calc-body {
+        padding: 1.5rem;
+    }
+
+    /* Input Toggle Buttons */
+    .input-toggle {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        background: rgba(15, 23, 42, 0.5);
+        padding: 0.3rem;
+        border-radius: 10px;
+    }
+
+    .toggle-btn {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--text-muted);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+    }
+
+    .toggle-btn:hover {
+        color: var(--text-primary);
+        background: rgba(99, 102, 241, 0.1);
+    }
+
+    .toggle-btn.active {
+        background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        color: white;
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Input Groups */
+    .input-group-custom {
+        margin-bottom: 1.5rem;
+    }
+
+    .input-group-custom label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+    }
+
+    .input-group-custom .form-control {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        font-size: 1.1rem;
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 12px;
+        color: var(--text-primary);
+        transition: all 0.3s ease;
+    }
+
+    .input-group-custom .form-control:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        background: rgba(15, 23, 42, 1);
+    }
+
+    .input-group-custom .form-control::placeholder {
+        color: var(--text-muted);
+    }
+
+    .input-hint {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    /* Calculate Button */
+    .btn-calculate {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        border: none;
+        border-radius: 12px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .btn-calculate:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-calculate:active {
+        transform: translateY(0);
+    }
+
+    /* Result Card */
+    .result-card {
+        background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .result-placeholder {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--text-muted);
+    }
+
+    .result-placeholder i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+
+    .result-placeholder h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.2rem;
+        color: var(--text-primary);
+    }
+
+    .result-placeholder p {
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    /* Result Content */
+    .result-content {
+        display: none;
+    }
+
+    .result-content.active {
+        display: block;
+    }
+
+    .result-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .result-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #10b981, #059669);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: white;
+    }
+
+    .result-header h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: var(--text-primary);
+    }
+
+    .result-header p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+
+    .result-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stat-box {
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(99, 102, 241, 0.15);
+        border-radius: 12px;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .stat-box.highlight {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.15));
+        border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+        display: block;
+    }
+
+    .stat-box.highlight .stat-value {
+        background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+    }
+
+    .result-note {
+        background: rgba(251, 191, 36, 0.1);
+        border: 1px solid rgba(251, 191, 36, 0.3);
+        border-radius: 10px;
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        color: #fbbf24;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .result-note i {
+        margin-top: 2px;
+    }
+
+    /* Data Table Section */
+    .data-section {
+        padding: 3rem 0;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .section-header p {
+        color: var(--text-muted);
+        font-size: 1rem;
+    }
+
+    .data-table-wrapper {
+        background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 1rem 1.25rem;
+        text-align: left;
+        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+    }
+
+    .data-table th {
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .data-table td {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+    }
+
+    .data-table tbody tr:hover {
+        background: rgba(99, 102, 241, 0.05);
+    }
+
+    .data-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .result-stats {
+            grid-template-columns: 1fr;
+        }
+
+        .toggle-btn {
+            padding: 0.6rem 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .calc-header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            font-size: 0.85rem;
+        }
+    }
+</style>
 {% endblock %}
 
 {% block content %}
