@@ -1,9 +1,46 @@
 {% extends "base.html" %}
 
-{% block title %}JEE Main 2025 Rank & Percentile Predictor{% endblock %}
+{% block title %}JEE Main 2025 Rank Predictor - Marks to Rank Calculator | JoSAA{% endblock %}
 
-{% block meta_description %}Predict your JEE Main 2025 rank from percentile or marks. Use our calculator based on
-official 2025 data to estimate your All India Rank.{% endblock %}
+{% block meta_description %}Free JEE Main 2025 Rank Predictor. Convert your JEE marks or percentile to All India Rank
+instantly. Based on official 2025 data with complete marks vs rank vs percentile table.{% endblock %}
+
+{% block head_extra %}
+<!-- Dataset Schema for Marks vs Rank Table -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "JEE Main 2025 Marks vs Rank vs Percentile Data",
+    "description": "Complete reference data showing JEE Main 2025 marks, percentile, and rank correlations based on official NTA data.",
+    "url": "https://josaacollegepredictor.vercel.app/rank-predictor",
+    "keywords": ["JEE Main 2025", "Rank Predictor", "Marks to Rank", "Percentile to Rank", "NTA", "JEE Cutoff"],
+    "creator": {
+        "@type": "Organization",
+        "name": "JoSAA College Predictor"
+    },
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "temporalCoverage": "2025"
+}
+</script>
+
+<!-- Calculator Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "JEE Main Rank Predictor",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+    },
+    "description": "Calculate your JEE Main 2025 All India Rank from your marks or percentile using official NTA data."
+}
+</script>
+{% endblock %}
 
 {% block content %}
 <!-- Page Header -->
@@ -148,7 +185,6 @@ official 2025 data to estimate your All India Rank.{% endblock %}
 </section>
 {% endblock %}
 
-{% block head_extra %}
 <style>
     .calculator-section {
         padding: 0 0 4rem;
@@ -471,7 +507,6 @@ official 2025 data to estimate your All India Rank.{% endblock %}
         }
     }
 </style>
-{% endblock %}
 
 {% block scripts %}
 <script>

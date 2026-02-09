@@ -1,179 +1,61 @@
 {% extends "base.html" %}
 
-{% block title %}JEE Main 2025 Cutoff Percentiles{% endblock %}
+{% block title %}JEE Main 2025 Cutoff Percentiles - Category Wise NIT, IIIT, GFTI Cutoffs{% endblock %}
 
-{% block meta_description %}Official JEE Main 2025 Category-wise Cutoff Percentiles for NIT, IIIT, GFTI admissions.
-Check qualifying cutoffs for UR, EWS, OBC-NCL, SC, ST, and PwD categories.{% endblock %}
-
-{% block content %}
-<!-- Page Header -->
-<section class="page-header">
-    <div class="container">
-        <h1 class="page-title">
-            <i class="bi bi-bar-chart-line-fill text-gradient me-2"></i>
-            JEE Main 2025 <span class="text-gradient">Cutoff Percentiles</span>
-        </h1>
-        <p class="page-subtitle">
-            Official category-wise qualifying cutoff percentiles for NIT, IIIT, and GFTI admissions through JoSAA
-            counseling
-        </p>
-    </div>
-</section>
-
-<!-- Cutoff Section -->
-<section class="cutoff-section">
-    <div class="container">
-        <!-- Main Cutoff Card -->
-        <div class="cutoff-main-card">
-            <div class="cutoff-header">
-                <div class="cutoff-header-icon">
-                    <i class="bi bi-trophy-fill"></i>
-                </div>
-                <div>
-                    <h2>JEE Main 2025 Qualifying Cutoff</h2>
-                    <p>For NIT+ (NITs, IIITs, GFTIs) Admissions</p>
-                </div>
-            </div>
-
-            <div class="cutoff-table-container">
-                <table class="cutoff-table">
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Cutoff Percentile</th>
-                            <th>Eligibility</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="category-ur">
-                            <td>
-                                <span class="category-badge ur">UR</span>
-                                <span class="category-name">Unreserved (General)</span>
-                            </td>
-                            <td class="percentile-value">93.1023262</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="category-ews">
-                            <td>
-                                <span class="category-badge ews">EWS</span>
-                                <span class="category-name">Economically Weaker Section</span>
-                            </td>
-                            <td class="percentile-value">80.3830119</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="category-obc">
-                            <td>
-                                <span class="category-badge obc">OBC-NCL</span>
-                                <span class="category-name">Other Backward Classes (Non-Creamy Layer)</span>
-                            </td>
-                            <td class="percentile-value">79.4313582</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="category-sc">
-                            <td>
-                                <span class="category-badge sc">SC</span>
-                                <span class="category-name">Scheduled Caste</span>
-                            </td>
-                            <td class="percentile-value">61.1526933</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="category-st">
-                            <td>
-                                <span class="category-badge st">ST</span>
-                                <span class="category-name">Scheduled Tribe</span>
-                            </td>
-                            <td class="percentile-value">47.9026465</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
-                        </tr>
-                        <tr class="category-pwd">
-                            <td>
-                                <span class="category-badge pwd">UR-PwD</span>
-                                <span class="category-name">Persons with Disability (Unreserved)</span>
-                            </td>
-                            <td class="percentile-value">0.0079349</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Info Cards -->
-        <div class="row g-4 mt-4">
-            <div class="col-md-4">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="bi bi-info-circle-fill"></i>
-                    </div>
-                    <h4>What is Cutoff?</h4>
-                    <p>The minimum percentile you need to score in JEE Main to be eligible for JoSAA counseling and NIT+
-                        admissions.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="bi bi-exclamation-triangle-fill"></i>
-                    </div>
-                    <h4>Important Note</h4>
-                    <p>These are qualifying cutoffs only. Actual admission depends on your rank and seat availability
-                        during counseling rounds.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="bi bi-arrow-right-circle-fill"></i>
-                    </div>
-                    <h4>Next Step</h4>
-                    <p>Use our Predictor tool to find colleges where you have a good chance of getting admission based
-                        on your rank.</p>
-                    <a href="/predictor" class="btn btn-primary-sm mt-2">
-                        <i class="bi bi-search me-1"></i>Try Predictor
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional Info -->
-        <div class="additional-info mt-5">
-            <h3><i class="bi bi-lightbulb me-2"></i>Understanding These Cutoffs</h3>
-            <ul>
-                <li><strong>These cutoffs are for JEE Main Paper 1</strong> (B.E./B.Tech programs)</li>
-                <li><strong>IIT admissions</strong> require separate JEE Advanced qualification</li>
-                <li><strong>Cutoffs vary each year</strong> based on difficulty level and number of candidates</li>
-                <li><strong>PwD candidates</strong> get relaxed cutoffs across all categories</li>
-            </ul>
-        </div>
-    </div>
-</section>
-{% endblock %}
+{% block meta_description %}Official JEE Main 2025 Category-wise Cutoff Percentiles: General 93.10, EWS 80.38, OBC-NCL
+79.43, SC 61.15, ST 47.90. Check qualifying cutoffs for NIT, IIIT, GFTI JoSAA 2026 admissions.{% endblock %}
 
 {% block head_extra %}
+<!-- ItemList Schema for Category Cutoffs -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "JEE Main 2025 Category-wise Cutoff Percentiles",
+    "description": "Official qualifying cutoff percentiles for JoSAA 2026 counseling",
+    "url": "https://josaacollegepredictor.vercel.app/cutoffs",
+    "numberOfItems": 6,
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "General/Unreserved (UR) Cutoff",
+            "description": "93.1023262 percentile"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "EWS Cutoff",
+            "description": "80.3830119 percentile"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "OBC-NCL Cutoff",
+            "description": "79.4313582 percentile"
+        },
+        {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "SC Cutoff",
+            "description": "61.1526933 percentile"
+        },
+        {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "ST Cutoff",
+            "description": "47.9026465 percentile"
+        },
+        {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "UR-PwD Cutoff",
+            "description": "0.0079349 percentile"
+        }
+    ]
+}
+</script>
+
 <style>
     .cutoff-section {
         padding: 0 0 4rem;
@@ -432,4 +314,172 @@ Check qualifying cutoffs for UR, EWS, OBC-NCL, SC, ST, and PwD categories.{% end
         }
     }
 </style>
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-title">
+            <i class="bi bi-bar-chart-line-fill text-gradient me-2"></i>
+            JEE Main 2025 <span class="text-gradient">Cutoff Percentiles</span>
+        </h1>
+        <p class="page-subtitle">
+            Official category-wise qualifying cutoff percentiles for NIT, IIIT, and GFTI admissions through JoSAA
+            counseling
+        </p>
+    </div>
+</section>
+
+<!-- Cutoff Section -->
+<section class="cutoff-section">
+    <div class="container">
+        <!-- Main Cutoff Card -->
+        <div class="cutoff-main-card">
+            <div class="cutoff-header">
+                <div class="cutoff-header-icon">
+                    <i class="bi bi-trophy-fill"></i>
+                </div>
+                <div>
+                    <h2>JEE Main 2025 Qualifying Cutoff</h2>
+                    <p>For NIT+ (NITs, IIITs, GFTIs) Admissions</p>
+                </div>
+            </div>
+
+            <div class="cutoff-table-container">
+                <table class="cutoff-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Cutoff Percentile</th>
+                            <th>Eligibility</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="category-ur">
+                            <td>
+                                <span class="category-badge ur">UR</span>
+                                <span class="category-name">Unreserved (General)</span>
+                            </td>
+                            <td class="percentile-value">93.1023262</td>
+                            <td>
+                                <span class="eligibility-badge">
+                                    <i class="bi bi-check-circle-fill"></i> Required
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="category-ews">
+                            <td>
+                                <span class="category-badge ews">EWS</span>
+                                <span class="category-name">Economically Weaker Section</span>
+                            </td>
+                            <td class="percentile-value">80.3830119</td>
+                            <td>
+                                <span class="eligibility-badge">
+                                    <i class="bi bi-check-circle-fill"></i> Required
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="category-obc">
+                            <td>
+                                <span class="category-badge obc">OBC-NCL</span>
+                                <span class="category-name">Other Backward Classes (Non-Creamy Layer)</span>
+                            </td>
+                            <td class="percentile-value">79.4313582</td>
+                            <td>
+                                <span class="eligibility-badge">
+                                    <i class="bi bi-check-circle-fill"></i> Required
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="category-sc">
+                            <td>
+                                <span class="category-badge sc">SC</span>
+                                <span class="category-name">Scheduled Caste</span>
+                            </td>
+                            <td class="percentile-value">61.1526933</td>
+                            <td>
+                                <span class="eligibility-badge">
+                                    <i class="bi bi-check-circle-fill"></i> Required
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="category-st">
+                            <td>
+                                <span class="category-badge st">ST</span>
+                                <span class="category-name">Scheduled Tribe</span>
+                            </td>
+                            <td class="percentile-value">47.9026465</td>
+                            <td>
+                                <span class="eligibility-badge">
+                                    <i class="bi bi-check-circle-fill"></i> Required
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="category-pwd">
+                            <td>
+                                <span class="category-badge pwd">UR-PwD</span>
+                                <span class="category-name">Persons with Disability (Unreserved)</span>
+                            </td>
+                            <td class="percentile-value">0.0079349</td>
+                            <td>
+                                <span class="eligibility-badge">
+                                    <i class="bi bi-check-circle-fill"></i> Required
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="row g-4 mt-4">
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="bi bi-info-circle-fill"></i>
+                    </div>
+                    <h4>What is Cutoff?</h4>
+                    <p>The minimum percentile you need to score in JEE Main to be eligible for JoSAA counseling and NIT+
+                        admissions.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                    </div>
+                    <h4>Important Note</h4>
+                    <p>These are qualifying cutoffs only. Actual admission depends on your rank and seat availability
+                        during counseling rounds.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="bi bi-arrow-right-circle-fill"></i>
+                    </div>
+                    <h4>Next Step</h4>
+                    <p>Use our Predictor tool to find colleges where you have a good chance of getting admission based
+                        on your rank.</p>
+                    <a href="/predictor" class="btn btn-primary-sm mt-2">
+                        <i class="bi bi-search me-1"></i>Try Predictor
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="additional-info mt-5">
+            <h3><i class="bi bi-lightbulb me-2"></i>Understanding These Cutoffs</h3>
+            <ul>
+                <li><strong>These cutoffs are for JEE Main Paper 1</strong> (B.E./B.Tech programs)</li>
+                <li><strong>IIT admissions</strong> require separate JEE Advanced qualification</li>
+                <li><strong>Cutoffs vary each year</strong> based on difficulty level and number of candidates</li>
+                <li><strong>PwD candidates</strong> get relaxed cutoffs across all categories</li>
+            </ul>
+        </div>
+    </div>
+</section>
 {% endblock %}

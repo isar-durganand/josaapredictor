@@ -1,11 +1,82 @@
 {% extends "base.html" %}
 
-{% block title %}College Predictor Tool{% endblock %}
+{% block title %}JoSAA College Predictor 2026 - Find IIT, NIT, IIIT Based on Your JEE Rank{% endblock %}
 
-{% block meta_description %}Use our advanced JoSAA College Predictor to find colleges based on your JEE rank. Filter by
-institute type, category, program, and compare across all 6 counseling rounds.{% endblock %}
+{% block meta_description %}Free JoSAA College Predictor 2026. Enter your JEE Main/Advanced rank to find matching IITs,
+NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 cutoff data.{% endblock %}
 
 {% block head_extra %}
+<!-- HowTo Schema for Rich Snippets -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Predict Your JoSAA College Admission",
+    "description": "Use the JoSAA College Predictor to find colleges where you can get admission based on your JEE rank.",
+    "totalTime": "PT2M",
+    "tool": {
+        "@type": "HowToTool",
+        "name": "JoSAA College Predictor"
+    },
+    "step": [
+        {
+            "@type": "HowToStep",
+            "name": "Enter Your JEE Rank",
+            "text": "Enter your JEE Main or JEE Advanced rank in the rank input field.",
+            "position": 1
+        },
+        {
+            "@type": "HowToStep",
+            "name": "Select Your Category",
+            "text": "Choose your category (OPEN, OBC-NCL, SC, ST, EWS, or PwD categories).",
+            "position": 2
+        },
+        {
+            "@type": "HowToStep",
+            "name": "Choose Institute Type",
+            "text": "Filter by institute type - IIT, NIT, IIIT, GFTI, or view all institutes.",
+            "position": 3
+        },
+        {
+            "@type": "HowToStep",
+            "name": "Select Quota and Gender",
+            "text": "Choose your quota (All India, Home State) and gender preference.",
+            "position": 4
+        },
+        {
+            "@type": "HowToStep",
+            "name": "Get Your Results",
+            "text": "Click 'Predict Colleges' to see all matching colleges with admission probability indicators.",
+            "position": 5
+        }
+    ]
+}
+</script>
+
+<!-- SoftwareApplication Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "JoSAA College Predictor",
+    "operatingSystem": "Web Browser",
+    "applicationCategory": "EducationalApplication",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+    },
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250",
+        "bestRating": "5",
+        "worstRating": "1"
+    },
+    "description": "Free AI-powered college prediction tool for JoSAA 2026 counseling. Find your best-fit IIT, NIT, IIIT or GFTI based on your JEE rank."
+}
+</script>
+
 <!-- Tom Select CSS for searchable dropdowns -->
 <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
 <style>

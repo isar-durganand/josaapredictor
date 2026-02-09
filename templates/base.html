@@ -24,7 +24,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://josaapredictor.onrender.com{{ request.path }}">
+    <meta property="og:url" content="https://josaacollegepredictor.vercel.app{{ request.path }}">
     <meta property="og:title"
         content="{% block og_title %}JoSAA College Predictor 2026{% endblock %} | Find Your Dream College">
     <meta property="og:description"
@@ -40,7 +40,7 @@
         content="Find your best-fit IIT, NIT, IIIT or GFTI with our AI-powered college prediction tool. Based on official JoSAA 2025 cutoffs.">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://josaapredictor.onrender.com{{ request.path }}">
+    <link rel="canonical" href="https://josaacollegepredictor.vercel.app{{ request.path }}">
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
@@ -59,23 +59,23 @@
         "@type": "WebSite",
         "name": "JoSAA College Predictor",
         "alternateName": "JoSAA Predictor 2026",
-        "url": "https://josaapredictor.onrender.com",
+        "url": "https://josaacollegepredictor.vercel.app",
         "description": "Predict your college admission chances for JoSAA 2026 counseling with AI-powered analysis of IIT, NIT, IIIT & GFTI cutoffs.",
         "potentialAction": {
             "@type": "SearchAction",
             "target": {
                 "@type": "EntryPoint",
-                "urlTemplate": "https://josaapredictor.onrender.com/predictor?rank={search_term_string}"
+                "urlTemplate": "https://josaacollegepredictor.vercel.app/predictor?rank={search_term_string}"
             },
             "query-input": "required name=search_term_string"
         },
         "publisher": {
             "@type": "Organization",
             "name": "JoSAA Predictor",
-            "url": "https://josaapredictor.onrender.com",
+            "url": "https://josaacollegepredictor.vercel.app",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://josaapredictor.onrender.com/static/logo.png"
+                "url": "https://josaacollegepredictor.vercel.app/static/logo.png"
             }
         }
     }
@@ -86,12 +86,12 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "JoSAA College Predictor",
-        "url": "https://josaapredictor.onrender.com",
+        "url": "https://josaacollegepredictor.vercel.app",
         "description": "Free AI-powered college prediction tool for JoSAA counseling",
         "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "Customer Support",
-            "url": "https://josaapredictor.onrender.com/contact"
+            "url": "https://josaacollegepredictor.vercel.app/contact"
         }
     }
     </script>
@@ -106,14 +106,14 @@
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://josaapredictor.onrender.com/"
+                "item": "https://josaacollegepredictor.vercel.app/"
             }
             {% if request.endpoint != 'index' %}
             ,{
                 "@type": "ListItem",
                 "position": 2,
                 "name": "{{ request.endpoint|replace('_', ' ')|title }}",
-                "item": "https://josaapredictor.onrender.com{{ request.path }}"
+                "item": "https://josaacollegepredictor.vercel.app{{ request.path }}"
             }
             {% endif %}
         ]
