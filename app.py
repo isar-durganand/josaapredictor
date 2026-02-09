@@ -24,9 +24,11 @@ else:
 
 app = Flask(__name__)
 
-# Data directory path
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'cutoff-data-2025')
-MARKS_DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'marks-rank-percentile', 'marks-rank-percentile.csv')
+# Data directory path - Works for both local and Vercel serverless
+# Get the base directory (where app.py is located)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(BASE_DIR, 'cutoff-data-2025')
+MARKS_DATA_FILE = os.path.join(BASE_DIR, 'marks-rank-percentile', 'marks-rank-percentile.csv')
 
 # Dictionary to store DataFrames for each round
 data_frames = {}
@@ -36,6 +38,9 @@ def load_data():
     """Load all 6 round CSV files into memory and marks data."""
     global data_frames, marks_df
 
+    print(f"Loading data from: {DATA_DIR}")
+    print(f"BASE_DIR is: {BASE_DIR}")
+    
     for round_num in range(1, 7):
         file_path = os.path.join(DATA_DIR, f'josaa_cutoff_data_2025_round{round_num}.csv')
         if os.path.exists(file_path):
@@ -47,6 +52,8 @@ def load_data():
             df['Opening Rank Numeric'] = pd.to_numeric(df['Opening Rank Numeric'], errors='coerce')
             data_frames[round_num] = df
             print(f"Loaded Round {round_num}: {len(df)} records")
+        else:
+            print(f"WARNING: File not found: {file_path}")
 
     if os.path.exists(MARKS_DATA_FILE):
         marks_df = pd.read_csv(MARKS_DATA_FILE)
