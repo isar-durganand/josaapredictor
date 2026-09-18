@@ -2,8 +2,7 @@
 
 {% block title %}JoSAA College Predictor 2026 - Find IIT, NIT, IIIT Based on Your JEE Rank{% endblock %}
 
-{% block meta_description %}Free JoSAA College Predictor 2026. Enter your JEE Main/Advanced rank to find matching IITs,
-NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 cutoff data.{% endblock %}
+{% block meta_description %}Free JoSAA College Predictor 2026. Enter your JEE Main/Advanced rank to find matching IITs, NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 cutoff data.{% endblock %}
 
 {% block head_extra %}
 <!-- HowTo Schema for Rich Snippets -->
@@ -73,256 +72,154 @@ NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 
         "bestRating": "5",
         "worstRating": "1"
     },
-    "description": "Free AI-powered college prediction tool for JoSAA 2026 counseling. Find your best-fit IIT, NIT, IIIT or GFTI based on your JEE rank."
+    "description": "Data-driven college prediction platform for JoSAA 2026 counseling. Find your best-fit IIT, NIT, IIIT or GFTI based on your JEE rank."
 }
 </script>
 
 <!-- Tom Select CSS for searchable dropdowns -->
 <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
-<style>
-    /* ===== Flat Minimal Tom Select Styles ===== */
-
-    /* Tom Select Control */
-    .ts-wrapper.single .ts-control {
-        background: #0f172a !important;
-        border: 1px solid rgba(148, 163, 184, 0.15) !important;
-        border-radius: 8px;
-        padding: 0.6rem 1rem;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-    }
-
-    .ts-wrapper.single .ts-control:hover {
-        border-color: rgba(148, 163, 184, 0.25) !important;
-    }
-
-    .ts-wrapper.single.focus .ts-control {
-        border-color: #0d9488 !important;
-        box-shadow: none !important;
-        background: #0f172a !important;
-    }
-
-    /* Tom Select Input Text */
-    .ts-wrapper .ts-control,
-    .ts-wrapper .ts-control input,
-    .ts-wrapper .ts-control>input,
-    .ts-control input[type="text"],
-    .ts-wrapper input {
-        color: #f1f5f9 !important;
-        font-size: 0.95rem !important;
-        font-weight: 500 !important;
-        caret-color: #14b8a6 !important;
-    }
-
-    .ts-wrapper .ts-control input::placeholder,
-    .ts-control input[type="text"]::placeholder {
-        color: #64748b !important;
-        opacity: 1 !important;
-    }
-
-    /* Tom Select Dropdown */
-    .ts-dropdown {
-        background: #0f172a !important;
-        border: 1px solid rgba(148, 163, 184, 0.2) !important;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-        margin-top: 4px;
-        overflow: hidden;
-    }
-
-    .ts-dropdown .ts-dropdown-content {
-        max-height: 300px;
-        padding: 0.4rem;
-    }
-
-    .ts-dropdown .option {
-        padding: 0.7rem 1rem;
-        color: #94a3b8;
-        border-radius: 6px;
-        margin-bottom: 2px;
-        transition: all 0.15s ease;
-        font-weight: 500;
-    }
-
-    .ts-dropdown .option:hover,
-    .ts-dropdown .option.active {
-        background: rgba(13, 148, 136, 0.15) !important;
-        color: #f1f5f9 !important;
-    }
-
-    .ts-dropdown .option.selected {
-        background: rgba(13, 148, 136, 0.2) !important;
-        color: #14b8a6 !important;
-    }
-
-    .ts-wrapper.single .ts-control .item {
-        color: #f1f5f9 !important;
-        font-weight: 500;
-    }
-
-    /* All Programs option */
-    .ts-dropdown .all-programs-option {
-        background: rgba(13, 148, 136, 0.1) !important;
-        border-bottom: 1px solid rgba(13, 148, 136, 0.2);
-        margin-bottom: 6px;
-        padding-bottom: 10px;
-        color: #14b8a6 !important;
-        font-weight: 600;
-    }
-
-    .ts-dropdown .all-programs-option:hover {
-        background: rgba(13, 148, 136, 0.2) !important;
-    }
-
-    /* No results */
-    .ts-dropdown .no-results {
-        padding: 1rem;
-        color: #64748b;
-        text-align: center;
-    }
-
-    .ts-dropdown .no-results i {
-        color: #0d9488;
-    }
-
-    /* Scrollbar */
-    .ts-dropdown .ts-dropdown-content::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .ts-dropdown .ts-dropdown-content::-webkit-scrollbar-track {
-        background: #1e293b;
-    }
-
-    .ts-dropdown .ts-dropdown-content::-webkit-scrollbar-thumb {
-        background: #0d9488;
-        border-radius: 6px;
-    }
-
-    /* Clear button */
-    .ts-wrapper .clear-button {
-        color: #64748b;
-    }
-
-    .ts-wrapper .clear-button:hover {
-        color: #ef4444;
-    }
-</style>
 {% endblock %}
 
 {% block content %}
-<!-- Page Header -->
-<section class="page-header predictor-header">
+<!-- Predictor Header -->
+<section class="py-4 border-bottom border-subtle bg-surface">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <h1 class="page-title animate-fadeIn">
-                    <i class="bi bi-search-heart me-2"></i>College Predictor
-                </h1>
-                <p class="animate-fadeIn"
-                    style="font-size: 1.1rem; color: var(--primary-light); margin-bottom: 0.5rem;">
-                    🎯 Apna rank daalo, sapno ka college dhundo! 💪
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div>
+                <div class="hero-pill-badge mb-2">
+                    <i class="bi bi-funnel"></i>
+                    <span>Official JoSAA Cutoffs Database</span>
+                </div>
+                <h1 class="h2 mb-1">JoSAA College Predictor</h1>
+                <p class="text-secondary small mb-0">
+                    Input your rank and counseling parameters to filter colleges across 6 counseling rounds.
                 </p>
-                <p class="page-subtitle animate-fadeIn delay-1">
-                    Enter your JEE rank and preferences to discover matching colleges with probability indicators
-                </p>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <a href="/rank-predictor" class="btn btn-secondary-action btn-sm">
+                    <i class="bi bi-calculator"></i>
+                    <span>Calculate Rank</span>
+                </a>
+                <a href="/cutoffs" class="btn btn-secondary-action btn-sm">
+                    <i class="bi bi-bar-chart"></i>
+                    <span>Qualifying Cutoffs</span>
+                </a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Predictor Form Section -->
-<section class="predictor-section">
+<!-- Filter Dashboard Container -->
+<section class="py-4">
     <div class="container">
-        <div class="predictor-card animate-fadeIn delay-2">
-            <form id="predictorForm" class="predictor-form">
-                <div class="form-grid">
-                    <!-- Row 1 -->
-                    <div class="form-group">
-                        <label for="rank">
-                            <i class="bi bi-trophy-fill"></i>Your JEE Rank
+        <div class="control-card mb-4">
+            <form id="predictorForm">
+                <div class="row g-3">
+                    <!-- Rank Input -->
+                    <div class="col-lg-4 col-md-6">
+                        <label for="rank" class="form-label-custom">
+                            <i class="bi bi-award"></i>
+                            <span>Your JEE Rank</span>
                         </label>
-                        <input type="number" class="form-control" id="rank" name="rank" placeholder="Enter your rank"
-                            min="1" required>
+                        <input type="number" class="form-control tabular-nums" id="rank" name="rank" placeholder="e.g. 3500" min="1" required>
+                        <div class="mt-2">
+                            <div class="d-flex justify-content-between text-tertiary small" style="font-size: 0.75rem;">
+                                <span>1</span>
+                                <span>Quick Drag Slider</span>
+                                <span>100k+</span>
+                            </div>
+                            <input type="range" class="range-slider-custom mt-1 mb-0" id="rankSlider" min="1" max="100000" step="100" value="3500">
+                        </div>
                         <div id="rankHint" class="form-hint" style="display: none;">
                             <i class="bi bi-info-circle"></i>
                             <span id="rankHintText">Enter your Category Rank</span>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="round">
-                            <i class="bi bi-calendar-check-fill"></i>Round
+                    <!-- Round Selector -->
+                    <div class="col-lg-4 col-md-6">
+                        <label for="round" class="form-label-custom">
+                            <i class="bi bi-calendar3"></i>
+                            <span>Counseling Round</span>
                         </label>
                         <select class="form-select" id="round" name="round" required>
-                            <option value="ALL">All Rounds (Compare Best)</option>
+                            <option value="6" selected>Round 6 (Final Allotment)</option>
+                            <option value="ALL">All Rounds (Best Comparison)</option>
                             <option value="1">Round 1</option>
                             <option value="2">Round 2</option>
                             <option value="3">Round 3</option>
                             <option value="4">Round 4</option>
                             <option value="5">Round 5</option>
-                            <option value="6">Round 6 (Final)</option>
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="institute_type">
-                            <i class="bi bi-building-fill"></i>Institute Type
+                    <!-- Institute Type -->
+                    <div class="col-lg-4 col-md-6">
+                        <label for="institute_type" class="form-label-custom">
+                            <i class="bi bi-buildings"></i>
+                            <span>Institute Tier</span>
                         </label>
                         <select class="form-select" id="institute_type" name="institute_type" required>
-                            <option value="ALL">All Institutes</option>
-                            <option value="IIT">IIT</option>
-                            <option value="NIT">NIT</option>
-                            <option value="IIIT">IIIT</option>
-                            <option value="GFTI">GFTI</option>
+                            <option value="ALL" selected>All Institutes (IIT, NIT, IIIT, GFTI)</option>
+                            <option value="IIT">IITs Only (JEE Advanced)</option>
+                            <option value="NIT">NITs Only (JEE Main)</option>
+                            <option value="IIIT">IIITs Only (JEE Main)</option>
+                            <option value="GFTI">GFTIs Only (JEE Main)</option>
                         </select>
                     </div>
 
-                    <!-- Row 2 -->
-                    <div class="form-group">
-                        <label for="quota">
-                            <i class="bi bi-geo-alt-fill"></i>Quota
-                        </label>
-                        <select class="form-select" id="quota" name="quota" required>
-                            <option value="ALL">All Quotas</option>
-                            {% for q in quotas %}
-                            <option value="{{ q }}">{{ q }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="category">
-                            <i class="bi bi-people-fill"></i>Category
+                    <!-- Category -->
+                    <div class="col-lg-4 col-md-6">
+                        <label for="category" class="form-label-custom">
+                            <i class="bi bi-people"></i>
+                            <span>Seat Category</span>
                         </label>
                         <select class="form-select" id="category" name="category" required>
+                            <option value="OPEN" selected>OPEN (General / Unreserved)</option>
                             <option value="ALL">All Categories</option>
                             {% for cat in categories %}
+                            {% if cat != 'OPEN' %}
                             <option value="{{ cat }}">{{ cat }}</option>
+                            {% endif %}
                             {% endfor %}
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="gender">
-                            <i class="bi bi-gender-ambiguous"></i>Gender
+                    <!-- Quota -->
+                    <div class="col-lg-4 col-md-6">
+                        <label for="quota" class="form-label-custom">
+                            <i class="bi bi-geo-alt"></i>
+                            <span>Quota Preference</span>
                         </label>
-                        <select class="form-select" id="gender" name="gender" required>
-                            <option value="ALL">All</option>
-                            <option value="Gender-Neutral">Gender-Neutral</option>
-                            <option value="Female-only">Female-only</option>
+                        <select class="form-select" id="quota" name="quota" required>
+                            <option value="ALL" selected>All Quotas (AI, HS, OS, etc.)</option>
+                            {% for q in quotas %}
+                            <option value="{{ q }}">{{ q }} - {% if q == 'AI' %}All India{% elif q == 'HS' %}Home State{% elif q == 'OS' %}Other State{% elif q == 'GO' %}Goa{% elif q == 'JK' %}J&K{% elif q == 'LA' %}Ladakh{% else %}{{ q }}{% endif %}</option>
+                            {% endfor %}
                         </select>
                     </div>
 
-                    <!-- Row 3 - Full Width Program Selector -->
-                    <div class="form-group full-width">
-                        <label for="program">
-                            <i class="bi bi-book-fill"></i>Program (Optional)
+                    <!-- Gender Preference -->
+                    <div class="col-lg-4 col-md-6">
+                        <label for="gender" class="form-label-custom">
+                            <i class="bi bi-person"></i>
+                            <span>Gender Seat Matrix</span>
                         </label>
-                        <select class="form-select" id="program" name="program"
-                            placeholder="Search or select a program...">
-                            <option value="ALL">All Programs - Search to filter...</option>
+                        <select class="form-select" id="gender" name="gender" required>
+                            <option value="Gender-Neutral" selected>Gender-Neutral</option>
+                            <option value="Female-only">Female-only (including Supernumerary)</option>
+                            <option value="ALL">All Seats</option>
+                        </select>
+                    </div>
+
+                    <!-- Program Selector (Full width with TomSelect) -->
+                    <div class="col-12">
+                        <label for="program" class="form-label-custom">
+                            <i class="bi bi-book"></i>
+                            <span>Academic Engineering Program (Optional Filter)</span>
+                        </label>
+                        <select class="form-select" id="program" name="program" placeholder="Search or select a branch...">
+                            <option value="ALL">All Programs (Computer Science, Electrical, Mechanical, etc.)</option>
                             {% for prog in programs %}
                             <option value="{{ prog }}">{{ prog }}</option>
                             {% endfor %}
@@ -330,88 +227,102 @@ NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 
                     </div>
                 </div>
 
-                <!-- Submit Button -->
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-predict" id="predictBtn">
-                        <span class="btn-text">
-                            <i class="bi bi-magic me-2"></i>Predict Colleges
-                        </span>
-                        <span class="btn-loader" style="display: none;">
-                            <span class="spinner-border spinner-border-sm me-2"></span>Analyzing...
-                        </span>
-                    </button>
-                    <button type="reset" class="btn btn-reset">
-                        <i class="bi bi-arrow-counterclockwise me-1"></i>Reset
-                    </button>
+                <!-- Action Toolbar -->
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 pt-4 mt-2 border-top border-subtle">
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="submit" class="btn btn-primary-action" id="predictBtn">
+                            <span class="btn-text">
+                                <i class="bi bi-lightning-charge-fill me-1"></i>Predict Eligible Colleges
+                            </span>
+                            <span class="btn-loader" style="display: none;">
+                                <span class="spinner-border spinner-border-sm me-2"></span>Evaluating 72,000+ Records...
+                            </span>
+                        </button>
+                        <button type="reset" class="btn btn-ghost-action btn-sm">
+                            <i class="bi bi-arrow-counterclockwise me-1"></i>Reset Filters
+                        </button>
+                    </div>
+
+                    <div class="small text-tertiary">
+                        Probability rule: Safe (&ge;1k margin) • Moderate (100–1k) • Risky (&lt;100)
+                    </div>
                 </div>
             </form>
         </div>
-    </div>
-</section>
 
-<!-- Results Section -->
-<section id="resultsSection" class="results-section" style="display: none;">
-    <div class="container">
-        <div class="results-card animate-fadeIn">
-            <!-- Results Header -->
-            <div class="results-header">
-                <div class="results-info">
-                    <h3><i class="bi bi-list-check me-2"></i>Matching Colleges</h3>
-                    <p>
-                        Found <span id="resultCount" class="highlight">0</span> colleges for rank
-                        <span id="displayRank" class="highlight">0</span>
+        <!-- Results Display Section -->
+        <div id="resultsSection" style="display: none;">
+            <div class="data-grid-container animate-fade-up">
+                <!-- Grid Toolbar Header -->
+                <div class="data-grid-header">
+                    <div>
+                        <div class="data-grid-title">
+                            <i class="bi bi-check2-all text-brand"></i>
+                            <span>Predicted College Matches</span>
+                        </div>
+                        <div class="small text-secondary mt-1">
+                            Found <strong id="resultCount" class="text-primary tabular-nums">0</strong> colleges matching your rank <strong id="displayRank" class="text-primary tabular-nums">0</strong>.
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <!-- Clean Legend -->
+                        <div class="d-flex align-items-center gap-2 small">
+                            <span class="status-pill safe"><span class="status-dot"></span>Safe</span>
+                            <span class="status-pill moderate"><span class="status-dot"></span>Moderate</span>
+                            <span class="status-pill risky"><span class="status-dot"></span>Risky</span>
+                        </div>
+
+                        <!-- CSV Export -->
+                        <button class="btn btn-secondary-action btn-sm" onclick="exportToCSV()">
+                            <i class="bi bi-download"></i>
+                            <span>Export CSV</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Filter Toolbar -->
+                <div class="px-3 py-2 border-bottom border-subtle bg-surface-elevated d-flex align-items-center justify-content-between gap-3 flex-wrap">
+                    <div class="d-flex align-items-center gap-2" style="min-width: 260px; max-width: 380px;">
+                        <i class="bi bi-funnel text-tertiary"></i>
+                        <input type="text" id="predictorTableFilter" class="form-control form-control-sm" placeholder="Filter these results (e.g., Computer, Bombay, HS)..." autocomplete="off" style="font-size: 0.85rem;">
+                    </div>
+                    <div class="small text-tertiary d-none d-sm-block">
+                        <i class="bi bi-arrow-down-up me-1"></i>Click any column header to sort
+                    </div>
+                </div>
+
+                <!-- Table Container -->
+                <div class="data-table-scroll">
+                    <table class="data-table" id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">#</th>
+                                <th data-sortable>Institute</th>
+                                <th data-sortable>Academic Branch</th>
+                                <th data-sortable>Quota</th>
+                                <th data-sortable>Category</th>
+                                <th data-sortable>Gender</th>
+                                <th data-sortable style="text-align: right;">Closing Rank</th>
+                                <th data-sortable style="text-align: center;">Admission Probability</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsBody">
+                            <!-- Populated dynamically via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State -->
+                <div id="noResults" class="p-5 text-center" style="display: none;">
+                    <div class="mb-3">
+                        <i class="bi bi-search text-tertiary" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <h4 class="h5 mb-2">No Matching Colleges Found</h4>
+                    <p class="text-secondary small max-w-md mx-auto mb-3">
+                        Try selecting "All Rounds", broadening your branch choice, or checking another category.
                     </p>
                 </div>
-                <div class="results-actions">
-                    <button class="btn btn-export" onclick="exportToCSV()">
-                        <i class="bi bi-download me-1"></i>Export CSV
-                    </button>
-                </div>
-            </div>
-
-            <!-- Probability Legend -->
-            <div class="probability-legend">
-                <div class="legend-item safe">
-                    <span class="legend-dot"></span>
-                    <span>Safe (1000+ margin)</span>
-                </div>
-                <div class="legend-item moderate">
-                    <span class="legend-dot"></span>
-                    <span>Moderate (100-1000)</span>
-                </div>
-                <div class="legend-item risky">
-                    <span class="legend-dot"></span>
-                    <span>Risky (&lt;100)</span>
-                </div>
-            </div>
-
-            <!-- Results Table -->
-            <div class="table-container">
-                <table class="results-table" id="resultsTable">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Institute</th>
-                            <th>Program</th>
-                            <th>Quota</th>
-                            <th>Category</th>
-                            <th>Gender</th>
-                            <th>Closing Rank</th>
-                            <th>Chance</th>
-                        </tr>
-                    </thead>
-                    <tbody id="resultsBody">
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- No Results Message -->
-            <div id="noResults" class="no-results" style="display: none;">
-                <div class="no-results-icon">
-                    <i class="bi bi-search"></i>
-                </div>
-                <h4>No Colleges Found</h4>
-                <p>Try adjusting your filters or entering a different rank</p>
             </div>
         </div>
     </div>
@@ -420,7 +331,7 @@ NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 
 
 {% block scripts %}
 <script>
-    // Global variable to store results for export
+    // Global variable to store current dataset for CSV export
     let currentResults = [];
 
     // Category rank hint logic
@@ -432,16 +343,16 @@ NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 
         const category = this.value;
         if (category !== 'OPEN' && category !== 'ALL' && !category.includes('PwD')) {
             rankHint.style.display = 'flex';
-            rankHintText.textContent = `Enter your ${category} Category Rank for accurate predictions`;
+            rankHintText.textContent = `Note: Enter your ${category} Category Rank, not CRL`;
         } else if (category.includes('PwD')) {
             rankHint.style.display = 'flex';
-            rankHintText.textContent = `Enter your PwD Category Rank for accurate predictions`;
+            rankHintText.textContent = `Note: Enter your PwD Category Rank`;
         } else {
             rankHint.style.display = 'none';
         }
     });
 
-    // Form submission
+    // Form submission handler
     document.getElementById('predictorForm').addEventListener('submit', async function (e) {
         e.preventDefault();
 
@@ -449,7 +360,6 @@ NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 
         const btnText = btn.querySelector('.btn-text');
         const btnLoader = btn.querySelector('.btn-loader');
 
-        // Show loading state
         btnText.style.display = 'none';
         btnLoader.style.display = 'inline-flex';
         btn.disabled = true;
@@ -470,10 +380,9 @@ NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 
                 displayResults(data);
             }
         } catch (error) {
-            showError('An error occurred. Please try again.');
-            console.error('Error:', error);
+            showError('Network error connecting to prediction engine. Please retry.');
+            console.error('Prediction Error:', error);
         } finally {
-            // Hide loading state
             btnText.style.display = 'inline-flex';
             btnLoader.style.display = 'none';
             btn.disabled = false;
@@ -483,20 +392,17 @@ NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 
     function showError(message) {
         const resultsSection = document.getElementById('resultsSection');
         const noResults = document.getElementById('noResults');
-        const resultsBody = document.getElementById('resultsBody');
+        const resultsTable = document.getElementById('resultsTable');
 
         resultsSection.style.display = 'block';
-        resultsBody.innerHTML = '';
+        resultsTable.style.display = 'none';
         noResults.innerHTML = `
-            <div class="no-results-icon error">
-                <i class="bi bi-exclamation-circle"></i>
-            </div>
-            <h4>Error</h4>
-            <p>${message}</p>
+            <div class="mb-3 text-danger"><i class="bi bi-exclamation-octagon" style="font-size: 2rem;"></i></div>
+            <h4 class="h5 text-danger mb-2">Prediction Error</h4>
+            <p class="text-secondary small mb-0">${message}</p>
         `;
-        noResults.style.display = 'flex';
+        noResults.style.display = 'block';
         document.getElementById('resultCount').textContent = '0';
-
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
@@ -504,47 +410,47 @@ NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 
         const resultsSection = document.getElementById('resultsSection');
         const resultsBody = document.getElementById('resultsBody');
         const noResults = document.getElementById('noResults');
-        const tableContainer = document.querySelector('.table-container');
+        const resultsTable = document.getElementById('resultsTable');
 
         currentResults = data.results;
 
         resultsSection.style.display = 'block';
-        document.getElementById('resultCount').textContent = data.count.toLocaleString();
-        document.getElementById('displayRank').textContent = data.user_rank.toLocaleString();
+        document.getElementById('resultCount').textContent = (data.count || 0).toLocaleString();
+        document.getElementById('displayRank').textContent = (data.user_rank || 0).toLocaleString();
 
-        if (data.results.length === 0) {
+        if (!data.results || data.results.length === 0) {
             resultsBody.innerHTML = '';
-            tableContainer.style.display = 'none';
-            noResults.style.display = 'flex';
+            resultsTable.style.display = 'none';
+            noResults.style.display = 'block';
         } else {
             noResults.style.display = 'none';
-            tableContainer.style.display = 'block';
+            resultsTable.style.display = 'table';
 
             let html = '';
             data.results.forEach((result, index) => {
-                const probabilityClass = result.probability.toLowerCase();
+                const prob = result.probability.toLowerCase();
                 const instituteType = getInstituteType(result.institute);
-                const roundBadge = result.round ? `<span class="round-badge">R${result.round}</span>` : '';
+                const roundBadge = result.round ? `<span class="meta-badge ms-2">R${result.round}</span>` : '';
 
                 html += `
-                    <tr class="result-row">
-                        <td class="row-number">${index + 1}</td>
-                        <td class="institute-cell">
-                            <div class="institute-info">
-                                <span class="institute-name">${result.institute}</span>
-                                <span class="institute-badge ${instituteType.toLowerCase()}">${instituteType}</span>
+                    <tr>
+                        <td class="text-tertiary tabular-nums">${index + 1}</td>
+                        <td class="td-institute">
+                            <div class="d-flex align-items-center gap-2 flex-wrap">
+                                <span>${result.institute}</span>
+                                <span class="inst-badge ${instituteType.toLowerCase()}">${instituteType}</span>
                                 ${roundBadge}
                             </div>
                         </td>
-                        <td class="program-cell">${result.program}</td>
-                        <td><span class="quota-badge">${result.quota}</span></td>
-                        <td><span class="category-badge">${result.seat_type}</span></td>
-                        <td class="gender-cell">${result.gender}</td>
-                        <td class="rank-cell">${result.closing_rank}</td>
-                        <td>
-                            <span class="probability-badge ${probabilityClass}">
-                                ${getProbabilityIcon(result.probability)}
-                                ${result.probability}
+                        <td class="td-program">${result.program}</td>
+                        <td><span class="meta-badge">${result.quota}</span></td>
+                        <td><span class="meta-badge">${result.seat_type}</span></td>
+                        <td class="small text-secondary">${result.gender}</td>
+                        <td class="td-rank" style="text-align: right;">${result.closing_rank}</td>
+                        <td style="text-align: center;">
+                            <span class="status-pill ${prob}">
+                                <span class="status-dot"></span>
+                                <span>${result.probability}</span>
                             </span>
                         </td>
                     </tr>
@@ -552,120 +458,121 @@ NITs, IIITs & GFTIs. Filter by category, quota, program. Based on official 2025 
             });
 
             resultsBody.innerHTML = html;
+
+            // Initialize column sorting & live search filtering
+            if (window.initTableUtilities) {
+                window.initTableUtilities('resultsTable', 'predictorTableFilter');
+            }
         }
 
         resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    function getProbabilityIcon(probability) {
-        switch (probability) {
-            case 'Safe': return '<i class="bi bi-check-circle-fill"></i>';
-            case 'Moderate': return '<i class="bi bi-dash-circle-fill"></i>';
-            case 'Risky': return '<i class="bi bi-exclamation-circle-fill"></i>';
-            default: return '<i class="bi bi-question-circle-fill"></i>';
-        }
-    }
-
     function getInstituteType(name) {
         const upper = name.toUpperCase();
-        // Check IIT first
         if (upper.startsWith('IIT') || upper.includes('INDIAN INSTITUTE OF TECHNOLOGY')) return 'IIT';
-        // Check IIIT before NIT (to avoid IIIT matching NIT check)
         if (upper.includes('IIIT') || upper.includes('INDIAN INSTITUTE OF INFORMATION TECHNOLOGY')) return 'IIIT';
-        // Check NIT - matches 'NIT ', 'NIT,', starts with 'NIT', or full name
-        // This catches: 'NIT Agartala', 'Malaviya NIT Jaipur', 'Dr. B R Ambedkar NIT, Jalandhar'
-        if (upper.includes('NIT ') || upper.includes('NIT,') || upper.startsWith('NIT') ||
-            upper.includes('NATIONAL INSTITUTE OF TECHNOLOGY')) return 'NIT';
+        if (upper.includes('NIT ') || upper.includes('NIT,') || upper.startsWith('NIT') || upper.includes('NATIONAL INSTITUTE OF TECHNOLOGY')) return 'NIT';
         return 'GFTI';
     }
 
     function exportToCSV() {
-        if (currentResults.length === 0) {
-            alert('No results to export!');
+        if (!currentResults || currentResults.length === 0) {
+            if (window.showToast) {
+                window.showToast('No Predictions', 'Generate prediction matches before exporting.', 'bi-exclamation-circle-fill', 'warning');
+            } else {
+                alert('No predictions available to export.');
+            }
             return;
         }
 
-        const headers = ['#', 'Institute', 'Program', 'Quota', 'Seat Type', 'Gender', 'Closing Rank', 'Probability'];
-        if (currentResults[0].round) {
-            headers.push('Round');
-        }
+        const headers = ['Index', 'Institute', 'Program', 'Quota', 'Category', 'Gender', 'Closing Rank', 'Admission Chance'];
+        if (currentResults[0].round) headers.push('Round');
 
         const rows = currentResults.map((r, i) => {
             const row = [
                 i + 1,
-                `"${r.institute}"`,
-                `"${r.program}"`,
+                `"${(r.institute || '').replace(/"/g, '""')}"`,
+                `"${(r.program || '').replace(/"/g, '""')}"`,
                 r.quota,
                 r.seat_type,
                 r.gender,
                 r.closing_rank,
                 r.probability
             ];
-            if (r.round) {
-                row.push(r.round);
-            }
+            if (r.round) row.push(r.round);
             return row;
         });
 
-        let csv = headers.join(',') + '\n';
-        rows.forEach(row => {
-            csv += row.join(',') + '\n';
-        });
-
-        const blob = new Blob([csv], { type: 'text/csv' });
-        const url = window.URL.createObjectURL(blob);
+        const csvContent = [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `josaa_predictions_rank_${document.getElementById('displayRank').textContent}.csv`;
+        const rankVal = document.getElementById('displayRank').textContent || 'results';
+        a.download = `josaa_college_predictions_rank_${rankVal}.csv`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
+        URL.revokeObjectURL(url);
+
+        if (window.showToast) {
+            window.showToast('CSV Exported', `Downloaded ${currentResults.length} college choices to CSV`, 'bi-download', 'success');
+        }
     }
 
-    // Check URL params for initial institute type
+    // Interactive rank slider sync
+    const rankInput = document.getElementById('rank');
+    const rankSlider = document.getElementById('rankSlider');
+    if (rankInput && rankSlider) {
+        rankInput.addEventListener('input', function () {
+            const val = parseInt(this.value, 10);
+            if (!isNaN(val) && val >= 1 && val <= 100000) {
+                rankSlider.value = val;
+            }
+        });
+        rankSlider.addEventListener('input', function () {
+            rankInput.value = this.value;
+        });
+    }
+
+    // Handle initial URL parameters (e.g. from Hero quick test)
     const urlParams = new URLSearchParams(window.location.search);
-    const typeParam = urlParams.get('type');
-    if (typeParam) {
-        document.getElementById('institute_type').value = typeParam;
+    if (urlParams.has('rank')) {
+        const initialRank = urlParams.get('rank');
+        if (rankInput) rankInput.value = initialRank;
+        if (rankSlider) rankSlider.value = Math.min(100000, Math.max(1, parseInt(initialRank, 10) || 3500));
+    }
+    if (urlParams.has('type')) {
+        document.getElementById('institute_type').value = urlParams.get('type');
+    }
+    if (urlParams.has('category')) {
+        document.getElementById('category').value = urlParams.get('category');
+    }
+    if (urlParams.has('round')) {
+        document.getElementById('round').value = urlParams.get('round');
+    }
+    if (urlParams.has('rank')) {
+        // Automatically submit if rank is provided in query params
+        setTimeout(() => {
+            document.getElementById('predictBtn').click();
+        }, 150);
     }
 </script>
 
 <!-- Tom Select JS for searchable dropdowns -->
 <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 <script>
-    // Initialize Tom Select for Program dropdown with search
     new TomSelect('#program', {
         create: false,
         maxItems: 1,
-        sortField: {
-            field: 'text',
-            direction: 'asc'
-        },
+        sortField: { field: 'text', direction: 'asc' },
         allowEmptyOption: true,
         closeAfterSelect: true,
         maxOptions: 300,
         highlight: true,
         openOnFocus: true,
-        selectOnTab: true,
-        render: {
-            option: function (data, escape) {
-                // Highlight the "All Programs" option differently
-                if (data.value === 'ALL') {
-                    return '<div class="option all-programs-option"><i class="bi bi-collection me-2"></i>' + escape(data.text) + '</div>';
-                }
-                return '<div class="option">' + escape(data.text) + '</div>';
-            },
-            item: function (data, escape) {
-                if (data.value === 'ALL') {
-                    return '<div class="item">All Programs</div>';
-                }
-                return '<div class="item">' + escape(data.text) + '</div>';
-            },
-            no_results: function (data, escape) {
-                return '<div class="no-results"><i class="bi bi-search me-2"></i>No programs found for "' + escape(data.input) + '"</div>';
-            }
-        }
+        selectOnTab: true
     });
 </script>
 {% endblock %}

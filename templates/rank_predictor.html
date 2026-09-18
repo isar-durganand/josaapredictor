@@ -2,8 +2,7 @@
 
 {% block title %}JEE Main 2025 Rank Predictor - Marks to Rank Calculator | JoSAA{% endblock %}
 
-{% block meta_description %}Free JEE Main 2025 Rank Predictor. Convert your JEE marks or percentile to All India Rank
-instantly. Based on official 2025 data with complete marks vs rank vs percentile table.{% endblock %}
+{% block meta_description %}Free JEE Main 2025 Rank Predictor. Convert your JEE marks or percentile to All India Rank instantly. Based on official 2025 data with complete marks vs rank vs percentile table.{% endblock %}
 
 {% block head_extra %}
 <!-- Dataset Schema for Marks vs Rank Table -->
@@ -40,497 +39,165 @@ instantly. Based on official 2025 data with complete marks vs rank vs percentile
     "description": "Calculate your JEE Main 2025 All India Rank from your marks or percentile using official NTA data."
 }
 </script>
-
-<!-- Rank Predictor Page Styles -->
-<style>
-    /* Calculator Section */
-    .calculator-section {
-        padding: 3rem 0;
-    }
-
-    /* Calculator Card */
-    .calc-card {
-        background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
-        border: 1px solid rgba(99, 102, 241, 0.2);
-        border-radius: 1.5rem;
-        overflow: hidden;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .calc-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.5rem;
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
-        border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-    }
-
-    .calc-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.4rem;
-        color: white;
-    }
-
-    .calc-header h2 {
-        margin: 0;
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: var(--text-primary);
-    }
-
-    .calc-header p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: var(--text-muted);
-    }
-
-    .calc-body {
-        padding: 1.5rem;
-    }
-
-    /* Input Toggle Buttons */
-    .input-toggle {
-        display: flex;
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-        background: rgba(15, 23, 42, 0.5);
-        padding: 0.3rem;
-        border-radius: 10px;
-    }
-
-    .toggle-btn {
-        flex: 1;
-        padding: 0.75rem 1rem;
-        border: none;
-        border-radius: 8px;
-        background: transparent;
-        color: var(--text-muted);
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-size: 0.95rem;
-    }
-
-    .toggle-btn:hover {
-        color: var(--text-primary);
-        background: rgba(99, 102, 241, 0.1);
-    }
-
-    .toggle-btn.active {
-        background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-        color: white;
-        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-    }
-
-    /* Input Groups */
-    .input-group-custom {
-        margin-bottom: 1.5rem;
-    }
-
-    .input-group-custom label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        color: var(--text-primary);
-        font-size: 0.95rem;
-    }
-
-    .input-group-custom .form-control {
-        width: 100%;
-        padding: 1rem 1.25rem;
-        font-size: 1.1rem;
-        background: rgba(15, 23, 42, 0.8);
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        border-radius: 12px;
-        color: var(--text-primary);
-        transition: all 0.3s ease;
-    }
-
-    .input-group-custom .form-control:focus {
-        outline: none;
-        border-color: var(--accent-primary);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
-        background: rgba(15, 23, 42, 1);
-    }
-
-    .input-group-custom .form-control::placeholder {
-        color: var(--text-muted);
-    }
-
-    .input-hint {
-        display: block;
-        margin-top: 0.5rem;
-        font-size: 0.85rem;
-        color: var(--text-muted);
-    }
-
-    /* Calculate Button */
-    .btn-calculate {
-        width: 100%;
-        padding: 1rem 1.5rem;
-        font-size: 1.1rem;
-        font-weight: 600;
-        background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-        border: none;
-        border-radius: 12px;
-        color: white;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
-
-    .btn-calculate:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
-    }
-
-    .btn-calculate:active {
-        transform: translateY(0);
-    }
-
-    /* Result Card */
-    .result-card {
-        background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
-        border: 1px solid rgba(99, 102, 241, 0.2);
-        border-radius: 1.5rem;
-        padding: 1.5rem;
-        min-height: 300px;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .result-placeholder {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: var(--text-muted);
-    }
-
-    .result-placeholder i {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-        opacity: 0.5;
-    }
-
-    .result-placeholder h3 {
-        margin: 0 0 0.5rem;
-        font-size: 1.2rem;
-        color: var(--text-primary);
-    }
-
-    .result-placeholder p {
-        margin: 0;
-        font-size: 0.95rem;
-    }
-
-    /* Result Content */
-    .result-content {
-        display: none;
-    }
-
-    .result-content.active {
-        display: block;
-    }
-
-    .result-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-    }
-
-    .result-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #10b981, #059669);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.4rem;
-        color: white;
-    }
-
-    .result-header h3 {
-        margin: 0;
-        font-size: 1.2rem;
-        color: var(--text-primary);
-    }
-
-    .result-header p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: var(--text-muted);
-    }
-
-    .result-stats {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .stat-box {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(99, 102, 241, 0.15);
-        border-radius: 12px;
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .stat-box.highlight {
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.15));
-        border-color: rgba(99, 102, 241, 0.3);
-    }
-
-    .stat-value {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--accent-primary);
-        display: block;
-    }
-
-    .stat-box.highlight .stat-value {
-        background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .stat-label {
-        font-size: 0.85rem;
-        color: var(--text-muted);
-    }
-
-    .result-note {
-        background: rgba(251, 191, 36, 0.1);
-        border: 1px solid rgba(251, 191, 36, 0.3);
-        border-radius: 10px;
-        padding: 0.75rem 1rem;
-        font-size: 0.85rem;
-        color: #fbbf24;
-        display: flex;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .result-note i {
-        margin-top: 2px;
-    }
-
-    /* Data Table Section */
-    .data-section {
-        padding: 3rem 0;
-    }
-
-    .section-header {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .section-header h2 {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: var(--text-primary);
-    }
-
-    .section-header p {
-        color: var(--text-muted);
-        font-size: 1rem;
-    }
-
-    .data-table-wrapper {
-        background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
-        border: 1px solid rgba(99, 102, 241, 0.2);
-        border-radius: 1.5rem;
-        overflow: hidden;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .data-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .data-table th,
-    .data-table td {
-        padding: 1rem 1.25rem;
-        text-align: left;
-        border-bottom: 1px solid rgba(99, 102, 241, 0.1);
-    }
-
-    .data-table th {
-        background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
-        font-weight: 600;
-        color: var(--text-primary);
-        font-size: 0.95rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .data-table td {
-        color: var(--text-secondary);
-        font-size: 0.95rem;
-    }
-
-    .data-table tbody tr:hover {
-        background: rgba(99, 102, 241, 0.05);
-    }
-
-    .data-table tbody tr:last-child td {
-        border-bottom: none;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .result-stats {
-            grid-template-columns: 1fr;
-        }
-
-        .toggle-btn {
-            padding: 0.6rem 0.75rem;
-            font-size: 0.85rem;
-        }
-
-        .calc-header {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .data-table th,
-        .data-table td {
-            padding: 0.75rem;
-            font-size: 0.85rem;
-        }
-    }
-</style>
 {% endblock %}
 
 {% block content %}
 <!-- Page Header -->
-<section class="page-header">
+<section class="py-4 border-bottom border-subtle bg-surface">
     <div class="container">
-        <h1 class="page-title">
-            <i class="bi bi-calculator-fill text-gradient me-2"></i>
-            Rank & Percentile <span class="text-gradient">Predictor</span>
-        </h1>
-        <p style="font-size: 1.1rem; color: var(--primary-light); margin-bottom: 0.5rem;">
-            📊 Marks se rank tak, sab kuch yahan milega! ✨
-        </p>
-        <p class="page-subtitle">
-            Estimate your JEE Main 2025 rank from marks or percentile using official data
-        </p>
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div>
+                <div class="hero-pill-badge mb-2">
+                    <i class="bi bi-calculator"></i>
+                    <span>NTA JEE Main 2025 Statistical Model</span>
+                </div>
+                <h1 class="h2 mb-1">Rank & Percentile Calculator</h1>
+                <p class="text-secondary small mb-0">
+                    Convert raw exam score (out of 300) or NTA percentile into calibrated All India Rank (AIR) brackets.
+                </p>
+            </div>
+            <a href="/predictor" class="btn btn-secondary-action btn-sm">
+                <i class="bi bi-lightning-charge"></i>
+                <span>Open College Predictor</span>
+            </a>
+        </div>
     </div>
 </section>
 
 <!-- Calculator Section -->
-<section class="calculator-section">
+<section class="py-4">
     <div class="container">
-        <div class="row g-4">
-            <!-- Calculator Card -->
+        <div class="row g-4 mb-5">
+            <!-- Left: Calculator Inputs -->
             <div class="col-lg-6">
-                <div class="calc-card">
-                    <div class="calc-header">
-                        <div class="calc-icon">
-                            <i class="bi bi-sliders"></i>
-                        </div>
-                        <div>
-                            <h2>Enter Your Score</h2>
-                            <p>Input marks or percentile to predict rank</p>
+                <div class="control-card h-100">
+                    <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-subtle">
+                        <span class="form-label-custom mb-0">Calculation Mode</span>
+                        <!-- Segmented Switcher -->
+                        <div class="segmented-control">
+                            <button class="segmented-tab active" id="btnMarks" type="button">
+                                <i class="bi bi-pencil-square"></i>
+                                <span>By Marks</span>
+                            </button>
+                            <button class="segmented-tab" id="btnPercentile" type="button">
+                                <i class="bi bi-percent"></i>
+                                <span>By Percentile</span>
+                            </button>
                         </div>
                     </div>
 
-                    <div class="calc-body">
-                        <!-- Input Type Toggle -->
-                        <div class="input-toggle">
-                            <button class="toggle-btn active" data-type="marks" id="btnMarks">
-                                <i class="bi bi-pencil-square me-2"></i>By Marks
-                            </button>
-                            <button class="toggle-btn" data-type="percentile" id="btnPercentile">
-                                <i class="bi bi-percent me-2"></i>By Percentile
-                            </button>
+                    <!-- Marks Input Container -->
+                    <div id="marksInput" class="mb-3">
+                        <label for="marks" class="form-label-custom">
+                            <i class="bi bi-123"></i>
+                            <span>Enter Expected Score (0 to 300)</span>
+                        </label>
+                        <input type="number" id="marks" class="form-control tabular-nums" placeholder="e.g. 195" min="0" max="300" step="1">
+                        <div class="mt-2">
+                            <div class="d-flex justify-content-between text-tertiary small" style="font-size: 0.75rem;">
+                                <span>0</span>
+                                <span>Interactive Score Slider</span>
+                                <span>300</span>
+                            </div>
+                            <input type="range" class="range-slider-custom mt-1 mb-0" id="marksSlider" min="0" max="300" step="1" value="195">
                         </div>
-
-                        <!-- Marks Input -->
-                        <div class="input-group-custom" id="marksInput">
-                            <label for="marks">
-                                <i class="bi bi-123 me-1"></i>Enter Your Marks (out of 300)
-                            </label>
-                            <input type="number" id="marks" class="form-control" placeholder="e.g., 180" min="0"
-                                max="300" step="1">
-                            <small class="input-hint">Enter marks between 0 and 300</small>
+                        <div class="d-flex align-items-center gap-1 mt-2 flex-wrap">
+                            <span class="small text-tertiary me-1">Quick presets:</span>
+                            <button type="button" class="filter-chip" onclick="setScore(250)">250</button>
+                            <button type="button" class="filter-chip" onclick="setScore(200)">200</button>
+                            <button type="button" class="filter-chip" onclick="setScore(160)">160</button>
+                            <button type="button" class="filter-chip" onclick="setScore(120)">120</button>
+                            <button type="button" class="filter-chip" onclick="setScore(80)">80</button>
                         </div>
+                    </div>
 
-                        <!-- Percentile Input (hidden by default) -->
-                        <div class="input-group-custom d-none" id="percentileInput">
-                            <label for="percentile">
-                                <i class="bi bi-percent me-1"></i>Enter Your Percentile
-                            </label>
-                            <input type="number" id="percentile" class="form-control" placeholder="e.g., 98.5" min="0"
-                                max="100" step="0.01">
-                            <small class="input-hint">Enter percentile between 0 and 100</small>
+                    <!-- Percentile Input Container (hidden by default) -->
+                    <div id="percentileInput" class="mb-3 d-none">
+                        <label for="percentile" class="form-label-custom">
+                            <i class="bi bi-percent"></i>
+                            <span>Enter NTA Percentile (0 to 100)</span>
+                        </label>
+                        <input type="number" id="percentile" class="form-control tabular-nums" placeholder="e.g. 99.45" min="0" max="100" step="0.001">
+                        <div class="mt-2">
+                            <div class="d-flex justify-content-between text-tertiary small" style="font-size: 0.75rem;">
+                                <span>0%</span>
+                                <span>Interactive Percentile Slider</span>
+                                <span>100%</span>
+                            </div>
+                            <input type="range" class="range-slider-custom mt-1 mb-0" id="percentileSlider" min="0" max="100" step="0.05" value="98.5">
                         </div>
+                        <div class="d-flex align-items-center gap-1 mt-2 flex-wrap">
+                            <span class="small text-tertiary me-1">Quick presets:</span>
+                            <button type="button" class="filter-chip" onclick="setPercentile(99.9)">99.9%</button>
+                            <button type="button" class="filter-chip" onclick="setPercentile(99.0)">99.0%</button>
+                            <button type="button" class="filter-chip" onclick="setPercentile(97.5)">97.5%</button>
+                            <button type="button" class="filter-chip" onclick="setPercentile(95.0)">95.0%</button>
+                        </div>
+                    </div>
 
-                        <button class="btn-calculate" id="calculateBtn">
-                            <i class="bi bi-lightning-charge-fill me-2"></i>Calculate Rank
+                    <div class="pt-3 border-top border-subtle mt-4">
+                        <button class="btn btn-primary-action w-100" id="calculateBtn" type="button">
+                            <i class="bi bi-calculator-fill"></i>
+                            <span>Calculate Estimated AIR</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Result Card -->
+            <!-- Right: Result Card -->
             <div class="col-lg-6">
-                <div class="result-card" id="resultCard">
-                    <div class="result-placeholder" id="resultPlaceholder">
-                        <div class="placeholder-icon">
-                            <i class="bi bi-graph-up-arrow"></i>
+                <div class="control-card h-100 d-flex flex-column justify-content-between" id="resultCard">
+                    <!-- Placeholder State -->
+                    <div id="resultPlaceholder" class="text-center py-5 my-auto">
+                        <div class="mb-3 text-tertiary">
+                            <i class="bi bi-graph-up-arrow" style="font-size: 2.2rem;"></i>
                         </div>
-                        <h3>Your Results Will Appear Here</h3>
-                        <p>Enter your marks or percentile and click Calculate</p>
+                        <h4 class="h5 mb-2">Estimate Your All India Rank</h4>
+                        <p class="text-secondary small max-w-sm mx-auto mb-0">
+                            Enter your score or percentile on the left and click "Calculate Estimated AIR".
+                        </p>
                     </div>
 
-                    <div class="result-content d-none" id="resultContent">
-                        <div class="result-header">
-                            <i class="bi bi-trophy-fill"></i>
-                            <span>Prediction Results</span>
+                    <!-- Active Result State -->
+                    <div id="resultContent" class="d-none">
+                        <div class="d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom border-subtle">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="status-dot" style="background: var(--brand);"></span>
+                                <strong class="small text-uppercase tracking-wider">Estimated AIR Calculation</strong>
+                            </div>
+                            <span class="inst-badge nit">Official Calibration</span>
                         </div>
 
-                        <div class="result-grid">
-                            <div class="result-item">
-                                <span class="result-label">Marks Range</span>
-                                <span class="result-value" id="resultMarks">-</span>
+                        <div class="row g-3 mb-4">
+                            <div class="col-12">
+                                <div class="metric-card bg-surface-elevated">
+                                    <div class="metric-label">Expected All India Rank (AIR)</div>
+                                    <div class="metric-value tabular-nums text-brand" id="resultRank" style="font-size: 2.2rem;">-</div>
+                                    <div class="metric-subtext">Estimated range across all shifts</div>
+                                </div>
                             </div>
-                            <div class="result-item">
-                                <span class="result-label">Percentile Range</span>
-                                <span class="result-value" id="resultPercentile">-</span>
+                            <div class="col-6">
+                                <div class="metric-card">
+                                    <div class="metric-label">Equivalent Percentile</div>
+                                    <div class="tabular-nums fw-bold h5 mb-0 text-primary" id="resultPercentile">-</div>
+                                </div>
                             </div>
-                            <div class="result-item highlight">
-                                <span class="result-label">Expected Rank Range</span>
-                                <span class="result-value rank" id="resultRank">-</span>
+                            <div class="col-6">
+                                <div class="metric-card">
+                                    <div class="metric-label">Score Range</div>
+                                    <div class="tabular-nums fw-bold h5 mb-0 text-primary" id="resultMarks">-</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="result-cta">
-                            <p>Now check colleges you can get with this rank:</p>
-                            <a href="/predictor" class="btn-predictor">
-                                <i class="bi bi-search me-2"></i>College Predictor
+                        <div class="p-3 bg-surface-elevated border border-subtle rounded-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
+                            <div>
+                                <div class="small fw-bold text-primary">Next Step: College Prediction</div>
+                                <div class="small text-secondary">See IITs, NITs, and IIITs available for this rank.</div>
+                            </div>
+                            <a id="lnkPredictor" href="/predictor" class="btn btn-primary-action btn-sm">
+                                <span>Find Colleges</span>
+                                <i class="bi bi-arrow-right"></i>
                             </a>
                         </div>
                     </div>
@@ -538,27 +205,44 @@ instantly. Based on official 2025 data with complete marks vs rank vs percentile
             </div>
         </div>
 
-        <!-- Data Table -->
-        <div class="data-table-card mt-5">
-            <div class="table-header">
-                <h3><i class="bi bi-table me-2"></i>JEE Main 2025 Marks vs Rank vs Percentile</h3>
-                <p>Complete reference table based on official JEE Main 2025 data</p>
+        <!-- Reference Data Table Container -->
+        <div class="data-grid-container">
+            <div class="data-grid-header">
+                <div>
+                    <div class="data-grid-title">
+                        <i class="bi bi-table text-brand"></i>
+                        <span>JEE Main Score vs Percentile vs Rank Reference Matrix</span>
+                    </div>
+                    <div class="small text-secondary mt-1">
+                        Compiled from official National Testing Agency (NTA) exam results.
+                    </div>
+                </div>
+
+                <!-- Live Table Search -->
+                <div style="min-width: 240px;">
+                    <input type="text" id="tableFilter" class="form-control form-control-sm" placeholder="Search marks or ranks...">
+                </div>
             </div>
-            <div class="table-responsive">
-                <table class="data-table">
+
+            <div class="data-table-scroll">
+                <table class="data-table" id="matrixTable">
                     <thead>
                         <tr>
-                            <th>Marks Range</th>
-                            <th>Percentile Range</th>
-                            <th>Rank Range</th>
+                            <th data-sortable>JEE Main Score (out of 300)</th>
+                            <th data-sortable>NTA Percentile Range</th>
+                            <th data-sortable style="text-align: right;">Expected All India Rank (AIR)</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="matrixTbody">
                         {% for row in data %}
                         <tr>
-                            <td><span class="marks-badge">{{ row.marks }}</span></td>
-                            <td>{{ row.percentile }}</td>
-                            <td><span class="rank-badge">{{ row.rank }}</span></td>
+                            <td class="td-rank">
+                                <span class="meta-badge">{{ row.marks }}</span>
+                            </td>
+                            <td class="tabular-nums text-secondary">{{ row.percentile }}</td>
+                            <td class="td-rank" style="text-align: right;">
+                                <span class="status-pill safe">{{ row.rank }}</span>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -569,332 +253,9 @@ instantly. Based on official 2025 data with complete marks vs rank vs percentile
 </section>
 {% endblock %}
 
-<style>
-    .calculator-section {
-        padding: 0 0 4rem;
-    }
-
-    .calc-card,
-    .result-card {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-xl);
-        height: 100%;
-    }
-
-    .calc-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.5rem 2rem;
-        background: var(--primary);
-        color: white;
-        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    }
-
-    .calc-icon {
-        width: 56px;
-        height: 56px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: var(--radius-md);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-    }
-
-    .calc-header h2 {
-        font-size: 1.35rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-    }
-
-    .calc-header p {
-        margin: 0;
-        opacity: 0.9;
-        font-size: 0.95rem;
-    }
-
-    .calc-body {
-        padding: 2rem;
-    }
-
-    .input-toggle {
-        display: flex;
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .toggle-btn {
-        flex: 1;
-        padding: 0.85rem 1rem;
-        background: var(--bg-primary);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-md);
-        color: var(--text-secondary);
-        font-weight: 600;
-        font-size: 0.95rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .toggle-btn:hover {
-        border-color: var(--primary);
-        color: var(--primary);
-    }
-
-    .toggle-btn.active {
-        background: var(--primary);
-        border-color: var(--primary);
-        color: white;
-    }
-
-    .input-group-custom {
-        margin-bottom: 1.5rem;
-    }
-
-    .input-group-custom label {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        margin-bottom: 0.5rem;
-    }
-
-    .input-hint {
-        display: block;
-        margin-top: 0.5rem;
-        font-size: 0.85rem;
-        color: var(--text-muted);
-    }
-
-    .btn-calculate {
-        width: 100%;
-        padding: 1rem;
-        background: var(--primary);
-        border: none;
-        border-radius: var(--radius-md);
-        color: white;
-        font-size: 1.1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .btn-calculate:hover {
-        background: var(--primary-dark);
-    }
-
-    .result-placeholder {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 4rem 2rem;
-        height: 100%;
-    }
-
-    .placeholder-icon {
-        width: 80px;
-        height: 80px;
-        background: var(--primary-muted);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        color: var(--primary);
-        margin-bottom: 1.5rem;
-    }
-
-    .result-placeholder h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-
-    .result-placeholder p {
-        color: var(--text-muted);
-        font-size: 1rem;
-    }
-
-    .result-content {
-        padding: 0;
-    }
-
-    .result-header {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 1.25rem 2rem;
-        background: var(--success);
-        color: white;
-        border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-        font-size: 1.15rem;
-        font-weight: 600;
-    }
-
-    .result-grid {
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-    }
-
-    .result-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 1.25rem;
-        background: var(--bg-primary);
-        border-radius: var(--radius-md);
-    }
-
-    .result-item.highlight {
-        background: var(--primary-muted);
-        border: 1px solid var(--primary);
-    }
-
-    .result-label {
-        font-weight: 500;
-        color: var(--text-secondary);
-        font-size: 1rem;
-    }
-
-    .result-value {
-        font-weight: 700;
-        color: var(--text-primary);
-        font-size: 1.1rem;
-    }
-
-    .result-value.rank {
-        color: var(--primary);
-        font-size: 1.25rem;
-    }
-
-    .result-cta {
-        padding: 1.5rem 2rem;
-        background: var(--bg-primary);
-        border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-        text-align: center;
-    }
-
-    .result-cta p {
-        color: var(--text-secondary);
-        margin-bottom: 1rem;
-        font-size: 1rem;
-    }
-
-    .btn-predictor {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.85rem 2rem;
-        background: var(--primary);
-        color: white;
-        border-radius: var(--radius-md);
-        font-weight: 600;
-        font-size: 1rem;
-        text-decoration: none;
-        transition: all 0.2s ease;
-    }
-
-    .btn-predictor:hover {
-        background: var(--primary-dark);
-        color: white;
-    }
-
-    .data-table-card {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-xl);
-        overflow: hidden;
-    }
-
-    .table-header {
-        padding: 1.5rem 2rem;
-        background: var(--bg-primary);
-        border-bottom: 1px solid var(--border);
-    }
-
-    .table-header h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-    }
-
-    .table-header p {
-        color: var(--text-muted);
-        margin: 0;
-        font-size: 0.95rem;
-    }
-
-    .data-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .data-table th {
-        padding: 1rem 1.5rem;
-        text-align: left;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        background: var(--bg-primary);
-        border-bottom: 1px solid var(--border);
-    }
-
-    .data-table td {
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid var(--border);
-        font-size: 1rem;
-    }
-
-    .data-table tbody tr:hover {
-        background: var(--primary-muted);
-    }
-
-    .marks-badge {
-        display: inline-block;
-        padding: 0.35rem 0.75rem;
-        background: var(--primary);
-        color: white;
-        border-radius: var(--radius-sm);
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-
-    .rank-badge {
-        display: inline-block;
-        padding: 0.35rem 0.75rem;
-        background: rgba(16, 185, 129, 0.15);
-        color: var(--success);
-        border-radius: var(--radius-sm);
-        font-weight: 600;
-        font-size: 0.9rem;
-    }
-
-    @media (max-width: 991px) {
-
-        .calc-header,
-        .calc-body {
-            padding: 1.25rem 1.5rem;
-        }
-
-        .input-toggle {
-            flex-direction: column;
-        }
-    }
-</style>
-
 {% block scripts %}
 <script>
-    // Data from CSV (parsed and cleaned)
+    // Calibrated score matrix
     const rankData = [
         { marksMin: 281, marksMax: 300, percMin: 99.99989145, percMax: 100, rankMin: 1, rankMax: 20 },
         { marksMin: 271, marksMax: 280, percMin: 99.994681, percMax: 99.997394, rankMin: 24, rankMax: 80 },
@@ -929,7 +290,21 @@ instantly. Based on official 2025 data with complete marks vs rank vs percentile
 
     let inputType = 'marks';
 
-    // Toggle buttons
+    function setScore(score) {
+        document.getElementById('marks').value = score;
+        const marksSlider = document.getElementById('marksSlider');
+        if (marksSlider) marksSlider.value = score;
+        document.getElementById('calculateBtn').click();
+    }
+
+    function setPercentile(perc) {
+        document.getElementById('percentile').value = perc;
+        const percSlider = document.getElementById('percentileSlider');
+        if (percSlider) percSlider.value = perc;
+        document.getElementById('calculateBtn').click();
+    }
+
+    // Toggle segmented tab handlers
     document.getElementById('btnMarks').addEventListener('click', function () {
         inputType = 'marks';
         this.classList.add('active');
@@ -946,21 +321,51 @@ instantly. Based on official 2025 data with complete marks vs rank vs percentile
         document.getElementById('marksInput').classList.add('d-none');
     });
 
-    // Calculate button
-    document.getElementById('calculateBtn').addEventListener('click', function () {
+    // Synced interactive sliders with live preview
+    const marksInput = document.getElementById('marks');
+    const marksSlider = document.getElementById('marksSlider');
+    if (marksInput && marksSlider) {
+        marksInput.addEventListener('input', function () {
+            const v = parseFloat(this.value);
+            if (!isNaN(v) && v >= 0 && v <= 300) {
+                marksSlider.value = v;
+                calculateAIR();
+            }
+        });
+        marksSlider.addEventListener('input', function () {
+            marksInput.value = this.value;
+            calculateAIR();
+        });
+    }
+
+    const percentileInput = document.getElementById('percentile');
+    const percentileSlider = document.getElementById('percentileSlider');
+    if (percentileInput && percentileSlider) {
+        percentileInput.addEventListener('input', function () {
+            const v = parseFloat(this.value);
+            if (!isNaN(v) && v >= 0 && v <= 100) {
+                percentileSlider.value = v;
+                calculateAIR();
+            }
+        });
+        percentileSlider.addEventListener('input', function () {
+            percentileInput.value = this.value;
+            calculateAIR();
+        });
+    }
+
+    function calculateAIR() {
         let result = null;
 
         if (inputType === 'marks') {
             const marks = parseFloat(document.getElementById('marks').value);
             if (isNaN(marks) || marks < 0 || marks > 300) {
-                alert('Please enter valid marks between 0 and 300');
                 return;
             }
             result = findByMarks(marks);
         } else {
             const percentile = parseFloat(document.getElementById('percentile').value);
             if (isNaN(percentile) || percentile < 0 || percentile > 100) {
-                alert('Please enter valid percentile between 0 and 100');
                 return;
             }
             result = findByPercentile(percentile);
@@ -968,50 +373,82 @@ instantly. Based on official 2025 data with complete marks vs rank vs percentile
 
         if (result) {
             displayResult(result);
-        } else {
-            alert('Could not find matching data. Please check your input.');
         }
+    }
+
+    // Calculate button action (with validation toast feedback)
+    document.getElementById('calculateBtn').addEventListener('click', function () {
+        if (inputType === 'marks') {
+            const marks = parseFloat(document.getElementById('marks').value);
+            if (isNaN(marks) || marks < 0 || marks > 300) {
+                if (window.showToast) {
+                    window.showToast('Invalid Score', 'Please enter an exam score between 0 and 300.', 'bi-exclamation-circle-fill', 'warning');
+                } else {
+                    alert('Please enter a valid score between 0 and 300.');
+                }
+                return;
+            }
+        } else {
+            const percentile = parseFloat(document.getElementById('percentile').value);
+            if (isNaN(percentile) || percentile < 0 || percentile > 100) {
+                if (window.showToast) {
+                    window.showToast('Invalid Percentile', 'Please enter a percentile between 0 and 100.', 'bi-exclamation-circle-fill', 'warning');
+                } else {
+                    alert('Please enter a valid percentile between 0 and 100.');
+                }
+                return;
+            }
+        }
+        calculateAIR();
     });
 
     function findByMarks(marks) {
         for (const row of rankData) {
-            if (marks >= row.marksMin && marks <= row.marksMax) {
-                return row;
-            }
+            if (marks >= row.marksMin && marks <= row.marksMax) return row;
         }
-        // Handle edge case for marks below minimum
         if (marks < rankData[rankData.length - 1].marksMin) {
             return rankData[rankData.length - 1];
         }
-        return null;
+        return rankData[0];
     }
 
     function findByPercentile(percentile) {
         for (const row of rankData) {
-            if (percentile >= row.percMin && percentile <= row.percMax) {
-                return row;
-            }
+            if (percentile >= row.percMin && percentile <= row.percMax) return row;
         }
-        // Find closest match
-        let closestMatch = null;
+        let closest = null;
         let minDiff = Infinity;
         for (const row of rankData) {
             const diff = Math.min(Math.abs(percentile - row.percMin), Math.abs(percentile - row.percMax));
             if (diff < minDiff) {
                 minDiff = diff;
-                closestMatch = row;
+                closest = row;
             }
         }
-        return closestMatch;
+        return closest;
     }
 
     function displayResult(data) {
         document.getElementById('resultPlaceholder').classList.add('d-none');
         document.getElementById('resultContent').classList.remove('d-none');
 
-        document.getElementById('resultMarks').textContent = `${data.marksMin} - ${data.marksMax}`;
-        document.getElementById('resultPercentile').textContent = `${data.percMin.toFixed(4)} - ${data.percMax.toFixed(4)}`;
-        document.getElementById('resultRank').textContent = `${data.rankMin.toLocaleString()} - ${data.rankMax.toLocaleString()}`;
+        document.getElementById('resultMarks').textContent = `${data.marksMin} – ${data.marksMax}`;
+        document.getElementById('resultPercentile').textContent = `${data.percMin.toFixed(2)} – ${data.percMax.toFixed(2)}%`;
+        document.getElementById('resultRank').textContent = `${data.rankMin.toLocaleString()} – ${data.rankMax.toLocaleString()}`;
+
+        // Update direct link to predictor with midpoint rank
+        const midRank = Math.round((data.rankMin + data.rankMax) / 2);
+        document.getElementById('lnkPredictor').href = `/predictor?rank=${midRank}`;
     }
+
+    // Initialize table sorting and instant search
+    if (window.initTableUtilities) {
+        window.initTableUtilities('matrixTable', 'tableFilter');
+    }
+
+    // Run initial preview with default score
+    document.addEventListener('DOMContentLoaded', () => {
+        setScore(195);
+    });
 </script>
 {% endblock %}

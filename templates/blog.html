@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Blog - IIT & NIT Complete Guide 2026 | JoSAA College Predictor{% endblock %}
+{% block title %}Institute Guides - IIT & NIT Complete Analysis 2026 | JoSAA Predictor{% endblock %}
 
-{% block meta_description %}Complete guide to all IITs and NITs in India. Detailed information about courses, fees,
-placements, cutoffs, campus life, and admission process for JoSAA 2026 counseling.{% endblock %}
+{% block meta_description %}Comprehensive guides to all IITs and NITs in India. Detailed breakdowns of admission requirements, cutoffs, tuition fees, placement averages, and campus life.{% endblock %}
 
 {% block head_extra %}
 <!-- CollectionPage Schema -->
@@ -12,7 +11,7 @@ placements, cutoffs, campus life, and admission process for JoSAA 2026 counselin
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "IIT & NIT Complete Guide",
-    "description": "Comprehensive guides to all IITs and NITs in India with admission details, cutoffs, placements, and campus information.",
+    "description": "Comprehensive guides to premier IITs and NITs with admission details, cutoffs, placements, and campus information.",
     "url": "https://josaacollegepredictor.vercel.app/blog",
     "isPartOf": {
         "@type": "WebSite",
@@ -21,189 +20,97 @@ placements, cutoffs, campus life, and admission process for JoSAA 2026 counselin
     }
 }
 </script>
-
-<style>
-    .blog-section {
-        padding: 2rem 0 4rem;
-    }
-
-    .blog-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .blog-card {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-        transition: var(--transition);
-        display: flex;
-        flex-direction: column;
-    }
-
-    .blog-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        border-color: var(--primary);
-    }
-
-    .blog-card-header {
-        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-        padding: 1.5rem;
-        color: white;
-    }
-
-    .blog-card-header.nit {
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    }
-
-    .blog-card-badge {
-        display: inline-block;
-        padding: 0.25rem 0.75rem;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: var(--radius-sm);
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 0.75rem;
-    }
-
-    .blog-card-title {
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin: 0;
-    }
-
-    .blog-card-body {
-        padding: 1.25rem 1.5rem;
-        flex: 1;
-    }
-
-    .blog-card-desc {
-        color: var(--text-secondary);
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-bottom: 1rem;
-    }
-
-    .blog-card-stats {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .blog-stat {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-    }
-
-    .blog-stat i {
-        color: var(--primary);
-    }
-
-    .blog-card-footer {
-        padding: 1rem 1.5rem;
-        border-top: 1px solid var(--border);
-    }
-
-    .blog-read-more {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--primary);
-        font-weight: 600;
-        text-decoration: none;
-        transition: var(--transition);
-    }
-
-    .blog-read-more:hover {
-        color: var(--primary-light);
-        gap: 0.75rem;
-    }
-
-    .filter-tabs {
-        display: flex;
-        gap: 0.75rem;
-        margin-bottom: 2rem;
-        flex-wrap: wrap;
-    }
-
-    .filter-tab {
-        padding: 0.6rem 1.25rem;
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-md);
-        font-weight: 600;
-        cursor: pointer;
-        transition: var(--transition);
-        color: var(--text-secondary);
-    }
-
-    .filter-tab:hover,
-    .filter-tab.active {
-        background: var(--primary);
-        border-color: var(--primary);
-        color: white;
-    }
-</style>
 {% endblock %}
 
 {% block content %}
 <!-- Page Header -->
-<section class="page-header">
+<section class="py-4 border-bottom border-subtle bg-surface">
     <div class="container">
-        <h1 class="page-title">
-            <i class="bi bi-journal-richtext text-gradient me-2"></i>
-            IIT & NIT <span class="text-gradient">Complete Guide</span>
-        </h1>
-        <p style="font-size: 1.1rem; color: var(--primary-light); margin-bottom: 0.5rem;">
-            📚 Colleges ki puri jaankari, ek jagah pe! 🎓
-        </p>
-        <p class="page-subtitle">
-            Detailed guides to help you choose the best engineering college for your career
-        </p>
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div>
+                <div class="hero-pill-badge mb-2">
+                    <i class="bi bi-buildings"></i>
+                    <span>College Profile Dossiers</span>
+                </div>
+                <h1 class="h2 mb-1">Premier Engineering Institute Guides</h1>
+                <p class="text-secondary small mb-0">
+                    In-depth analytical profiles covering NIRF rankings, placement metrics, fee structures, and campus environments.
+                </p>
+            </div>
+            <a href="/predictor" class="btn btn-primary-action btn-sm">
+                <i class="bi bi-search"></i>
+                <span>College Predictor</span>
+            </a>
+        </div>
     </div>
 </section>
 
-<!-- Blog Grid Section -->
-<section class="blog-section">
+<!-- Institute Grid Section -->
+<section class="py-5">
     <div class="container">
-        <!-- Filter Tabs -->
-        <div class="filter-tabs">
-            <button class="filter-tab active" data-filter="all">All Institutes</button>
-            <button class="filter-tab" data-filter="iit">IITs ({{ institutes | selectattr('type', 'equalto', 'IIT') |
-                list | length }})</button>
-            <button class="filter-tab" data-filter="nit">NITs ({{ institutes | selectattr('type', 'equalto', 'NIT') |
-                list | length }})</button>
+        <!-- Segmented Filter Control -->
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 pb-3 border-bottom border-subtle">
+            <div class="segmented-control">
+                <button class="segmented-tab active" data-filter="all" type="button">
+                    <span>All Colleges</span>
+                    <span class="meta-badge">{{ institutes | length }}</span>
+                </button>
+                <button class="segmented-tab" data-filter="iit" type="button">
+                    <span>IITs</span>
+                    <span class="meta-badge">{{ institutes | selectattr('type', 'equalto', 'IIT') | list | length }}</span>
+                </button>
+                <button class="segmented-tab" data-filter="nit" type="button">
+                    <span>NITs</span>
+                    <span class="meta-badge">{{ institutes | selectattr('type', 'equalto', 'NIT') | list | length }}</span>
+                </button>
+            </div>
+
+            <div class="small text-tertiary">
+                Showing verified data from NIRF 2025 & official placement reports
+            </div>
         </div>
 
-        <!-- Blog Grid -->
-        <div class="blog-grid">
+        <!-- Cards Grid -->
+        <div class="row g-4" id="institutesGrid">
             {% for inst in institutes %}
-            <article class="blog-card" data-type="{{ inst.type | lower }}">
-                <div class="blog-card-header {{ inst.type | lower }}">
-                    <span class="blog-card-badge">{{ inst.type }}</span>
-                    <h2 class="blog-card-title">{{ inst.name }}</h2>
-                </div>
-                <div class="blog-card-body">
-                    <p class="blog-card-desc">{{ inst.description[:150] }}...</p>
-                    <div class="blog-card-stats">
-                        <span class="blog-stat"><i class="bi bi-geo-alt"></i> {{ inst.location }}</span>
-                        <span class="blog-stat"><i class="bi bi-calendar"></i> Est. {{ inst.established }}</span>
+            <div class="col-lg-4 col-md-6 inst-col" data-type="{{ inst.type | lower }}">
+                <div class="guide-card">
+                    <div class="guide-card-header">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="inst-badge {{ inst.type | lower }}">{{ inst.type }}</span>
+                            <span class="small text-tertiary tabular-nums"><i class="bi bi-geo-alt me-1"></i>{{ inst.location }}</span>
+                        </div>
+                        <h3 class="h5 mb-1 text-primary fw-bold">{{ inst.short_name or inst.name }}</h3>
+                        <div class="small text-tertiary">Est. {{ inst.established }} • NIRF: {{ inst.nirf_rank or 'Top Ranked' }}</div>
+                    </div>
+
+                    <div class="guide-card-body">
+                        <p class="small text-secondary mb-3" style="line-height: 1.6;">
+                            {{ inst.description[:140] }}...
+                        </p>
+
+                        <!-- Key Performance Metrics -->
+                        <div class="guide-stat-row">
+                            <div class="guide-stat-item">
+                                <div>Avg Package</div>
+                                <div class="guide-stat-val tabular-nums text-brand">{{ inst.avg_package }} LPA</div>
+                            </div>
+                            <div class="guide-stat-item">
+                                <div>Tuition Fee</div>
+                                <div class="guide-stat-val tabular-nums">{{ inst.fees }} / yr</div>
+                            </div>
+                        </div>
+
+                        <div class="pt-3 mt-3 border-top border-subtle d-flex align-items-center justify-content-between">
+                            <span class="small text-tertiary">High Package: <strong class="text-primary tabular-nums">{{ inst.highest_package or 'N/A' }}</strong></span>
+                            <a href="/blog/{{ inst.slug }}" class="btn btn-secondary-action btn-sm">
+                                <span>Read Profile</span>
+                                <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="blog-card-footer">
-                    <a href="/blog/{{ inst.slug }}" class="blog-read-more">
-                        Read Complete Guide <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </article>
+            </div>
             {% endfor %}
         </div>
     </div>
@@ -212,23 +119,21 @@ placements, cutoffs, campus life, and admission process for JoSAA 2026 counselin
 
 {% block scripts %}
 <script>
-    // Filter functionality
-    const filterTabs = document.querySelectorAll('.filter-tab');
-    const blogCards = document.querySelectorAll('.blog-card');
+    // Segmented tab filter
+    const tabs = document.querySelectorAll('.segmented-tab');
+    const cols = document.querySelectorAll('.inst-col');
 
-    filterTabs.forEach(tab => {
+    tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // Update active tab
-            filterTabs.forEach(t => t.classList.remove('active'));
+            tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
 
             const filter = tab.dataset.filter;
-
-            blogCards.forEach(card => {
-                if (filter === 'all' || card.dataset.type === filter) {
-                    card.style.display = 'flex';
+            cols.forEach(col => {
+                if (filter === 'all' || col.dataset.type === filter) {
+                    col.style.display = 'block';
                 } else {
-                    card.style.display = 'none';
+                    col.style.display = 'none';
                 }
             });
         });

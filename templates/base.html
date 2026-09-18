@@ -8,7 +8,7 @@
     <!-- SEO Meta Tags -->
     <title>{% block title %}JoSAA College Predictor 2026{% endblock %} | Find Your Dream IIT, NIT, IIIT</title>
     <meta name="description"
-        content="{% block meta_description %}Predict your college admission chances for JoSAA 2026 counseling. Use our AI-powered tool with 70,000+ cutoff records from IITs, NITs, IIITs & GFTIs.{% endblock %}">
+        content="{% block meta_description %}Predict your college admission chances for JoSAA 2026 counseling with precision analytics based on 70,000+ cutoff records from IITs, NITs, IIITs & GFTIs.{% endblock %}">
     <meta name="keywords"
         content="JoSAA, JoSAA 2026, JEE Main, JEE Advanced, IIT, NIT, IIIT, GFTI, College Predictor, Cutoff, Counseling 2026, JEE Rank Predictor, IIT Admission, NIT Cutoff, IIIT Cutoff, JoSAA Counseling">
     <meta name="author" content="JoSAA Predictor">
@@ -20,8 +20,8 @@
     <meta name="google-site-verification" content="Azs9cG9mfvERDQsXA4lDGu3zS8409VZGvoVjmVDR9aw" />
 
     <!-- Theme Color for mobile browsers -->
-    <meta name="theme-color" content="#14b8a6">
-    <meta name="msapplication-TileColor" content="#14b8a6">
+    <meta name="theme-color" content="#0d9488">
+    <meta name="msapplication-TileColor" content="#090a0f">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -29,7 +29,7 @@
     <meta property="og:title"
         content="{% block og_title %}JoSAA College Predictor 2026{% endblock %} | Find Your Dream College">
     <meta property="og:description"
-        content="Predict your college admission chances with our AI-powered tool using official JoSAA 2025 cutoff data. 70,000+ records from IITs, NITs, IIITs & GFTIs.">
+        content="Predict your college admission chances with our engineering-grade predictor using official JoSAA 2025 cutoffs across 128 premier institutes.">
     <meta property="og:site_name" content="JoSAA Predictor">
     <meta property="og:locale" content="en_IN">
 
@@ -38,7 +38,7 @@
     <meta name="twitter:site" content="@josaapredictor">
     <meta name="twitter:title" content="JoSAA College Predictor 2026 - Find Your Dream IIT, NIT, IIIT">
     <meta name="twitter:description"
-        content="Find your best-fit IIT, NIT, IIIT or GFTI with our AI-powered college prediction tool. Based on official JoSAA 2025 cutoffs.">
+        content="Find your best-fit IIT, NIT, IIIT or GFTI with our college prediction tool. Based on official JoSAA 2025 cutoffs.">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://josaacollegepredictor.vercel.app{{ request.path }}">
@@ -61,7 +61,7 @@
         "name": "JoSAA College Predictor",
         "alternateName": "JoSAA Predictor 2026",
         "url": "https://josaacollegepredictor.vercel.app",
-        "description": "Predict your college admission chances for JoSAA 2026 counseling with AI-powered analysis of IIT, NIT, IIIT & GFTI cutoffs.",
+        "description": "Predict your college admission chances for JoSAA 2026 counseling with precision analysis of IIT, NIT, IIIT & GFTI cutoffs.",
         "potentialAction": {
             "@type": "SearchAction",
             "target": {
@@ -88,7 +88,7 @@
         "@type": "Organization",
         "name": "JoSAA College Predictor",
         "url": "https://josaacollegepredictor.vercel.app",
-        "description": "Free AI-powered college prediction tool for JoSAA counseling",
+        "description": "Data-driven college prediction platform for JoSAA counseling",
         "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "Customer Support",
@@ -121,13 +121,9 @@
     }
     </script>
 
-    <!-- Google AdSense - Replace with your AdSense code after approval -->
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
-
     <!-- DNS Prefetch for performance -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -136,27 +132,23 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- Custom CSS -->
+    <!-- Master Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
     {% block head_extra %}{% endblock %}
-
-    <meta name="monetag" content="60d87c6b7600a9bdfc5986234d7bdeca">
 </head>
 
-
 <body>
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
-
-    <!-- Navigation -->
+    <!-- Main Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <i class="bi bi-mortarboard-fill brand-icon"></i>
-                <span class="brand-text">JoSAA <span class="text-gradient">Predictor</span></span>
+                <span class="brand-icon-box">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </span>
+                <span class="brand-name">JoSAA <span class="brand-accent">Predictor</span></span>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -168,231 +160,271 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" href="/">
-                            <i class="bi bi-house me-1"></i>Home
+                            Home
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'predictor' %}active{% endif %}" href="/predictor">
-                            <i class="bi bi-search-heart me-1"></i>Predictor
+                            Predictor
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'rank_predictor' %}active{% endif %}" href="/rank-predictor">
+                            Rank Calculator
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'cutoffs' %}active{% endif %}" href="/cutoffs">
-                            <i class="bi bi-bar-chart-steps me-1"></i>Cutoffs
+                            Cutoffs
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'rank_predictor' %}active{% endif %}"
-                            href="/rank-predictor">
-                            <i class="bi bi-calculator me-1"></i>Rank Predictor
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'blog' or request.endpoint == 'blog_post' %}active{% endif %}"
-                            href="/blog">
-                            <i class="bi bi-journal-richtext me-1"></i>Blog
+                        <a class="nav-link {% if request.endpoint == 'blog' or request.endpoint == 'blog_post' %}active{% endif %}" href="/blog">
+                            Institute Guides
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="/about">
-                            <i class="bi bi-info-circle me-1"></i>About
+                            About
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}" href="/contact">
-                            <i class="bi bi-envelope me-1"></i>Contact
+                            Contact
                         </a>
                     </li>
                 </ul>
 
-                <div class="navbar-cta d-flex align-items-center">
-                    <!-- Theme Toggle Button -->
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <div class="navbar-actions">
+                    <!-- Global Command Palette Trigger -->
+                    <button class="btn-open-cmd" title="Quick Search & Tools (Ctrl+K)" aria-label="Open Command Palette">
+                        <i class="bi bi-search"></i>
+                        <span class="cmd-shortcut-badge"><kbd>⌘K</kbd></span>
+                    </button>
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Theme (Dark/Light)" aria-label="Toggle theme">
                         <i class="bi bi-moon"></i>
                         <i class="bi bi-sun"></i>
                     </button>
-                    <a href="/predictor" class="btn btn-cta-nav">
-                        <i class="bi bi-lightning-charge-fill me-1"></i>Start Predicting
+                    <!-- Quick CTA -->
+                    <a href="/predictor" class="btn btn-primary-action btn-sm">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                        <span>Predict Colleges</span>
                     </a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Main Content Container -->
     <main class="main-wrapper">
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
+    <!-- Master Footer -->
     <footer class="footer-section">
         <div class="container">
-            <div class="footer-top">
-                <div class="row g-4">
-                    <!-- Brand Column -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="footer-brand">
-                            <a href="/" class="footer-logo">
-                                <i class="bi bi-mortarboard-fill brand-icon"></i>
-                                <span class="brand-text">JoSAA Predictor</span>
-                            </a>
-                            <p class="footer-tagline">
-                                Helping JEE aspirants find their dream college with data-driven predictions based on
-                                official JoSAA cutoffs.
-                            </p>
-                            <div class="social-links">
-                                <a href="#" class="social-link" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
-                                <a href="#" class="social-link" aria-label="Instagram"><i
-                                        class="bi bi-instagram"></i></a>
-                                <a href="#" class="social-link" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
-                                <a href="#" class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                            </div>
+            <div class="row g-4">
+                <!-- Brand Column -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand">
+                        <h4>
+                            <span class="brand-icon-box">
+                                <i class="bi bi-mortarboard-fill"></i>
+                            </span>
+                            <span>JoSAA Predictor</span>
+                        </h4>
+                        <p class="footer-tagline">
+                            High-precision college prediction tool built for JEE Main and JEE Advanced aspirants. Powered by 72,000+ official JoSAA counseling cutoff records.
+                        </p>
+                        <div class="social-links">
+                            <a href="https://twitter.com" class="social-link" target="_blank" rel="noopener" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                            <a href="https://linkedin.com" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                            <a href="https://github.com" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                            <a href="https://youtube.com" class="social-link" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Quick Links -->
-                    <div class="col-lg-2 col-md-6 col-6">
-                        <div class="footer-links">
-                            <h5>Quick Links</h5>
-                            <ul>
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/predictor">Predictor</a></li>
-                                <li><a href="/about">About</a></li>
-                                <li><a href="/contact">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                <!-- Navigation Columns -->
+                <div class="col-lg-2 col-md-3 col-6 footer-nav-col">
+                    <h5>Predictors</h5>
+                    <ul>
+                        <li><a href="/predictor">College Predictor</a></li>
+                        <li><a href="/rank-predictor">Rank Calculator</a></li>
+                        <li><a href="/cutoffs">Cutoff Analysis</a></li>
+                        <li><a href="/predictor?round=6">Round 6 Final Cutoffs</a></li>
+                    </ul>
+                </div>
 
-                    <!-- Institute Types -->
-                    <div class="col-lg-2 col-md-6 col-6">
-                        <div class="footer-links">
-                            <h5>Institute Types</h5>
-                            <ul>
-                                <li><a href="/predictor?type=IIT">IITs</a></li>
-                                <li><a href="/predictor?type=NIT">NITs</a></li>
-                                <li><a href="/predictor?type=IIIT">IIITs</a></li>
-                                <li><a href="/predictor?type=GFTI">GFTIs</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="col-lg-2 col-md-3 col-6 footer-nav-col">
+                    <h5>Institutes</h5>
+                    <ul>
+                        <li><a href="/predictor?type=IIT">23 IITs</a></li>
+                        <li><a href="/predictor?type=NIT">31 NITs</a></li>
+                        <li><a href="/predictor?type=IIIT">26 IIITs</a></li>
+                        <li><a href="/predictor?type=GFTI">30+ GFTIs</a></li>
+                        <li><a href="/blog">Institute Profiles</a></li>
+                    </ul>
+                </div>
 
-                    <!-- Resources -->
-                    <div class="col-lg-2 col-md-6 col-6">
-                        <div class="footer-links">
-                            <h5>Resources</h5>
-                            <ul>
-                                <li><a href="https://josaa.nic.in" target="_blank" rel="noopener">JoSAA Official</a>
-                                </li>
-                                <li><a href="https://jeemain.nta.ac.in" target="_blank" rel="noopener">JEE Main</a></li>
-                                <li><a href="https://jeeadv.ac.in" target="_blank" rel="noopener">JEE Advanced</a></li>
-                                <li><a href="/cutoffs">Cutoff Analysis</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Newsletter -->
-                    <div class="col-lg-2 col-md-6">
-                        <div class="footer-newsletter">
-                            <h5>Stay Updated</h5>
-                            <p>Get latest updates on cutoffs and counseling dates.</p>
-                            <form class="newsletter-form">
-                                <input type="email" placeholder="Your email" required>
-                                <button type="submit"><i class="bi bi-arrow-right"></i></button>
-                            </form>
-                        </div>
+                <div class="col-lg-4 col-md-6 footer-nav-col">
+                    <h5>Official JoSAA Resources</h5>
+                    <p class="small text-secondary mb-3">
+                        Always cross-reference with official counseling portals during the live choice-filling process:
+                    </p>
+                    <div class="d-flex flex-column gap-2 mb-3">
+                        <a href="https://josaa.nic.in" target="_blank" rel="noopener" class="d-inline-flex align-items-center gap-2 text-secondary">
+                            <i class="bi bi-box-arrow-up-right text-muted"></i> JoSAA Official Portal (josaa.nic.in)
+                        </a>
+                        <a href="https://jeemain.nta.ac.in" target="_blank" rel="noopener" class="d-inline-flex align-items-center gap-2 text-secondary">
+                            <i class="bi bi-box-arrow-up-right text-muted"></i> NTA JEE Main Portal
+                        </a>
+                        <a href="https://jeeadv.ac.in" target="_blank" rel="noopener" class="d-inline-flex align-items-center gap-2 text-secondary">
+                            <i class="bi bi-box-arrow-up-right text-muted"></i> JEE Advanced Portal
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <div class="row align-items-center">
-                    <div class="col-md-4">
-                        <p class="copyright">
-                            © 2026 JoSAA Predictor. Made with <i class="bi bi-heart-fill text-danger"></i> for JEE
-                            Aspirants
-                        </p>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <div class="footer-legal-links">
-                            <a href="/privacy">Privacy Policy</a>
-                            <span class="separator">•</span>
-                            <a href="/terms">Terms of Service</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="disclaimer">
-                            <i class="bi bi-exclamation-triangle-fill me-1"></i>
-                            Predictions based on JoSAA 2025 data. Actual cutoffs may vary.
-                        </p>
-                    </div>
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom-bar">
+                <div>
+                    &copy; 2026 JoSAA College Predictor. Engineered for JEE aspirants.
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="/privacy" class="text-tertiary">Privacy Policy</a>
+                    <span>•</span>
+                    <a href="/terms" class="text-tertiary">Terms of Service</a>
+                    <span>•</span>
+                    <a href="/about" class="text-tertiary">Methodology</a>
+                    <span>•</span>
+                    <a href="/contact" class="text-tertiary">Support</a>
+                </div>
+                <div class="small text-tertiary">
+                    Predictions are based on historical JoSAA 2025 cutoff data.
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Chat Bubble & Window -->
-    <div id="chat-bubble" class="chat-bubble">
-        <i class="bi bi-chat-dots-fill"></i>
+    <!-- Modern AI Counseling Assistant Widget -->
+    <div id="chat-bubble" class="chat-bubble" title="Open JoSAA AI Counselor" aria-label="Open AI Assistant">
+        <span class="chat-beacon"></span>
+        <i class="bi bi-chat-left-text-fill"></i>
+        <span class="chat-bubble-label">AI Counselor</span>
     </div>
 
-    <div id="chat-window" class="chat-window d-none">
+    <div id="chat-window" class="chat-window d-none" role="dialog" aria-label="JoSAA Counseling Assistant">
         <div class="chat-header">
-            <div class="d-flex align-items-center">
-                <i class="bi bi-robot me-2"></i>
-                <span>JoSAA Assistant</span>
+            <div class="chat-header-info">
+                <span class="chat-beacon"></span>
+                <span>JoSAA Counseling AI</span>
             </div>
-            <button id="close-chat" class="btn-close-chat"><i class="bi bi-x-lg"></i></button>
+            <div class="chat-header-actions">
+                <button id="close-chat" class="btn-chat-action" aria-label="Close chat window">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
         </div>
+
         <div id="chat-messages" class="chat-messages">
             <div class="message bot-message">
                 <div class="message-content">
-                    Hello! I'm your AI assistant. Ask me about cutoffs, ranks, or colleges!
+                    <strong>Welcome to JoSAA Predictor!</strong> 👋<br>
+                    I can answer questions regarding official cutoffs, rank requirements, category quotas, or college branches. What would you like to explore?
                 </div>
             </div>
         </div>
+
+        <!-- Quick prompt chips -->
+        <div class="chat-quick-suggestions">
+            <button class="chat-suggestion-chip" data-prompt="What rank is needed for CSE in NIT Trichy?">NIT Trichy CSE</button>
+            <button class="chat-suggestion-chip" data-prompt="Can I get any IIT with 5000 rank in General?">IIT at 5000 rank</button>
+            <button class="chat-suggestion-chip" data-prompt="What are qualifying cutoffs for OBC in JEE Main?">OBC Cutoffs</button>
+        </div>
+
         <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Ask a question..." autocomplete="off">
-            <button id="send-btn"><i class="bi bi-send-fill"></i></button>
+            <input type="text" id="chat-input" placeholder="Ask about colleges, cutoffs, or ranks..." autocomplete="off">
+            <button id="send-btn" aria-label="Send message">
+                <i class="bi bi-arrow-up"></i>
+            </button>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- Command Palette Modal (Ctrl+K / Cmd+K) -->
+    <div id="cmd-palette-modal" class="cmd-palette-modal" role="dialog" aria-modal="true" aria-label="Command Palette">
+        <div class="cmd-palette-dialog">
+            <div class="cmd-search-bar">
+                <i class="bi bi-search"></i>
+                <input type="text" id="cmd-palette-input" class="cmd-search-input" placeholder="Search colleges, predictors, tools, or guides..." autocomplete="off">
+                <span class="cmd-badge"><kbd>ESC</kbd></span>
+            </div>
+            <div id="cmd-palette-list" class="cmd-list" role="listbox">
+                <!-- Populated dynamically via app.js -->
+            </div>
+            <div class="cmd-footer">
+                <div class="cmd-footer-keys">
+                    <span><kbd>↑</kbd> <kbd>↓</kbd> Navigate</span>
+                    <span class="ms-2"><kbd>↵</kbd> Select</span>
+                    <span class="ms-2"><kbd>ESC</kbd> Close</span>
+                </div>
+                <div class="cmd-footer-brand">JoSAA Predictor Engine</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Chat Script -->
+    <!-- Master Interaction & Animation Engine -->
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+
+    <!-- Chat Client Script -->
     <script src="{{ url_for('static', filename='chat.js') }}"></script>
 
-    <!-- Global Scripts -->
+    <!-- Global Theme & Navbar State Script -->
     <script>
-            // Theme Toggle - Load saved theme immediately
-            (function () {
-                const savedTheme = localStorage.getItem('theme') || 'dark';
-                document.documentElement.setAttribute('data-theme', savedTheme);
-            })();
+        // Synchronous theme restoration to prevent flash of wrong theme
+        (function () {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.navbar-custom');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Theme Toggle Button Handler
         document.addEventListener('DOMContentLoaded', function () {
+            // Theme toggle event listener
             const themeToggle = document.getElementById('themeToggle');
-
             if (themeToggle) {
                 themeToggle.addEventListener('click', function () {
                     const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
                     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
                     document.documentElement.setAttribute('data-theme', newTheme);
                     localStorage.setItem('theme', newTheme);
                 });
             }
+
+            // Navbar scroll state
+            const navbar = document.querySelector('.navbar-custom');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }, { passive: true });
+
+            // Quick suggestion chips handler in chat
+            document.querySelectorAll('.chat-suggestion-chip').forEach(chip => {
+                chip.addEventListener('click', function () {
+                    const prompt = this.getAttribute('data-prompt');
+                    const input = document.getElementById('chat-input');
+                    const sendBtn = document.getElementById('send-btn');
+                    if (input && prompt) {
+                        input.value = prompt;
+                        sendBtn.click();
+                    }
+                });
+            });
         });
     </script>
 

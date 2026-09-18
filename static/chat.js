@@ -6,15 +6,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const chatInput = document.getElementById('chat-input');
     const chatMessages = document.getElementById('chat-messages');
 
+    if (!chatBubble || !chatWindow) return;
+
     // UI Elements for Maximize/Resize
-    const header = document.querySelector('.chat-header');
+    const headerActions = document.querySelector('.chat-header-actions');
 
     // Add Maximize Button
     const maxBtn = document.createElement('button');
     maxBtn.innerHTML = '<i class="bi bi-arrows-fullscreen"></i>';
-    maxBtn.className = 'btn-close-chat me-2'; // reuse style
-    maxBtn.style.marginRight = '10px';
-    header.insertBefore(maxBtn, closeChatBtn);
+    maxBtn.className = 'btn-chat-action';
+    maxBtn.title = 'Maximize / Restore Chat';
+    maxBtn.setAttribute('aria-label', 'Maximize Chat Window');
+
+    if (headerActions) {
+        headerActions.insertBefore(maxBtn, closeChatBtn);
+    }
 
     // Chat History Management
     let chatHistory = [];
@@ -28,9 +34,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    closeChatBtn.addEventListener('click', function () {
-        chatWindow.classList.add('d-none');
-    });
+    if (closeChatBtn) {
+        closeChatBtn.addEventListener('click', function () {
+            chatWindow.classList.add('d-none');
+        });
+    }
 
     // Maximize/Restore Toggle
     maxBtn.addEventListener('click', function () {
@@ -45,13 +53,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Send Message
-    sendBtn.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
+    // Send Message Event Listeners
+    if (sendBtn) {
+        sendBtn.addEventListener('click', sendMessage);
+    }
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    }
 
     function sendMessage() {
         const message = chatInput.value.trim();
@@ -81,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 removeLoading(loadingId);
-                const responseText = data.response;
+                const responseText = data.response || "No response received.";
 
                 // Update History with Model Response
                 chatHistory.push({ role: 'model', parts: [responseText] });
@@ -92,8 +104,8 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 removeLoading(loadingId);
-                addMessage('Sorry, something went wrong. Please try again.', 'bot');
-                console.error('Error:', error);
+                addMessage('Encountered an issue connecting to the counseling service. Please try again.', 'bot');
+                console.error('Chat Error:', error);
             });
     }
 
@@ -142,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function formatMessage(text) {
-        // Simple Markdown formatter
+        // Safe Markdown formatter
         let formatted = text
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')

@@ -1,165 +1,158 @@
 {% extends "base.html" %}
 
-{% block title %}About JoSAA College Predictor{% endblock %}
+{% block title %}About JoSAA College Predictor - Methodology & Architecture{% endblock %}
 
-{% block meta_description %}Learn about our JoSAA College Predictor tool - how it works, our data sources, and the team
-behind helping JEE aspirants find their dream college.{% endblock %}
+{% block meta_description %}Learn about our JoSAA College Predictor platform: our historical data sources, counseling algorithms, and commitment to free, unbiased guidance for JEE aspirants.{% endblock %}
 
 {% block content %}
 <!-- Page Header -->
-<section class="page-header about-header">
+<section class="py-4 border-bottom border-subtle bg-surface">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <h1 class="page-title animate-fadeIn">
-                    About <span class="text-gradient">JoSAA Predictor</span>
-                </h1>
-                <p class="page-subtitle animate-fadeIn delay-1">
-                    Helping JEE aspirants make informed decisions since 2024
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div>
+                <div class="hero-pill-badge mb-2">
+                    <i class="bi bi-shield-check"></i>
+                    <span>Transparency & Methodology</span>
+                </div>
+                <h1 class="h2 mb-1">About JoSAA College Predictor</h1>
+                <p class="text-secondary small mb-0">
+                    Engineered to give JEE Main and Advanced aspirants data transparency during seat counseling.
                 </p>
             </div>
+            <a href="/predictor" class="btn btn-primary-action btn-sm">
+                <i class="bi bi-lightning-charge"></i>
+                <span>Open Predictor</span>
+            </a>
         </div>
     </div>
 </section>
 
-<!-- About Content -->
-<section class="about-section">
+<!-- Mission & Metrics -->
+<section class="py-5">
     <div class="container">
-        <div class="row g-5 align-items-center">
+        <div class="row g-5 align-items-center mb-5">
             <div class="col-lg-6">
-                <div class="about-content animate-fadeIn">
-                    <span class="section-tag">Our Mission</span>
-                    <h2>Empowering Students with Data-Driven Decisions</h2>
-                    <p>
-                        Every year, lakhs of students face the daunting task of choosing the right college during JoSAA
-                        counseling.
-                        With limited time and overwhelming options, many end up making suboptimal choices.
-                    </p>
-                    <p>
-                        We built JoSAA Predictor to change that. Our tool analyzes official cutoff data from
-                        previous years to give you personalized predictions, helping you understand your realistic
-                        options
-                        and make confident decisions.
-                    </p>
+                <h2 class="h3 mb-3">Empowering Students with Mathematical Data</h2>
+                <p class="text-secondary mb-3" style="line-height: 1.75;">
+                    Every year, over 1.4 million engineering aspirants participate in Joint Seat Allocation Authority (JoSAA) counseling across 128 top institutions. Navigating multi-round opening and closing ranks with state and category quotas is complex and high-stakes.
+                </p>
+                <p class="text-secondary mb-4" style="line-height: 1.75;">
+                    JoSAA Predictor parses historical cutoff archives and presents exact, unmanipulated closing thresholds so students can structure an optimal, confident choice-filling preference sheet without predatory paywalls.
+                </p>
 
-                    <div class="about-features">
-                        <div class="about-feature">
-                            <i class="bi bi-check-circle-fill"></i>
-                            <span>100% Free to Use</span>
-                        </div>
-                        <div class="about-feature">
-                            <i class="bi bi-check-circle-fill"></i>
-                            <span>No Registration Required</span>
-                        </div>
-                        <div class="about-feature">
-                            <i class="bi bi-check-circle-fill"></i>
-                            <span>Based on Official Data</span>
-                        </div>
+                <div class="d-flex flex-column gap-2">
+                    <div class="d-flex align-items-center gap-2 small text-secondary">
+                        <i class="bi bi-check-circle-fill text-brand"></i>
+                        <span>100% Free & Open Access — No account or sign-up necessary</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 small text-secondary">
+                        <i class="bi bi-check-circle-fill text-brand"></i>
+                        <span>Official Archive Match — Zero synthetic or distorted rank data</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2 small text-secondary">
+                        <i class="bi bi-check-circle-fill text-brand"></i>
+                        <span>Privacy Centric — No tracking cookies or data selling</span>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-6">
-                <div class="about-stats-grid animate-fadeIn delay-2">
-                    <div class="about-stat-card">
-                        <span class="stat-number">{{ "{:,}".format(stats.total_records) }}+</span>
-                        <span class="stat-label">Data Points</span>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="metric-card">
+                            <div class="metric-label">Archived Cutoffs</div>
+                            <div class="metric-value tabular-nums text-brand">{{ "{:,}".format(stats.total_records) }}+</div>
+                            <div class="metric-subtext">All 6 rounds indexed</div>
+                        </div>
                     </div>
-                    <div class="about-stat-card">
-                        <span class="stat-number">{{ stats.unique_institutes }}</span>
-                        <span class="stat-label">Institutes</span>
+                    <div class="col-6">
+                        <div class="metric-card">
+                            <div class="metric-label">Covered Institutes</div>
+                            <div class="metric-value tabular-nums">{{ stats.unique_institutes }}</div>
+                            <div class="metric-subtext">IITs, NITs, IIITs, GFTIs</div>
+                        </div>
                     </div>
-                    <div class="about-stat-card">
-                        <span class="stat-number">{{ stats.unique_programs }}</span>
-                        <span class="stat-label">Programs</span>
+                    <div class="col-6">
+                        <div class="metric-card">
+                            <div class="metric-label">Degree Branches</div>
+                            <div class="metric-value tabular-nums">{{ stats.unique_programs }}</div>
+                            <div class="metric-subtext">B.Tech, B.Arch, Dual</div>
+                        </div>
                     </div>
-                    <div class="about-stat-card">
-                        <span class="stat-number">6</span>
-                        <span class="stat-label">Rounds</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- How It Works -->
-<section class="how-it-works-section">
-    <div class="container">
-        <div class="section-header text-center">
-            <span class="section-tag">Process</span>
-            <h2 class="section-title">How It <span class="text-gradient">Works</span></h2>
-        </div>
-
-        <div class="steps-grid">
-            <div class="step-card animate-fadeIn">
-                <div class="step-number">1</div>
-                <h3>Enter Your Rank</h3>
-                <p>Input your JEE Main/Advanced rank along with your category and preferences.</p>
-            </div>
-
-            <div class="step-card animate-fadeIn delay-1">
-                <div class="step-number">2</div>
-                <h3>Apply Filters</h3>
-                <p>Select institute type, quota, gender, and optionally filter by specific programs.</p>
-            </div>
-
-            <div class="step-card animate-fadeIn delay-2">
-                <div class="step-number">3</div>
-                <h3>Get Predictions</h3>
-                <p>Receive a list of matching colleges with probability indicators for each.</p>
-            </div>
-
-            <div class="step-card animate-fadeIn delay-3">
-                <div class="step-number">4</div>
-                <h3>Make Decisions</h3>
-                <p>Export results, compare options, and plan your choice-filling strategy.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Data Source -->
-<section class="data-source-section">
-    <div class="container">
-        <div class="data-card">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h3><i class="bi bi-database-fill-check me-2"></i>Our Data Source</h3>
-                    <p>
-                        All predictions are based on official JoSAA 2025 cutoff data published after the counseling
-                        rounds.
-                        We do not modify or estimate any data - what you see is the actual closing ranks from last
-                        year's counseling.
-                    </p>
-                    <p class="mb-0">
-                        <strong>Important Note:</strong> While historical data is a strong indicator, actual cutoffs for
-                        2026
-                        may vary based on factors like seat matrix changes, number of applicants, and difficulty of the
-                        exam.
-                    </p>
-                </div>
-                <div class="col-lg-4 text-center">
-                    <div class="data-badge">
-                        <i class="bi bi-shield-check"></i>
-                        <span>Verified Data</span>
+                    <div class="col-6">
+                        <div class="metric-card">
+                            <div class="metric-label">Access Cost</div>
+                            <div class="metric-value tabular-nums">₹0</div>
+                            <div class="metric-subtext">Always free for students</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- CTA -->
-<section class="cta-section">
-    <div class="container">
-        <div class="cta-card">
-            <div class="cta-content">
-                <h2>Ready to Find Your College?</h2>
-                <p>Start predicting now - it's completely free!</p>
-                <a href="/predictor" class="btn btn-cta-main">
-                    <i class="bi bi-rocket-takeoff me-2"></i>Start Prediction
-                </a>
+        <!-- How It Works Architecture -->
+        <div class="mb-5 pt-4 border-top border-subtle">
+            <div class="text-center max-w-xl mx-auto mb-5">
+                <div class="hero-pill-badge mb-2">Step-by-Step Workflow</div>
+                <h2 class="h3 mb-2">How the Prediction Engine Works</h2>
+                <p class="text-secondary small">From raw NTA rank to a ranked preference shortlist in seconds.</p>
             </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-grid-card">
+                        <span class="inst-badge iit mb-3" style="width: fit-content;">Phase 1</span>
+                        <h3 class="h5">Rank Ingestion</h3>
+                        <p class="small text-secondary">
+                            Input your All India Common Rank List (CRL) for General seats or your specific Category Rank for OBC-NCL, EWS, SC, or ST seats.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-grid-card">
+                        <span class="inst-badge nit mb-3" style="width: fit-content;">Phase 2</span>
+                        <h3 class="h5">Quota Matching</h3>
+                        <p class="small text-secondary">
+                            Specify Home State (HS) versus Other State (OS) status, along with gender preferences to account for female supernumerary seat reserves.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-grid-card">
+                        <span class="inst-badge iiit mb-3" style="width: fit-content;">Phase 3</span>
+                        <h3 class="h5">Threshold Evaluation</h3>
+                        <p class="small text-secondary">
+                            The algorithm evaluates your rank against 72,000+ official closing ranks and calculates safety buffers (Safe, Moderate, Risky).
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-grid-card">
+                        <span class="inst-badge gfti mb-3" style="width: fit-content;">Phase 4</span>
+                        <h3 class="h5">Preference Export</h3>
+                        <p class="small text-secondary">
+                            Download the calibrated match report as a CSV file to structure your official JoSAA choice-filling portal entries systematically.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Integrity Statement -->
+        <div class="control-card bg-surface-elevated p-4">
+            <div class="d-flex align-items-center gap-3 mb-2">
+                <i class="bi bi-shield-lock-fill text-brand" style="font-size: 1.5rem;"></i>
+                <h3 class="h5 mb-0 text-primary">Data Integrity & Disclaimers</h3>
+            </div>
+            <p class="small text-secondary mb-2" style="line-height: 1.7;">
+                All cutoff data utilized in this application is derived directly from verified Joint Seat Allocation Authority (JoSAA) post-counseling archives for the year 2025. We do not manufacture or alter official closing ranks.
+            </p>
+            <p class="small text-secondary mb-0" style="line-height: 1.7;">
+                <em>Disclaimer:</em> While historical cutoff trends are a reliable indicator of admissions, actual closing ranks for JoSAA 2026 may fluctuate based on seat matrix revisions, candidate choice distribution, and annual exam difficulty. This tool is intended for advisory and planning purposes.
+            </p>
         </div>
     </div>
 </section>

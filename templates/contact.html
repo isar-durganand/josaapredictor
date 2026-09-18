@@ -1,200 +1,129 @@
 {% extends "base.html" %}
 
-{% block title %}Contact Us{% endblock %}
+{% block title %}Contact Support - JoSAA College Predictor{% endblock %}
 
-{% block meta_description %}Get in touch with the JoSAA College Predictor team. We're here to help with any questions
-about college predictions, data sources, or feature requests.{% endblock %}
+{% block meta_description %}Get in touch with the JoSAA College Predictor engineering and counseling support team for inquiries, cutoff clarification, or bug reports.{% endblock %}
 
 {% block content %}
 <!-- Page Header -->
-<section class="page-header contact-header">
+<section class="py-4 border-bottom border-subtle bg-surface">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <h1 class="page-title animate-fadeIn">
-                    Get in <span class="text-gradient">Touch</span>
-                </h1>
-                <p class="page-subtitle animate-fadeIn delay-1">
-                    Have questions or feedback? We'd love to hear from you!
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div>
+                <div class="hero-pill-badge mb-2">
+                    <i class="bi bi-envelope"></i>
+                    <span>User Support & Feedback</span>
+                </div>
+                <h1 class="h2 mb-1">Contact & Support</h1>
+                <p class="text-secondary small mb-0">
+                    Have questions about cutoff data, feature requests, or technical issues? We're here to help.
                 </p>
             </div>
+            <a href="/predictor" class="btn btn-secondary-action btn-sm">
+                <i class="bi bi-lightning-charge"></i>
+                <span>Open Predictor</span>
+            </a>
         </div>
     </div>
 </section>
 
-<!-- Contact Section -->
-<section class="contact-section">
+<!-- Contact Body -->
+<section class="py-5">
     <div class="container">
         <div class="row g-5">
+            <!-- Left Column: Direct Inquiries -->
             <div class="col-lg-5">
-                <div class="contact-info animate-fadeIn">
-                    <h3>Let's Connect</h3>
-                    <p>
-                        Whether you have a question about predictions, need help understanding the data,
-                        or want to suggest a new feature, we're here to help.
-                    </p>
+                <h2 class="h4 mb-3">Direct Inquiries</h2>
+                <p class="text-secondary small mb-4">
+                    For feedback, data corrections, or technical support, please reach out via any of the channels below.
+                </p>
 
-                    <div class="contact-cards">
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="bi bi-envelope-fill"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Email Us</h4>
-                                <p>isardurganand@gmail.com</p>
-                            </div>
+                <div class="d-flex flex-column gap-3 mb-4">
+                    <div class="p-3 bg-surface border border-subtle rounded-3 d-flex align-items-center gap-3">
+                        <div class="brand-icon-box">
+                            <i class="bi bi-envelope-fill"></i>
                         </div>
+                        <div>
+                            <div class="small text-tertiary">Direct Email</div>
+                            <div class="fw-semibold text-primary">isardurganand@gmail.com</div>
+                        </div>
+                    </div>
 
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="bi bi-twitter-x"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Twitter/X</h4>
-                                <p>@JoSAAPredictor</p>
-                            </div>
+                    <div class="p-3 bg-surface border border-subtle rounded-3 d-flex align-items-center gap-3">
+                        <div class="brand-icon-box">
+                            <i class="bi bi-twitter-x"></i>
                         </div>
+                        <div>
+                            <div class="small text-tertiary">Twitter / X</div>
+                            <div class="fw-semibold text-primary">@JoSAAPredictor</div>
+                        </div>
+                    </div>
 
-                        <div class="contact-card">
-                            <div class="contact-icon">
-                                <i class="bi bi-clock-fill"></i>
-                            </div>
-                            <div class="contact-details">
-                                <h4>Response Time</h4>
-                                <p>Usually within 24 hours</p>
-                            </div>
+                    <div class="p-3 bg-surface border border-subtle rounded-3 d-flex align-items-center gap-3">
+                        <div class="brand-icon-box">
+                            <i class="bi bi-clock-history"></i>
                         </div>
+                        <div>
+                            <div class="small text-tertiary">Support Hours</div>
+                            <div class="fw-semibold text-primary">Response within 24–48 hours</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-surface-elevated border border-subtle rounded-3">
+                    <div class="small fw-bold text-primary mb-1">
+                        <i class="bi bi-info-circle text-brand me-1"></i>Official Counseling Support
+                    </div>
+                    <div class="small text-secondary">
+                        For official queries regarding document verification, fee refunds, or seat reporting, please consult the official portal at <a href="https://josaa.nic.in" target="_blank" rel="noopener">josaa.nic.in</a>.
                     </div>
                 </div>
             </div>
 
+            <!-- Right Column: Interactive Contact Form -->
             <div class="col-lg-7">
-                <div class="contact-form-card animate-fadeIn delay-1">
-                    <h3>Send a Message</h3>
-                    <form class="contact-form" id="contactForm">
+                <div class="control-card">
+                    <h3 class="h5 mb-3 text-primary">Send Feedback or Query</h3>
+
+                    <div id="contactAlert" class="alert alert-success d-none mb-3 py-2 small" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i>Thank you! Your message has been sent successfully.
+                    </div>
+
+                    <form id="contactForm">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name">Your Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="John Doe" required>
-                                </div>
+                                <label for="contact-name" class="form-label-custom">Your Name</label>
+                                <input type="text" id="contact-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
                             </div>
+
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" class="form-control" id="email" placeholder="john@example.com"
-                                        required>
-                                </div>
+                                <label for="contact-email" class="form-label-custom">Email Address</label>
+                                <input type="email" id="contact-email" class="form-control" placeholder="name@example.com" required>
                             </div>
+
                             <div class="col-12">
-                                <div class="form-group">
-                                    <label for="subject">Subject</label>
-                                    <select class="form-select" id="subject" required>
-                                        <option value="">Select a topic</option>
-                                        <option value="general">General Inquiry</option>
-                                        <option value="prediction">Prediction Question</option>
-                                        <option value="data">Data Related</option>
-                                        <option value="feature">Feature Request</option>
-                                        <option value="bug">Report an Issue</option>
-                                    </select>
-                                </div>
+                                <label for="contact-subject" class="form-label-custom">Subject / Topic</label>
+                                <select id="contact-subject" class="form-select" required>
+                                    <option value="data">Cutoff Data Clarification</option>
+                                    <option value="feature">Feature Request or Suggestion</option>
+                                    <option value="bug">Bug Report / Technical Issue</option>
+                                    <option value="general">General Counseling Guidance</option>
+                                </select>
                             </div>
+
                             <div class="col-12">
-                                <div class="form-group">
-                                    <label for="message">Message</label>
-                                    <textarea class="form-control" id="message" rows="5"
-                                        placeholder="Write your message here..." required></textarea>
-                                </div>
+                                <label for="contact-message" class="form-label-custom">Your Message</label>
+                                <textarea id="contact-message" class="form-control" rows="5" placeholder="Provide details regarding your query or observation..." required></textarea>
                             </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-submit-contact">
-                                    <i class="bi bi-send me-2"></i>Send Message
+
+                            <div class="col-12 pt-2">
+                                <button type="submit" class="btn btn-primary-action w-100" id="contactSubmitBtn">
+                                    <i class="bi bi-send-fill me-1"></i>
+                                    <span>Transmit Message</span>
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ Section -->
-<section class="faq-section">
-    <div class="container">
-        <div class="section-header text-center">
-            <span class="section-tag">FAQ</span>
-            <h2 class="section-title">Frequently Asked <span class="text-gradient">Questions</span></h2>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="accordion faq-accordion" id="faqAccordion">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#faq1">
-                                How accurate are the predictions?
-                            </button>
-                        </h2>
-                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Our predictions are based on official JoSAA 2025 cutoff data. While historical data is a
-                                strong indicator,
-                                actual cutoffs can vary based on factors like the number of applicants, exam difficulty,
-                                and seat matrix changes.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#faq2">
-                                Should I use CRL or Category Rank?
-                            </button>
-                        </h2>
-                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Use CRL (Common Rank List) for OPEN category seats. For reserved categories (OBC-NCL,
-                                SC, ST, EWS),
-                                use your respective Category Rank for accurate predictions.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#faq3">
-                                What does the probability indicator mean?
-                            </button>
-                        </h2>
-                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                <strong>Safe:</strong> Your rank is 1000+ below the closing rank - very high chance.<br>
-                                <strong>Moderate:</strong> Your rank is 100-1000 below - good chance but
-                                competitive.<br>
-                                <strong>Risky:</strong> Your rank is within 100 - possible but uncertain.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#faq4">
-                                Is the service free?
-                            </button>
-                        </h2>
-                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                            <div class="accordion-body">
-                                Yes! JoSAA Predictor is completely free to use. We believe every student deserves access
-                                to
-                                quality guidance during such an important decision-making process.
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -206,8 +135,22 @@ about college predictions, data sources, or feature requests.{% endblock %}
 <script>
     document.getElementById('contactForm').addEventListener('submit', function (e) {
         e.preventDefault();
-        alert('Thank you for your message! We\'ll get back to you soon.');
-        this.reset();
+        const btn = document.getElementById('contactSubmitBtn');
+        const alertBox = document.getElementById('contactAlert');
+
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+
+        setTimeout(() => {
+            alertBox.classList.remove('d-none');
+            this.reset();
+            btn.disabled = false;
+            btn.innerHTML = '<i class="bi bi-send-fill me-1"></i><span>Transmit Message</span>';
+
+            setTimeout(() => {
+                alertBox.classList.add('d-none');
+            }, 6000);
+        }, 600);
     });
 </script>
 {% endblock %}

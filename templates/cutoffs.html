@@ -2,8 +2,7 @@
 
 {% block title %}JEE Main 2025 Cutoff Percentiles - Category Wise NIT, IIIT, GFTI Cutoffs{% endblock %}
 
-{% block meta_description %}Official JEE Main 2025 Category-wise Cutoff Percentiles: General 93.10, EWS 80.38, OBC-NCL
-79.43, SC 61.15, ST 47.90. Check qualifying cutoffs for NIT, IIIT, GFTI JoSAA 2026 admissions.{% endblock %}
+{% block meta_description %}Official JEE Main 2025 Category-wise Cutoff Percentiles: General 93.10, EWS 80.38, OBC-NCL 79.43, SC 61.15, ST 47.90. Check qualifying cutoffs for NIT, IIIT, GFTI JoSAA 2026 admissions.{% endblock %}
 
 {% block head_extra %}
 <!-- ItemList Schema for Category Cutoffs -->
@@ -55,434 +54,247 @@
     ]
 }
 </script>
-
-<style>
-    .cutoff-section {
-        padding: 0 0 4rem;
-    }
-
-    .cutoff-main-card {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-xl);
-        overflow: hidden;
-    }
-
-    .cutoff-header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.5rem 2rem;
-        background: var(--primary);
-        color: white;
-    }
-
-    .cutoff-header-icon {
-        width: 56px;
-        height: 56px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: var(--radius-md);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-    }
-
-    .cutoff-header h2 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 0.25rem;
-    }
-
-    .cutoff-header p {
-        margin: 0;
-        opacity: 0.9;
-        font-size: 1rem;
-    }
-
-    .cutoff-table-container {
-        overflow-x: auto;
-    }
-
-    .cutoff-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .cutoff-table th {
-        padding: 1.25rem 1.5rem;
-        text-align: left;
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        background: var(--bg-primary);
-        border-bottom: 1px solid var(--border);
-    }
-
-    .cutoff-table td {
-        padding: 1.25rem 1.5rem;
-        border-bottom: 1px solid var(--border);
-        vertical-align: middle;
-    }
-
-    .cutoff-table tbody tr:hover {
-        background: var(--primary-muted);
-    }
-
-    .category-badge {
-        display: inline-block;
-        padding: 0.35rem 0.75rem;
-        border-radius: var(--radius-sm);
-        font-size: 0.85rem;
-        font-weight: 700;
-        margin-right: 0.75rem;
-    }
-
-    .category-badge.ur {
-        background: #3b82f6;
-        color: white;
-    }
-
-    .category-badge.ews {
-        background: #8b5cf6;
-        color: white;
-    }
-
-    .category-badge.obc {
-        background: #f59e0b;
-        color: white;
-    }
-
-    .category-badge.sc {
-        background: #10b981;
-        color: white;
-    }
-
-    .category-badge.st {
-        background: #ef4444;
-        color: white;
-    }
-
-    .category-badge.pwd {
-        background: #6366f1;
-        color: white;
-    }
-
-    .category-name {
-        font-weight: 500;
-        color: var(--text-primary);
-        font-size: 1rem;
-    }
-
-    .percentile-value {
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: var(--primary-light);
-        font-family: 'JetBrains Mono', monospace;
-    }
-
-    .eligibility-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.35rem 0.75rem;
-        background: rgba(16, 185, 129, 0.15);
-        color: var(--success);
-        border-radius: var(--radius-sm);
-        font-size: 0.9rem;
-        font-weight: 600;
-    }
-
-    .info-card {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        padding: 1.75rem;
-        height: 100%;
-    }
-
-    .info-icon {
-        width: 48px;
-        height: 48px;
-        background: var(--primary);
-        border-radius: var(--radius-md);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.25rem;
-        color: white;
-        margin-bottom: 1rem;
-    }
-
-    .info-card h4 {
-        font-size: 1.15rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-
-    .info-card p {
-        color: var(--text-secondary);
-        font-size: 1rem;
-        margin-bottom: 0;
-        line-height: 1.6;
-    }
-
-    .btn-primary-sm {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        background: var(--primary);
-        color: white;
-        padding: 0.6rem 1.25rem;
-        border-radius: var(--radius-md);
-        font-weight: 600;
-        font-size: 0.95rem;
-        transition: var(--transition);
-        border: none;
-        text-decoration: none;
-    }
-
-    .btn-primary-sm:hover {
-        background: var(--primary-dark);
-        color: white;
-    }
-
-    .additional-info {
-        background: var(--bg-secondary);
-        border: 1px solid var(--border);
-        border-radius: var(--radius-lg);
-        padding: 2rem;
-    }
-
-    .additional-info h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        margin-bottom: 1.25rem;
-        color: var(--text-primary);
-    }
-
-    .additional-info ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .additional-info li {
-        padding: 0.75rem 0;
-        padding-left: 1.5rem;
-        position: relative;
-        color: var(--text-secondary);
-        font-size: 1.05rem;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .additional-info li:last-child {
-        border-bottom: none;
-    }
-
-    .additional-info li::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 1.1rem;
-        width: 8px;
-        height: 8px;
-        background: var(--primary);
-        border-radius: 50%;
-    }
-
-    @media (max-width: 768px) {
-        .cutoff-header {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .cutoff-table td {
-            padding: 1rem;
-        }
-
-        .category-name {
-            display: block;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .percentile-value {
-            font-size: 1.15rem;
-        }
-    }
-</style>
 {% endblock %}
 
 {% block content %}
 <!-- Page Header -->
-<section class="page-header">
+<section class="py-4 border-bottom border-subtle bg-surface">
     <div class="container">
-        <h1 class="page-title">
-            <i class="bi bi-bar-chart-line-fill text-gradient me-2"></i>
-            JEE Main 2025 <span class="text-gradient">Cutoff Percentiles</span>
-        </h1>
-        <p style="font-size: 1.1rem; color: var(--primary-light); margin-bottom: 0.5rem;">
-            📈 Cutoff pata hai? Tension nahi, data hai! 🔥
-        </p>
-        <p class="page-subtitle">
-            Official category-wise qualifying cutoff percentiles for NIT, IIIT, and GFTI admissions through JoSAA
-            counseling
-        </p>
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div>
+                <div class="hero-pill-badge mb-2">
+                    <i class="bi bi-bar-chart-line"></i>
+                    <span>Official NTA Qualifying Benchmarks</span>
+                </div>
+                <h1 class="h2 mb-1">JEE Main 2025 Cutoff Percentiles</h1>
+                <p class="text-secondary small mb-0">
+                    Category-wise minimum qualifying percentiles for JEE Advanced eligibility and NIT+ JoSAA counseling.
+                </p>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <a href="/predictor" class="btn btn-primary-action btn-sm">
+                    <i class="bi bi-search"></i>
+                    <span>College Predictor</span>
+                </a>
+                <a href="/rank-predictor" class="btn btn-secondary-action btn-sm">
+                    <i class="bi bi-calculator"></i>
+                    <span>Rank Calculator</span>
+                </a>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Cutoff Section -->
-<section class="cutoff-section">
+<!-- Cutoff Overview Section -->
+<section class="py-5">
     <div class="container">
-        <!-- Main Cutoff Card -->
-        <div class="cutoff-main-card">
-            <div class="cutoff-header">
-                <div class="cutoff-header-icon">
-                    <i class="bi bi-trophy-fill"></i>
-                </div>
-                <div>
-                    <h2>JEE Main 2025 Qualifying Cutoff</h2>
-                    <p>For NIT+ (NITs, IIITs, GFTIs) Admissions</p>
+        <!-- High-Impact Category Grid -->
+        <div class="row g-3 mb-5">
+            <!-- General / UR -->
+            <div class="col-lg-4 col-md-6">
+                <div class="metric-card">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="inst-badge iit">UR / General</span>
+                        <span class="status-pill safe"><span class="status-dot"></span>Qualified</span>
+                    </div>
+                    <div class="metric-label">Qualifying Percentile</div>
+                    <div class="metric-value tabular-nums text-primary" style="font-size: 2rem;">93.1023</div>
+                    <div class="metric-subtext">Unreserved common rank qualifying score</div>
                 </div>
             </div>
 
-            <div class="cutoff-table-container">
-                <table class="cutoff-table">
+            <!-- EWS -->
+            <div class="col-lg-4 col-md-6">
+                <div class="metric-card">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="inst-badge nit">GEN-EWS</span>
+                        <span class="status-pill safe"><span class="status-dot"></span>Qualified</span>
+                    </div>
+                    <div class="metric-label">Qualifying Percentile</div>
+                    <div class="metric-value tabular-nums text-primary" style="font-size: 2rem;">80.3830</div>
+                    <div class="metric-subtext">Economically Weaker Section reservation</div>
+                </div>
+            </div>
+
+            <!-- OBC-NCL -->
+            <div class="col-lg-4 col-md-6">
+                <div class="metric-card">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="inst-badge iiit">OBC-NCL</span>
+                        <span class="status-pill safe"><span class="status-dot"></span>Qualified</span>
+                    </div>
+                    <div class="metric-label">Qualifying Percentile</div>
+                    <div class="metric-value tabular-nums text-primary" style="font-size: 2rem;">79.4313</div>
+                    <div class="metric-subtext">Non-Creamy Layer backward classes</div>
+                </div>
+            </div>
+
+            <!-- SC -->
+            <div class="col-lg-4 col-md-6">
+                <div class="metric-card">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="inst-badge gfti">SC</span>
+                        <span class="status-pill safe"><span class="status-dot"></span>Qualified</span>
+                    </div>
+                    <div class="metric-label">Qualifying Percentile</div>
+                    <div class="metric-value tabular-nums text-primary" style="font-size: 2rem;">61.1526</div>
+                    <div class="metric-subtext">Scheduled Caste qualifying benchmark</div>
+                </div>
+            </div>
+
+            <!-- ST -->
+            <div class="col-lg-4 col-md-6">
+                <div class="metric-card">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="inst-badge gfti">ST</span>
+                        <span class="status-pill safe"><span class="status-dot"></span>Qualified</span>
+                    </div>
+                    <div class="metric-label">Qualifying Percentile</div>
+                    <div class="metric-value tabular-nums text-primary" style="font-size: 2rem;">47.9026</div>
+                    <div class="metric-subtext">Scheduled Tribe qualifying benchmark</div>
+                </div>
+            </div>
+
+            <!-- PwD -->
+            <div class="col-lg-4 col-md-6">
+                <div class="metric-card">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="meta-badge">UR-PwD</span>
+                        <span class="status-pill safe"><span class="status-dot"></span>Qualified</span>
+                    </div>
+                    <div class="metric-label">Qualifying Percentile</div>
+                    <div class="metric-value tabular-nums text-primary" style="font-size: 2rem;">0.0079</div>
+                    <div class="metric-subtext">Persons with Disability benchmark</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparative Master Table -->
+        <div class="data-grid-container mb-5 reveal-on-scroll">
+            <div class="data-grid-header">
+                <div>
+                    <div class="data-grid-title">
+                        <i class="bi bi-table text-brand"></i>
+                        <span>Detailed Cutoff Percentile Specifications</span>
+                    </div>
+                    <div class="small text-secondary mt-1">
+                        Full official 7-decimal place qualifying percentiles released by NTA. Click headers to sort.
+                    </div>
+                </div>
+                <div style="min-width: 220px;">
+                    <input type="text" id="cutoffsFilter" class="form-control form-control-sm" placeholder="Filter category..." autocomplete="off">
+                </div>
+            </div>
+
+            <div class="data-table-scroll">
+                <table class="data-table" id="cutoffsTable">
                     <thead>
                         <tr>
-                            <th>Category</th>
-                            <th>Cutoff Percentile</th>
-                            <th>Eligibility</th>
+                            <th data-sortable>Category Code</th>
+                            <th data-sortable>Category Full Description</th>
+                            <th data-sortable style="text-align: right;">Official Cutoff Percentile</th>
+                            <th data-sortable style="text-align: center;">JEE Advanced Eligibility</th>
+                            <th style="text-align: right;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="category-ur">
-                            <td>
-                                <span class="category-badge ur">UR</span>
-                                <span class="category-name">Unreserved (General)</span>
-                            </td>
-                            <td class="percentile-value">93.1023262</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
+                        <tr>
+                            <td><span class="inst-badge iit">UR</span></td>
+                            <td class="td-institute">Unreserved (General)</td>
+                            <td class="td-rank" style="text-align: right;">93.1023262</td>
+                            <td style="text-align: center;"><span class="status-pill safe"><span class="status-dot"></span>Eligible &ge; 93.10%</span></td>
+                            <td style="text-align: right;"><a href="/predictor?category=OPEN" class="btn btn-ghost-action btn-sm">Predict OPEN →</a></td>
                         </tr>
-                        <tr class="category-ews">
-                            <td>
-                                <span class="category-badge ews">EWS</span>
-                                <span class="category-name">Economically Weaker Section</span>
-                            </td>
-                            <td class="percentile-value">80.3830119</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
+                        <tr>
+                            <td><span class="inst-badge nit">EWS</span></td>
+                            <td class="td-institute">Economically Weaker Section</td>
+                            <td class="td-rank" style="text-align: right;">80.3830119</td>
+                            <td style="text-align: center;"><span class="status-pill safe"><span class="status-dot"></span>Eligible &ge; 80.38%</span></td>
+                            <td style="text-align: right;"><a href="/predictor?category=EWS" class="btn btn-ghost-action btn-sm">Predict EWS →</a></td>
                         </tr>
-                        <tr class="category-obc">
-                            <td>
-                                <span class="category-badge obc">OBC-NCL</span>
-                                <span class="category-name">Other Backward Classes (Non-Creamy Layer)</span>
-                            </td>
-                            <td class="percentile-value">79.4313582</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
+                        <tr>
+                            <td><span class="inst-badge iiit">OBC-NCL</span></td>
+                            <td class="td-institute">Other Backward Classes (Non-Creamy Layer)</td>
+                            <td class="td-rank" style="text-align: right;">79.4313582</td>
+                            <td style="text-align: center;"><span class="status-pill safe"><span class="status-dot"></span>Eligible &ge; 79.43%</span></td>
+                            <td style="text-align: right;"><a href="/predictor?category=OBC-NCL" class="btn btn-ghost-action btn-sm">Predict OBC →</a></td>
                         </tr>
-                        <tr class="category-sc">
-                            <td>
-                                <span class="category-badge sc">SC</span>
-                                <span class="category-name">Scheduled Caste</span>
-                            </td>
-                            <td class="percentile-value">61.1526933</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
+                        <tr>
+                            <td><span class="inst-badge gfti">SC</span></td>
+                            <td class="td-institute">Scheduled Caste</td>
+                            <td class="td-rank" style="text-align: right;">61.1526933</td>
+                            <td style="text-align: center;"><span class="status-pill safe"><span class="status-dot"></span>Eligible &ge; 61.15%</span></td>
+                            <td style="text-align: right;"><a href="/predictor?category=SC" class="btn btn-ghost-action btn-sm">Predict SC →</a></td>
                         </tr>
-                        <tr class="category-st">
-                            <td>
-                                <span class="category-badge st">ST</span>
-                                <span class="category-name">Scheduled Tribe</span>
-                            </td>
-                            <td class="percentile-value">47.9026465</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
+                        <tr>
+                            <td><span class="inst-badge gfti">ST</span></td>
+                            <td class="td-institute">Scheduled Tribe</td>
+                            <td class="td-rank" style="text-align: right;">47.9026465</td>
+                            <td style="text-align: center;"><span class="status-pill safe"><span class="status-dot"></span>Eligible &ge; 47.90%</span></td>
+                            <td style="text-align: right;"><a href="/predictor?category=ST" class="btn btn-ghost-action btn-sm">Predict ST →</a></td>
                         </tr>
-                        <tr class="category-pwd">
-                            <td>
-                                <span class="category-badge pwd">UR-PwD</span>
-                                <span class="category-name">Persons with Disability (Unreserved)</span>
-                            </td>
-                            <td class="percentile-value">0.0079349</td>
-                            <td>
-                                <span class="eligibility-badge">
-                                    <i class="bi bi-check-circle-fill"></i> Required
-                                </span>
-                            </td>
+                        <tr>
+                            <td><span class="meta-badge">UR-PwD</span></td>
+                            <td class="td-institute">Persons with Disability (General)</td>
+                            <td class="td-rank" style="text-align: right;">0.0079349</td>
+                            <td style="text-align: center;"><span class="status-pill safe"><span class="status-dot"></span>Eligible &ge; 0.0079%</span></td>
+                            <td style="text-align: right;"><a href="/predictor?category=OPEN+(PwD)" class="btn btn-ghost-action btn-sm">Predict PwD →</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- Info Cards -->
-        <div class="row g-4 mt-4">
-            <div class="col-md-4">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="bi bi-info-circle-fill"></i>
+        <!-- Explanatory Knowledge Cards -->
+        <div class="row g-4">
+            <div class="col-md-4 reveal-on-scroll">
+                <div class="control-card spotlight-card h-100">
+                    <div class="feature-icon-badge">
+                        <i class="bi bi-info-circle"></i>
                     </div>
-                    <h4>What is Cutoff?</h4>
-                    <p>The minimum percentile you need to score in JEE Main to be eligible for JoSAA counseling and NIT+
-                        admissions.</p>
+                    <h3 class="h5 mb-2">Qualifying vs Admission</h3>
+                    <p class="small text-secondary mb-0">
+                        Scoring above the qualifying cutoff confirms your eligibility to appear for JEE Advanced. Actual admission into NITs, IIITs, or GFTIs requires meeting the institute-specific closing rank for your branch during JoSAA rounds.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="bi bi-exclamation-triangle-fill"></i>
+
+            <div class="col-md-4 reveal-on-scroll">
+                <div class="control-card spotlight-card h-100">
+                    <div class="feature-icon-badge">
+                        <i class="bi bi-shield-check"></i>
                     </div>
-                    <h4>Important Note</h4>
-                    <p>These are qualifying cutoffs only. Actual admission depends on your rank and seat availability
-                        during counseling rounds.</p>
+                    <h3 class="h5 mb-2">Reservation Verification</h3>
+                    <p class="small text-secondary mb-0">
+                        Candidates claiming OBC-NCL or EWS reservations must have valid certificates issued on or after April 1 of the counseling year, adhering strictly to the central format prescribed by JoSAA.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="info-card">
-                    <div class="info-icon">
-                        <i class="bi bi-arrow-right-circle-fill"></i>
+
+            <div class="col-md-4 reveal-on-scroll">
+                <div class="control-card spotlight-card h-100">
+                    <div class="feature-icon-badge">
+                        <i class="bi bi-lightning-charge"></i>
                     </div>
-                    <h4>Next Step</h4>
-                    <p>Use our Predictor tool to find colleges where you have a good chance of getting admission based
-                        on your rank.</p>
-                    <a href="/predictor" class="btn btn-primary-sm mt-2">
-                        <i class="bi bi-search me-1"></i>Try Predictor
+                    <h3 class="h5 mb-2">Calculate Your Chances</h3>
+                    <p class="small text-secondary mb-3">
+                        Convert your JEE Main score or percentile into your anticipated All India Rank and check matching colleges across 6 rounds.
+                    </p>
+                    <a href="/predictor" class="btn btn-primary-action btn-sm w-100">
+                        <i class="bi bi-search"></i>
+                        <span>Run Full College Predictor</span>
                     </a>
                 </div>
             </div>
         </div>
-
-        <!-- Additional Info -->
-        <div class="additional-info mt-5">
-            <h3><i class="bi bi-lightbulb me-2"></i>Understanding These Cutoffs</h3>
-            <ul>
-                <li><strong>These cutoffs are for JEE Main Paper 1</strong> (B.E./B.Tech programs)</li>
-                <li><strong>IIT admissions</strong> require separate JEE Advanced qualification</li>
-                <li><strong>Cutoffs vary each year</strong> based on difficulty level and number of candidates</li>
-                <li><strong>PwD candidates</strong> get relaxed cutoffs across all categories</li>
-            </ul>
-        </div>
     </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    if (window.initTableUtilities) {
+        window.initTableUtilities('cutoffsTable', 'cutoffsFilter');
+    }
+</script>
 {% endblock %}
