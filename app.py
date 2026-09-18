@@ -21,7 +21,7 @@ GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
 GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models"
 
 if not GEMINI_API_KEY:
-    print("WARNING: GEMINI_API_KEY not found in .env file")
+    print("WARNING: GEMINI_API_KEY not found in environment or .env file")
 
 app = Flask(__name__)
 
@@ -303,14 +303,24 @@ def rank_predictor():
 def predict():
     """Handle prediction requests."""
     try:
-        # Get form data
-        round_num = request.form.get('round', '6')
-        institute_type = request.form.get('institute_type', 'ALL')
-        category = request.form.get('category', 'OPEN')
-        gender = request.form.get('gender', 'Gender-Neutral')
-        quota = request.form.get('quota', 'AI')
-        program = request.form.get('program', 'ALL')
-        user_rank = int(request.form.get('rank', 0))
+        # Get form or JSON data
+        if request.is_json:
+            req_data = request.get_json() or {}
+            round_num = str(req_data.get('round', '6'))
+            institute_type = req_data.get('institute_type', 'ALL')
+            category = req_data.get('category', 'OPEN')
+            gender = req_data.get('gender', 'Gender-Neutral')
+            quota = req_data.get('quota', 'AI')
+            program = req_data.get('program', 'ALL')
+            user_rank = int(req_data.get('rank', 0))
+        else:
+            round_num = request.form.get('round', '6')
+            institute_type = request.form.get('institute_type', 'ALL')
+            category = request.form.get('category', 'OPEN')
+            gender = request.form.get('gender', 'Gender-Neutral')
+            quota = request.form.get('quota', 'AI')
+            program = request.form.get('program', 'ALL')
+            user_rank = int(request.form.get('rank', 0))
         
         if user_rank <= 0:
             return jsonify({'error': 'Please enter a valid rank greater than 0', 'results': []})
