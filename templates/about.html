@@ -5,155 +5,168 @@
 {% block meta_description %}Learn about our JoSAA College Predictor platform: our historical data sources, counseling algorithms, and commitment to free, unbiased guidance for JEE aspirants.{% endblock %}
 
 {% block content %}
-<!-- Page Header -->
-<section class="py-4 border-bottom border-subtle bg-surface">
-    <div class="container">
+<div class="bento-container py-4">
+    <!-- Apple Bento Hero -->
+    <div class="bento-hero mb-4">
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
-            <div>
-                <div class="hero-pill-badge mb-2">
+            <div style="max-width: 820px;">
+                <span class="apple-category-pill mb-3">
                     <i class="bi bi-shield-check"></i>
                     <span>Transparency & Methodology</span>
-                </div>
-                <h1 class="h2 mb-1">About JoSAA College Predictor</h1>
-                <p class="text-secondary small mb-0">
-                    Engineered to give JEE Main and Advanced aspirants data transparency during seat counseling.
+                </span>
+                <h1 class="hero-headline mb-3">Engineered for Complete Counseling Transparency</h1>
+                <p class="hero-subheadline mb-0">
+                    Democratizing seat allotment data for 1.4 million JEE aspirants. Zero paywalls, zero synthetic rankings, and 100% verified historical archives.
                 </p>
             </div>
-            <a href="/predictor" class="btn btn-primary-action btn-sm">
+            <a href="/predictor" class="apple-btn btn-primary-action">
                 <i class="bi bi-lightning-charge"></i>
                 <span>Open Predictor</span>
             </a>
         </div>
     </div>
-</section>
 
-<!-- Mission & Metrics -->
-<section class="py-5">
-    <div class="container">
-        <div class="row g-5 align-items-center mb-5">
-            <div class="col-lg-6">
-                <h2 class="h3 mb-3">Empowering Students with Mathematical Data</h2>
+    <!-- Mission & Analytical Metrics Grid -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-6">
+            <div class="bento-card p-4 p-md-5 h-100">
+                <span class="stat-label mb-2">Our Mission</span>
+                <h2 class="h3 mb-3 text-primary fw-bold">Empowering Students with Mathematical Precision</h2>
                 <p class="text-secondary mb-3" style="line-height: 1.75;">
-                    Every year, over 1.4 million engineering aspirants participate in Joint Seat Allocation Authority (JoSAA) counseling across 128 top institutions. Navigating multi-round opening and closing ranks with state and category quotas is complex and high-stakes.
+                    Every year, over 1.4 million engineering aspirants participate in Joint Seat Allocation Authority (JoSAA) counseling across 128 top institutions. Navigating multi-round opening and closing ranks with state and category quotas is high-stakes and overwhelmingly complex.
                 </p>
                 <p class="text-secondary mb-4" style="line-height: 1.75;">
                     JoSAA Predictor parses historical cutoff archives and presents exact, unmanipulated closing thresholds so students can structure an optimal, confident choice-filling preference sheet without predatory paywalls.
                 </p>
 
-                <div class="d-flex flex-column gap-2">
-                    <div class="d-flex align-items-center gap-2 small text-secondary">
-                        <i class="bi bi-check-circle-fill text-brand"></i>
-                        <span>100% Free & Open Access — No account or sign-up necessary</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 small text-secondary">
-                        <i class="bi bi-check-circle-fill text-brand"></i>
-                        <span>Official Archive Match — Zero synthetic or distorted rank data</span>
-                    </div>
-                    <div class="d-flex align-items-center gap-2 small text-secondary">
-                        <i class="bi bi-check-circle-fill text-brand"></i>
-                        <span>Privacy Centric — No tracking cookies or data selling</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="row g-3">
-                    <div class="col-6">
-                        <div class="metric-card">
-                            <div class="metric-label">Archived Cutoffs</div>
-                            <div class="metric-value tabular-nums text-brand">{{ "{:,}".format(stats.total_records) }}+</div>
-                            <div class="metric-subtext">All 6 rounds indexed</div>
+                <div class="d-flex flex-column gap-3 pt-2">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="brand-icon-box" style="width: 32px; height: 32px; font-size: 1rem; border-radius: 8px;">
+                            <i class="bi bi-check-lg"></i>
                         </div>
+                        <span class="small text-secondary fw-semibold">100% Free & Open Access — No login or payment required</span>
                     </div>
-                    <div class="col-6">
-                        <div class="metric-card">
-                            <div class="metric-label">Covered Institutes</div>
-                            <div class="metric-value tabular-nums">{{ stats.unique_institutes }}</div>
-                            <div class="metric-subtext">IITs, NITs, IIITs, GFTIs</div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="brand-icon-box" style="width: 32px; height: 32px; font-size: 1rem; border-radius: 8px;">
+                            <i class="bi bi-check-lg"></i>
                         </div>
+                        <span class="small text-secondary fw-semibold">Official Archive Match — Zero synthetic or distorted rank figures</span>
                     </div>
-                    <div class="col-6">
-                        <div class="metric-card">
-                            <div class="metric-label">Degree Branches</div>
-                            <div class="metric-value tabular-nums">{{ stats.unique_programs }}</div>
-                            <div class="metric-subtext">B.Tech, B.Arch, Dual</div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="brand-icon-box" style="width: 32px; height: 32px; font-size: 1rem; border-radius: 8px;">
+                            <i class="bi bi-check-lg"></i>
                         </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="metric-card">
-                            <div class="metric-label">Access Cost</div>
-                            <div class="metric-value tabular-nums">₹0</div>
-                            <div class="metric-subtext">Always free for students</div>
-                        </div>
+                        <span class="small text-secondary fw-semibold">Client-Side Privacy — Queries are evaluated safely in-memory</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- How It Works Architecture -->
-        <div class="mb-5 pt-4 border-top border-subtle">
-            <div class="text-center max-w-xl mx-auto mb-5">
-                <div class="hero-pill-badge mb-2">Step-by-Step Workflow</div>
-                <h2 class="h3 mb-2">How the Prediction Engine Works</h2>
-                <p class="text-secondary small">From raw NTA rank to a ranked preference shortlist in seconds.</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="feature-grid-card">
-                        <span class="inst-badge iit mb-3" style="width: fit-content;">Phase 1</span>
-                        <h3 class="h5">Rank Ingestion</h3>
-                        <p class="small text-secondary">
-                            Input your All India Common Rank List (CRL) for General seats or your specific Category Rank for OBC-NCL, EWS, SC, or ST seats.
-                        </p>
+        <div class="col-lg-6">
+            <div class="row g-3 h-100">
+                <div class="col-6">
+                    <div class="stat-tile-bento h-100 justify-content-center">
+                        <span class="stat-label">Archived Cutoffs</span>
+                        <span class="stat-number tabular-nums text-brand">{{ "{:,}".format(stats.total_records) }}+</span>
+                        <span class="stat-caption">All 6 rounds indexed</span>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="feature-grid-card">
-                        <span class="inst-badge nit mb-3" style="width: fit-content;">Phase 2</span>
-                        <h3 class="h5">Quota Matching</h3>
-                        <p class="small text-secondary">
-                            Specify Home State (HS) versus Other State (OS) status, along with gender preferences to account for female supernumerary seat reserves.
-                        </p>
+                <div class="col-6">
+                    <div class="stat-tile-bento h-100 justify-content-center">
+                        <span class="stat-label">Covered Institutes</span>
+                        <span class="stat-number tabular-nums">{{ stats.unique_institutes }}</span>
+                        <span class="stat-caption">IITs, NITs, IIITs, GFTIs</span>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="feature-grid-card">
-                        <span class="inst-badge iiit mb-3" style="width: fit-content;">Phase 3</span>
-                        <h3 class="h5">Threshold Evaluation</h3>
-                        <p class="small text-secondary">
-                            The algorithm evaluates your rank against 72,000+ official closing ranks and calculates safety buffers (Safe, Moderate, Risky).
-                        </p>
+                <div class="col-6">
+                    <div class="stat-tile-bento h-100 justify-content-center">
+                        <span class="stat-label">Degree Branches</span>
+                        <span class="stat-number tabular-nums">{{ stats.unique_programs }}</span>
+                        <span class="stat-caption">B.Tech, B.Arch, Dual</span>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="feature-grid-card">
-                        <span class="inst-badge gfti mb-3" style="width: fit-content;">Phase 4</span>
-                        <h3 class="h5">Preference Export</h3>
-                        <p class="small text-secondary">
-                            Download the calibrated match report as a CSV file to structure your official JoSAA choice-filling portal entries systematically.
-                        </p>
+                <div class="col-6">
+                    <div class="stat-tile-bento h-100 justify-content-center">
+                        <span class="stat-label">Access Cost</span>
+                        <span class="stat-number tabular-nums">₹0</span>
+                        <span class="stat-caption">Always free for students</span>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Data Integrity Statement -->
-        <div class="control-card bg-surface-elevated p-4">
-            <div class="d-flex align-items-center gap-3 mb-2">
-                <i class="bi bi-shield-lock-fill text-brand" style="font-size: 1.5rem;"></i>
-                <h3 class="h5 mb-0 text-primary">Data Integrity & Disclaimers</h3>
-            </div>
-            <p class="small text-secondary mb-2" style="line-height: 1.7;">
-                All cutoff data utilized in this application is derived directly from verified Joint Seat Allocation Authority (JoSAA) post-counseling archives for the year 2025. We do not manufacture or alter official closing ranks.
-            </p>
-            <p class="small text-secondary mb-0" style="line-height: 1.7;">
-                <em>Disclaimer:</em> While historical cutoff trends are a reliable indicator of admissions, actual closing ranks for JoSAA 2026 may fluctuate based on seat matrix revisions, candidate choice distribution, and annual exam difficulty. This tool is intended for advisory and planning purposes.
-            </p>
         </div>
     </div>
-</section>
+
+    <!-- 4-Stage Architecture Pipeline -->
+    <div class="bento-card p-4 p-md-5 mb-4">
+        <div class="text-center mb-5" style="max-width: 680px; margin: 0 auto;">
+            <span class="apple-category-pill mb-2">
+                <i class="bi bi-cpu"></i>
+                <span>Decision Engine Pipeline</span>
+            </span>
+            <h2 class="h3 text-primary fw-bold mb-2">How the Prediction Engine Works</h2>
+            <p class="text-secondary small mb-0">From raw NTA rank to a ranked preference shortlist in milliseconds.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="pipeline-step-bento">
+                    <div class="pipeline-step-number">01</div>
+                    <h3 class="h6 text-primary fw-bold mb-2">Rank Ingestion</h3>
+                    <p class="small text-secondary mb-0" style="line-height: 1.65;">
+                        Input your All India Common Rank List (CRL) for General seats or your specific Category Rank for OBC-NCL, EWS, SC, or ST seats.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="pipeline-step-bento">
+                    <div class="pipeline-step-number">02</div>
+                    <h3 class="h6 text-primary fw-bold mb-2">Quota Matching</h3>
+                    <p class="small text-secondary mb-0" style="line-height: 1.65;">
+                        Arbitrates Home State (HS) versus Other State (OS) status, along with gender preferences to account for female supernumerary seat pools.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="pipeline-step-bento">
+                    <div class="pipeline-step-number">03</div>
+                    <h3 class="h6 text-primary fw-bold mb-2">Threshold Evaluation</h3>
+                    <p class="small text-secondary mb-0" style="line-height: 1.65;">
+                        The algorithm evaluates your rank against 72,000+ official closing ranks and calculates safety buffers (Safe, Moderate, Risky).
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="pipeline-step-bento">
+                    <div class="pipeline-step-number">04</div>
+                    <h3 class="h6 text-primary fw-bold mb-2">Preference Export</h3>
+                    <p class="small text-secondary mb-0" style="line-height: 1.65;">
+                        Download the calibrated match report as a CSV file to structure your official JoSAA choice-filling portal entries systematically.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Integrity Bento Card -->
+    <div class="bento-card p-4 p-md-5">
+        <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="brand-icon-box" style="width: 44px; height: 44px; font-size: 1.35rem; border-radius: 12px;">
+                <i class="bi bi-shield-lock"></i>
+            </div>
+            <div>
+                <h3 class="h5 mb-0 text-primary fw-bold">Data Integrity & Advisory Disclaimer</h3>
+                <span class="small text-tertiary">Direct JoSAA Post-Counseling Archives 2025</span>
+            </div>
+        </div>
+        <p class="small text-secondary mb-2" style="line-height: 1.75;">
+            All cutoff data utilized in this application is derived directly from verified Joint Seat Allocation Authority (JoSAA) post-counseling archives for the year 2025. We do not manufacture, interpolate, or alter official closing ranks.
+        </p>
+        <p class="small text-secondary mb-0" style="line-height: 1.75;">
+            <em>Disclaimer:</em> While historical cutoff trends are a reliable indicator of admissions, actual closing ranks for JoSAA 2026 may fluctuate based on seat matrix revisions, candidate choice distribution, and annual exam difficulty. This tool is intended for advisory and planning purposes.
+        </p>
+    </div>
+</div>
 {% endblock %}

@@ -42,35 +42,34 @@
 {% endblock %}
 
 {% block content %}
-<!-- Page Header -->
-<section class="py-4 border-bottom border-subtle bg-surface">
-    <div class="container">
+<div class="bento-container">
+
+    <!-- Page Header Bento -->
+    <section class="bento-hero p-4 p-md-5 mb-4 animate-fade-up">
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
             <div>
                 <div class="hero-pill-badge mb-2">
                     <i class="bi bi-calculator"></i>
-                    <span>NTA JEE Main 2025 Statistical Model</span>
+                    <span>NTA JEE Main Statistical Calibrator</span>
                 </div>
                 <h1 class="h2 mb-1">Rank & Percentile Calculator</h1>
-                <p class="text-secondary small mb-0">
-                    Convert raw exam score (out of 300) or NTA percentile into calibrated All India Rank (AIR) brackets.
+                <p class="text-secondary small mb-0" style="max-width: 600px;">
+                    Convert raw exam score (out of 300) or NTA percentile into calibrated All India Rank (AIR) brackets with instant real-time live preview.
                 </p>
             </div>
-            <a href="/predictor" class="btn btn-secondary-action btn-sm">
+            <a href="/predictor" class="apple-btn btn-secondary-action btn-sm">
                 <i class="bi bi-lightning-charge"></i>
                 <span>Open College Predictor</span>
             </a>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Calculator Section -->
-<section class="py-4">
-    <div class="container">
-        <div class="row g-4 mb-5">
+    <!-- Calculator Section -->
+    <section class="mb-5">
+        <div class="row g-4 mb-4">
             <!-- Left: Calculator Inputs -->
             <div class="col-lg-6">
-                <div class="control-card h-100">
+                <div class="bento-card h-100">
                     <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-subtle">
                         <span class="form-label-custom mb-0">Calculation Mode</span>
                         <!-- Segmented Switcher -->
@@ -102,7 +101,7 @@
                             <input type="range" class="range-slider-custom mt-1 mb-0" id="marksSlider" min="0" max="300" step="1" value="195">
                         </div>
                         <div class="d-flex align-items-center gap-1 mt-2 flex-wrap">
-                            <span class="small text-tertiary me-1">Quick presets:</span>
+                            <span class="small text-tertiary me-1">Presets:</span>
                             <button type="button" class="filter-chip" onclick="setScore(250)">250</button>
                             <button type="button" class="filter-chip" onclick="setScore(200)">200</button>
                             <button type="button" class="filter-chip" onclick="setScore(160)">160</button>
@@ -127,7 +126,7 @@
                             <input type="range" class="range-slider-custom mt-1 mb-0" id="percentileSlider" min="0" max="100" step="0.05" value="98.5">
                         </div>
                         <div class="d-flex align-items-center gap-1 mt-2 flex-wrap">
-                            <span class="small text-tertiary me-1">Quick presets:</span>
+                            <span class="small text-tertiary me-1">Presets:</span>
                             <button type="button" class="filter-chip" onclick="setPercentile(99.9)">99.9%</button>
                             <button type="button" class="filter-chip" onclick="setPercentile(99.0)">99.0%</button>
                             <button type="button" class="filter-chip" onclick="setPercentile(97.5)">97.5%</button>
@@ -136,7 +135,7 @@
                     </div>
 
                     <div class="pt-3 border-top border-subtle mt-4">
-                        <button class="btn btn-primary-action w-100" id="calculateBtn" type="button">
+                        <button class="apple-btn btn-primary-action w-100" id="calculateBtn" type="button">
                             <i class="bi bi-calculator-fill"></i>
                             <span>Calculate Estimated AIR</span>
                         </button>
@@ -146,7 +145,7 @@
 
             <!-- Right: Result Card -->
             <div class="col-lg-6">
-                <div class="control-card h-100 d-flex flex-column justify-content-between" id="resultCard">
+                <div class="bento-card h-100 d-flex flex-column justify-content-between" id="resultCard">
                     <!-- Placeholder State -->
                     <div id="resultPlaceholder" class="text-center py-5 my-auto">
                         <div class="mb-3 text-tertiary">
@@ -154,7 +153,7 @@
                         </div>
                         <h4 class="h5 mb-2">Estimate Your All India Rank</h4>
                         <p class="text-secondary small max-w-sm mx-auto mb-0">
-                            Enter your score or percentile on the left and click "Calculate Estimated AIR".
+                            Enter your score or percentile on the left or drag the slider for instant real-time calculation.
                         </p>
                     </div>
 
@@ -163,9 +162,9 @@
                         <div class="d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom border-subtle">
                             <div class="d-flex align-items-center gap-2">
                                 <span class="status-dot" style="background: var(--brand);"></span>
-                                <strong class="small text-uppercase tracking-wider">Estimated AIR Calculation</strong>
+                                <strong class="small text-uppercase tracking-wider">Estimated AIR Bracket</strong>
                             </div>
-                            <span class="inst-badge nit">Official Calibration</span>
+                            <span class="inst-badge nit">Calibrated</span>
                         </div>
 
                         <div class="row g-3 mb-4">
@@ -173,7 +172,7 @@
                                 <div class="metric-card bg-surface-elevated">
                                     <div class="metric-label">Expected All India Rank (AIR)</div>
                                     <div class="metric-value tabular-nums text-brand" id="resultRank" style="font-size: 2.2rem;">-</div>
-                                    <div class="metric-subtext">Estimated range across all shifts</div>
+                                    <div class="metric-subtext">Estimated range across all exam shifts</div>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -193,9 +192,9 @@
                         <div class="p-3 bg-surface-elevated border border-subtle rounded-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
                             <div>
                                 <div class="small fw-bold text-primary">Next Step: College Prediction</div>
-                                <div class="small text-secondary">See IITs, NITs, and IIITs available for this rank.</div>
+                                <div class="small text-secondary">See colleges eligible for this rank range.</div>
                             </div>
-                            <a id="lnkPredictor" href="/predictor" class="btn btn-primary-action btn-sm">
+                            <a id="lnkPredictor" href="/predictor" class="apple-btn btn-primary-action btn-sm">
                                 <span>Find Colleges</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -214,13 +213,13 @@
                         <span>JEE Main Score vs Percentile vs Rank Reference Matrix</span>
                     </div>
                     <div class="small text-secondary mt-1">
-                        Compiled from official National Testing Agency (NTA) exam results.
+                        Compiled from official National Testing Agency (NTA) exam results. Click headers to sort.
                     </div>
                 </div>
 
                 <!-- Live Table Search -->
                 <div style="min-width: 240px;">
-                    <input type="text" id="tableFilter" class="form-control form-control-sm" placeholder="Search marks or ranks...">
+                    <input type="text" id="tableFilter" class="form-control form-control-sm" placeholder="Search marks or ranks..." autocomplete="off">
                 </div>
             </div>
 
@@ -249,8 +248,9 @@
                 </table>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+</div>
 {% endblock %}
 
 {% block scripts %}

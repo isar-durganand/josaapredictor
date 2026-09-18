@@ -5,130 +5,127 @@
 {% block meta_description %}Get in touch with the JoSAA College Predictor engineering and counseling support team for inquiries, cutoff clarification, or bug reports.{% endblock %}
 
 {% block content %}
-<!-- Page Header -->
-<section class="py-4 border-bottom border-subtle bg-surface">
-    <div class="container">
+<div class="bento-container py-4">
+    <!-- Apple Bento Hero -->
+    <div class="bento-hero mb-4">
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
-            <div>
-                <div class="hero-pill-badge mb-2">
-                    <i class="bi bi-envelope"></i>
-                    <span>User Support & Feedback</span>
-                </div>
-                <h1 class="h2 mb-1">Contact & Support</h1>
-                <p class="text-secondary small mb-0">
-                    Have questions about cutoff data, feature requests, or technical issues? We're here to help.
+            <div style="max-width: 800px;">
+                <span class="apple-category-pill mb-3">
+                    <i class="bi bi-headset"></i>
+                    <span>Support & Inquiries</span>
+                </span>
+                <h1 class="hero-headline mb-3">We're Here to Assist Your Counseling Journey</h1>
+                <p class="hero-subheadline mb-0">
+                    Questions regarding cutoff archives, algorithmic evaluation, or technical feedback? Connect directly with our engineering and advisory desk.
                 </p>
             </div>
-            <a href="/predictor" class="btn btn-secondary-action btn-sm">
+            <a href="/predictor" class="apple-btn btn-secondary-action">
                 <i class="bi bi-lightning-charge"></i>
                 <span>Open Predictor</span>
             </a>
         </div>
     </div>
-</section>
 
-<!-- Contact Body -->
-<section class="py-5">
-    <div class="container">
-        <div class="row g-5">
-            <!-- Left Column: Direct Inquiries -->
-            <div class="col-lg-5">
-                <h2 class="h4 mb-3">Direct Inquiries</h2>
-                <p class="text-secondary small mb-4">
-                    For feedback, data corrections, or technical support, please reach out via any of the channels below.
-                </p>
-
-                <div class="d-flex flex-column gap-3 mb-4">
-                    <div class="p-3 bg-surface border border-subtle rounded-3 d-flex align-items-center gap-3">
-                        <div class="brand-icon-box">
-                            <i class="bi bi-envelope-fill"></i>
-                        </div>
-                        <div>
-                            <div class="small text-tertiary">Direct Email</div>
-                            <div class="fw-semibold text-primary">isardurganand@gmail.com</div>
-                        </div>
+    <!-- Contact Bento Grid -->
+    <div class="row g-4">
+        <!-- Direct Support Channels -->
+        <div class="col-lg-5">
+            <div class="d-flex flex-column gap-3">
+                <div class="support-channel-tile">
+                    <div class="support-channel-icon">
+                        <i class="bi bi-envelope-fill"></i>
                     </div>
-
-                    <div class="p-3 bg-surface border border-subtle rounded-3 d-flex align-items-center gap-3">
-                        <div class="brand-icon-box">
-                            <i class="bi bi-twitter-x"></i>
-                        </div>
-                        <div>
-                            <div class="small text-tertiary">Twitter / X</div>
-                            <div class="fw-semibold text-primary">@JoSAAPredictor</div>
-                        </div>
-                    </div>
-
-                    <div class="p-3 bg-surface border border-subtle rounded-3 d-flex align-items-center gap-3">
-                        <div class="brand-icon-box">
-                            <i class="bi bi-clock-history"></i>
-                        </div>
-                        <div>
-                            <div class="small text-tertiary">Support Hours</div>
-                            <div class="fw-semibold text-primary">Response within 24–48 hours</div>
-                        </div>
+                    <div>
+                        <div class="stat-label mb-1">Direct Engineering Desk</div>
+                        <a href="mailto:isardurganand@gmail.com" class="fw-bold text-primary text-decoration-none">isardurganand@gmail.com</a>
                     </div>
                 </div>
 
-                <div class="p-3 bg-surface-elevated border border-subtle rounded-3">
-                    <div class="small fw-bold text-primary mb-1">
-                        <i class="bi bi-info-circle text-brand me-1"></i>Official Counseling Support
+                <div class="support-channel-tile">
+                    <div class="support-channel-icon">
+                        <i class="bi bi-twitter-x"></i>
                     </div>
-                    <div class="small text-secondary">
-                        For official queries regarding document verification, fee refunds, or seat reporting, please consult the official portal at <a href="https://josaa.nic.in" target="_blank" rel="noopener">josaa.nic.in</a>.
+                    <div>
+                        <div class="stat-label mb-1">X / Community Desk</div>
+                        <a href="https://twitter.com" target="_blank" rel="noopener" class="fw-bold text-primary text-decoration-none">@JoSAAPredictor</a>
                     </div>
                 </div>
-            </div>
 
-            <!-- Right Column: Interactive Contact Form -->
-            <div class="col-lg-7">
-                <div class="control-card">
-                    <h3 class="h5 mb-3 text-primary">Send Feedback or Query</h3>
-
-                    <div id="contactAlert" class="alert alert-success d-none mb-3 py-2 small" role="alert">
-                        <i class="bi bi-check-circle-fill me-2"></i>Thank you! Your message has been sent successfully.
+                <div class="support-channel-tile">
+                    <div class="support-channel-icon">
+                        <i class="bi bi-clock-history"></i>
                     </div>
+                    <div>
+                        <div class="stat-label mb-1">Turnaround Commitment</div>
+                        <div class="fw-bold text-primary">Response within 24–48 Hours</div>
+                    </div>
+                </div>
 
-                    <form id="contactForm">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="contact-name" class="form-label-custom">Your Name</label>
-                                <input type="text" id="contact-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="contact-email" class="form-label-custom">Email Address</label>
-                                <input type="email" id="contact-email" class="form-control" placeholder="name@example.com" required>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="contact-subject" class="form-label-custom">Subject / Topic</label>
-                                <select id="contact-subject" class="form-select" required>
-                                    <option value="data">Cutoff Data Clarification</option>
-                                    <option value="feature">Feature Request or Suggestion</option>
-                                    <option value="bug">Bug Report / Technical Issue</option>
-                                    <option value="general">General Counseling Guidance</option>
-                                </select>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="contact-message" class="form-label-custom">Your Message</label>
-                                <textarea id="contact-message" class="form-control" rows="5" placeholder="Provide details regarding your query or observation..." required></textarea>
-                            </div>
-
-                            <div class="col-12 pt-2">
-                                <button type="submit" class="btn btn-primary-action w-100" id="contactSubmitBtn">
-                                    <i class="bi bi-send-fill me-1"></i>
-                                    <span>Transmit Message</span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                <!-- Official Portal Notice -->
+                <div class="bento-card p-4 mt-2">
+                    <div class="d-flex align-items-center gap-2 small fw-bold text-primary mb-2">
+                        <i class="bi bi-info-circle-fill text-brand"></i>
+                        <span>Official JoSAA Verification Notice</span>
+                    </div>
+                    <p class="small text-secondary mb-0" style="line-height: 1.65;">
+                        For official queries regarding physical reporting, fee withdrawal schedules, or seat cancellation, please access the official government portal at <a href="https://josaa.nic.in" target="_blank" rel="noopener" class="text-primary text-decoration-underline">josaa.nic.in</a>.
+                    </p>
                 </div>
             </div>
         </div>
+
+        <!-- Inquiry Form -->
+        <div class="col-lg-7">
+            <div class="bento-card p-4 p-md-5">
+                <span class="stat-label mb-2">Transmit Inquiry</span>
+                <h2 class="h4 mb-3 text-primary fw-bold">Send Feedback or Data Clarification</h2>
+
+                <div id="contactAlert" class="alert alert-success d-none mb-4 py-3 small rounded-3 border-0 bg-success bg-opacity-10 text-success" role="alert">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check-circle-fill"></i>
+                        <span>Thank you! Your message has been transmitted successfully. Our team will review it shortly.</span>
+                    </div>
+                </div>
+
+                <form id="contactForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="contact-name" class="form-label-custom">Your Name</label>
+                            <input type="text" id="contact-name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="contact-email" class="form-label-custom">Email Address</label>
+                            <input type="email" id="contact-email" class="form-control" placeholder="name@example.com" required>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="contact-subject" class="form-label-custom">Topic of Inquiry</label>
+                            <select id="contact-subject" class="form-select" required>
+                                <option value="data">Cutoff Archive Clarification</option>
+                                <option value="feature">Algorithm Feature Request</option>
+                                <option value="bug">Technical Issue / Bug Report</option>
+                                <option value="general">General Counseling Guidance</option>
+                            </select>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="contact-message" class="form-label-custom">Message Details</label>
+                            <textarea id="contact-message" class="form-control" rows="5" placeholder="Please elaborate on your question, rank inquiry, or observation..." required></textarea>
+                        </div>
+
+                        <div class="col-12 pt-2">
+                            <button type="submit" class="apple-btn btn-primary-action w-100 py-3" id="contactSubmitBtn">
+                                <i class="bi bi-send-fill me-1"></i>
+                                <span>Transmit Inquiry</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</section>
+</div>
 {% endblock %}
 
 {% block scripts %}
@@ -139,13 +136,17 @@
         const alertBox = document.getElementById('contactAlert');
 
         btn.disabled = true;
-        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Transmitting...';
 
         setTimeout(() => {
             alertBox.classList.remove('d-none');
             this.reset();
             btn.disabled = false;
-            btn.innerHTML = '<i class="bi bi-send-fill me-1"></i><span>Transmit Message</span>';
+            btn.innerHTML = '<i class="bi bi-send-fill me-1"></i><span>Transmit Inquiry</span>';
+
+            if (window.showAppleToast) {
+                window.showAppleToast('Inquiry Transmitted', 'Your query was delivered successfully.', 'bi-check-circle-fill');
+            }
 
             setTimeout(() => {
                 alertBox.classList.add('d-none');

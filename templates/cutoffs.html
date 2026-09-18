@@ -57,39 +57,38 @@
 {% endblock %}
 
 {% block content %}
-<!-- Page Header -->
-<section class="py-4 border-bottom border-subtle bg-surface">
-    <div class="container">
+<div class="bento-container">
+
+    <!-- Page Header Bento -->
+    <section class="bento-hero p-4 p-md-5 mb-4 animate-fade-up">
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
             <div>
                 <div class="hero-pill-badge mb-2">
                     <i class="bi bi-bar-chart-line"></i>
                     <span>Official NTA Qualifying Benchmarks</span>
                 </div>
-                <h1 class="h2 mb-1">JEE Main 2025 Cutoff Percentiles</h1>
-                <p class="text-secondary small mb-0">
+                <h1 class="h2 mb-1">JEE Main Cutoff Percentiles</h1>
+                <p class="text-secondary small mb-0" style="max-width: 600px;">
                     Category-wise minimum qualifying percentiles for JEE Advanced eligibility and NIT+ JoSAA counseling.
                 </p>
             </div>
             <div class="d-flex align-items-center gap-2">
-                <a href="/predictor" class="btn btn-primary-action btn-sm">
+                <a href="/predictor" class="apple-btn btn-primary-action btn-sm">
                     <i class="bi bi-search"></i>
                     <span>College Predictor</span>
                 </a>
-                <a href="/rank-predictor" class="btn btn-secondary-action btn-sm">
+                <a href="/rank-predictor" class="apple-btn btn-secondary-action btn-sm">
                     <i class="bi bi-calculator"></i>
-                    <span>Rank Calculator</span>
+                    <span>AIR Calculator</span>
                 </a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Cutoff Overview Section -->
-<section class="py-5">
-    <div class="container">
+    <!-- Cutoff Overview Section -->
+    <section class="mb-5">
         <!-- High-Impact Category Grid -->
-        <div class="row g-3 mb-5">
+        <div class="row g-3 mb-4">
             <!-- General / UR -->
             <div class="col-lg-4 col-md-6">
                 <div class="metric-card">
@@ -246,10 +245,10 @@
         </div>
 
         <!-- Explanatory Knowledge Cards -->
-        <div class="row g-4">
+        <div class="row g-4 mb-4">
             <div class="col-md-4 reveal-on-scroll">
-                <div class="control-card spotlight-card h-100">
-                    <div class="feature-icon-badge">
+                <div class="bento-card h-100">
+                    <div class="dock-icon-box mb-3">
                         <i class="bi bi-info-circle"></i>
                     </div>
                     <h3 class="h5 mb-2">Qualifying vs Admission</h3>
@@ -260,8 +259,8 @@
             </div>
 
             <div class="col-md-4 reveal-on-scroll">
-                <div class="control-card spotlight-card h-100">
-                    <div class="feature-icon-badge">
+                <div class="bento-card h-100">
+                    <div class="dock-icon-box mb-3" style="background: var(--apple-green);">
                         <i class="bi bi-shield-check"></i>
                     </div>
                     <h3 class="h5 mb-2">Reservation Verification</h3>
@@ -272,23 +271,26 @@
             </div>
 
             <div class="col-md-4 reveal-on-scroll">
-                <div class="control-card spotlight-card h-100">
-                    <div class="feature-icon-badge">
-                        <i class="bi bi-lightning-charge"></i>
+                <div class="bento-card h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="dock-icon-box mb-3" style="background: var(--apple-orange);">
+                            <i class="bi bi-lightning-charge"></i>
+                        </div>
+                        <h3 class="h5 mb-2">Calculate Your Chances</h3>
+                        <p class="small text-secondary mb-3">
+                            Convert your JEE Main score or percentile into your anticipated All India Rank and check matching colleges across 6 rounds.
+                        </p>
                     </div>
-                    <h3 class="h5 mb-2">Calculate Your Chances</h3>
-                    <p class="small text-secondary mb-3">
-                        Convert your JEE Main score or percentile into your anticipated All India Rank and check matching colleges across 6 rounds.
-                    </p>
-                    <a href="/predictor" class="btn btn-primary-action btn-sm w-100">
+                    <a href="/predictor" class="apple-btn btn-primary-action btn-sm w-100">
                         <i class="bi bi-search"></i>
                         <span>Run Full College Predictor</span>
                     </a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+</div>
 {% endblock %}
 
 {% block scripts %}

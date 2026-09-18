@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}JoSAA College Predictor 2026 - Find Your Dream IIT, NIT, IIIT{% endblock %}
+{% block title %}JoSAA College Predictor 2026 - Official Cutoff Intelligence{% endblock %}
 
 {% block meta_description %}Predict your college admission chances for JoSAA 2026 counseling with precision analytics based on {{ "{:,}".format(stats.total_records) }}+ cutoff records from IITs, NITs, IIITs & GFTIs.{% endblock %}
 
@@ -24,7 +24,7 @@
             "name": "How accurate is the JoSAA College Predictor?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Our predictions are based on official JoSAA 2025 cutoff data with over 72,000 data points. While historical trends are highly reliable, actual cutoffs for JoSAA 2026 may vary based on factors like number of applicants and seat availability."
+                "text": "Our predictions are based on official JoSAA 2025 cutoff data with over 72,000 data points across 6 counseling rounds. While historical trends are highly reliable, actual cutoffs for JoSAA 2026 may vary based on applicants and seat availability."
             }
         },
         {
@@ -49,71 +49,73 @@
 {% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="container">
+<div class="bento-container">
+
+    <!-- ==================== Bento Hero Master ==================== -->
+    <section class="bento-hero animate-fade-up">
         <div class="row align-items-center g-5">
-            <!-- Left Column: Value Proposition -->
-            <div class="col-lg-6">
-                <div class="hero-pill-badge animate-fade-up">
+            <!-- Left: Primary Value Proposition -->
+            <div class="col-lg-7">
+                <div class="hero-pill-badge">
                     <i class="bi bi-shield-check"></i>
-                    <span>Official JoSAA Counseling Data (2025–2026)</span>
+                    <span>Official JoSAA 2025–2026 Cutoff Architecture</span>
                 </div>
 
-                <h1 class="hero-heading animate-fade-up delay-1">
-                    Predict Your College Allotment with Data Precision.
+                <h1 class="mb-3">
+                    Predict with precision.<br>
+                    Across all 6 rounds.
                 </h1>
 
-                <p class="hero-subtext animate-fade-up delay-2">
-                    Eliminate guesswork during JoSAA choice filling. Analyze {{ "{:,}".format(stats.total_records) }}+ verified cutoff ranks across 128 premier IITs, NITs, IIITs, and GFTIs based on your rank, category, and preferred engineering branch.
+                <p class="mb-4" style="max-width: 580px; font-size: 1.15rem;">
+                    Eliminate guesswork during JoSAA choice filling. Calibrated against {{ "{:,}".format(stats.total_records) }}+ verified cutoff ranks across 128 premier IITs, NITs, IIITs, and GFTIs. No accounts. No marketing gates. Pure counseling intelligence.
                 </p>
 
-                <div class="hero-actions animate-fade-up delay-3">
-                    <a href="/predictor" class="btn btn-primary-action">
-                        <i class="bi bi-search"></i>
+                <div class="d-flex align-items-center gap-3 flex-wrap mb-4">
+                    <a href="/predictor" class="apple-btn btn-primary-action">
+                        <i class="bi bi-lightning-charge-fill"></i>
                         <span>Launch Predictor</span>
                     </a>
-                    <a href="/rank-predictor" class="btn btn-secondary-action">
+                    <a href="/rank-predictor" class="apple-btn btn-secondary-action">
                         <i class="bi bi-calculator"></i>
-                        <span>Rank Calculator</span>
+                        <span>AIR Calculator</span>
                     </a>
                 </div>
 
-                <!-- Trust indicators -->
-                <div class="hero-trust-row animate-fade-up delay-3">
-                    <div class="trust-cell">
-                        <i class="bi bi-database-check"></i>
+                <!-- Apple Minimalist Trust Row -->
+                <div class="d-flex align-items-center gap-4 flex-wrap text-tertiary small pt-2 border-top border-subtle">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check2-circle text-brand"></i>
                         <span>6 Counseling Rounds</span>
                     </div>
-                    <div class="trust-cell">
-                        <i class="bi bi-check2-circle"></i>
-                        <span>128 Colleges Verified</span>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check2-circle text-brand"></i>
+                        <span>128 Institutes Verified</span>
                     </div>
-                    <div class="trust-cell">
-                        <i class="bi bi-cpu"></i>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-check2-circle text-brand"></i>
                         <span>Zero Registration Required</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Interactive Quick Rank Widget -->
-            <div class="col-lg-6">
-                <div class="hero-widget-card animate-fade-up delay-2">
-                    <div class="hero-widget-header">
-                        <h3>
-                            <i class="bi bi-sliders text-brand"></i>
-                            <span>Quick Prediction Test</span>
-                        </h3>
+            <!-- Right: Interactive Bento Quick Test Tile -->
+            <div class="col-lg-5">
+                <div class="bento-card p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-subtle">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="status-dot" style="background: var(--brand);"></span>
+                            <span class="small fw-bold text-uppercase tracking-wider">Quick Diagnostic</span>
+                        </div>
                         <span class="status-pill safe">
                             <span class="status-dot"></span>
-                            <span>Live Database</span>
+                            <span>Live Engine</span>
                         </span>
                     </div>
 
                     <form action="/predictor" method="GET" class="d-flex flex-column gap-3">
                         <div>
                             <label for="hero-rank" class="form-label-custom">Enter Your JEE Rank</label>
-                            <input type="number" id="hero-rank" name="rank" class="form-control tabular-nums" placeholder="e.g., 4250" min="1" required>
+                            <input type="number" id="hero-rank" name="rank" class="form-control tabular-nums" placeholder="e.g. 4250" min="1" required>
                         </div>
 
                         <div class="row g-2">
@@ -128,9 +130,9 @@
                                 </select>
                             </div>
                             <div class="col-6">
-                                <label for="hero-type" class="form-label-custom">Institute Type</label>
+                                <label for="hero-type" class="form-label-custom">Tier</label>
                                 <select id="hero-type" name="type" class="form-select">
-                                    <option value="ALL">All Institutes</option>
+                                    <option value="ALL">All Colleges</option>
                                     <option value="IIT">IITs Only</option>
                                     <option value="NIT">NITs Only</option>
                                     <option value="IIIT">IIITs Only</option>
@@ -140,306 +142,307 @@
                         </div>
 
                         <div class="pt-2">
-                            <button type="submit" class="btn btn-primary-action w-100">
-                                <i class="bi bi-arrow-right-circle"></i>
-                                <span>Calculate Admission Chances</span>
+                            <button type="submit" class="apple-btn btn-primary-action w-100">
+                                <span>Calculate Admission Probability</span>
+                                <i class="bi bi-arrow-right"></i>
                             </button>
                         </div>
 
                         <div class="d-flex justify-content-between align-items-center pt-2 small text-tertiary">
-                            <span><i class="bi bi-lock me-1"></i>Client-side data match</span>
-                            <a href="/cutoffs" class="text-tertiary">View Qualifying Percentiles →</a>
+                            <span><i class="bi bi-shield-lock me-1"></i>Client-side data match</span>
+                            <a href="/cutoffs" class="text-tertiary">Qualifying Percentiles →</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Live Stats Section -->
-<section class="stats-strip">
-    <div class="container">
-        <div class="row g-4">
+    <!-- ==================== Bento Row 2: Live Stats Strip ==================== -->
+    <section class="mb-4">
+        <div class="row g-3">
             <div class="col-lg-3 col-6 reveal-on-scroll">
-                <div class="metric-card spotlight-card">
+                <div class="metric-card">
                     <div class="metric-label">Cutoff Records</div>
                     <div class="metric-value tabular-nums" data-count="{{ stats.total_records }}">{{ "{:,}".format(stats.total_records) }}+</div>
                     <div class="metric-subtext">Across 6 official rounds</div>
                 </div>
             </div>
             <div class="col-lg-3 col-6 reveal-on-scroll">
-                <div class="metric-card spotlight-card">
+                <div class="metric-card">
                     <div class="metric-label">Institutes Loaded</div>
                     <div class="metric-value tabular-nums" data-count="{{ stats.unique_institutes }}">{{ stats.unique_institutes }}</div>
                     <div class="metric-subtext">IITs, NITs, IIITs, GFTIs</div>
                 </div>
             </div>
             <div class="col-lg-3 col-6 reveal-on-scroll">
-                <div class="metric-card spotlight-card">
+                <div class="metric-card">
                     <div class="metric-label">Academic Branches</div>
                     <div class="metric-value tabular-nums" data-count="{{ stats.unique_programs }}">{{ stats.unique_programs }}</div>
                     <div class="metric-subtext">CSE, ECE, EE, Mech, etc.</div>
                 </div>
             </div>
             <div class="col-lg-3 col-6 reveal-on-scroll">
-                <div class="metric-card spotlight-card">
+                <div class="metric-card">
                     <div class="metric-label">Counseling Rounds</div>
                     <div class="metric-value tabular-nums" data-count="6">6</div>
                     <div class="metric-subtext">Round 1 to Final Round 6</div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Engineered Features Grid -->
-<section class="py-5 my-3">
-    <div class="container">
-        <div class="text-center max-w-xl mx-auto mb-5 reveal-on-scroll">
+    <!-- ==================== Bento Row 3: Engineered Features Grid ==================== -->
+    <section class="mb-5">
+        <div class="text-center max-w-xl mx-auto mb-4 reveal-on-scroll">
             <div class="hero-pill-badge mb-2">Platform Capabilities</div>
-            <h2 class="h2 mb-3">Engineered for Choice-Filling Strategy</h2>
-            <p class="text-secondary">Explore features designed to give you strategic clarity during JoSAA counseling.</p>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6 reveal-on-scroll">
-                <div class="feature-grid-card spotlight-card">
-                    <div class="feature-icon-badge">
-                        <i class="bi bi-bar-chart-steps"></i>
-                    </div>
-                    <h3>Multi-Round Trend Tracking</h3>
-                    <p>Compare cutoff movements from Round 1 through Round 6 to evaluate seat float trends and realistic progression chances.</p>
-                    <a href="/predictor" class="feature-arrow-link">
-                        <span>Open Multi-Round View</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 reveal-on-scroll">
-                <div class="feature-grid-card spotlight-card">
-                    <div class="feature-icon-badge">
-                        <i class="bi bi-funnel"></i>
-                    </div>
-                    <h3>Quota & Category Precision</h3>
-                    <p>Calibrated algorithms supporting All India (AI), Home State (HS), Other State (OS), and reserved quotas (OBC-NCL, EWS, SC, ST, PwD).</p>
-                    <a href="/predictor" class="feature-arrow-link">
-                        <span>Filter by Category</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 reveal-on-scroll">
-                <div class="feature-grid-card spotlight-card">
-                    <div class="feature-icon-badge">
-                        <i class="bi bi-shield-check"></i>
-                    </div>
-                    <h3>Probability Indicator Engine</h3>
-                    <p>Transparent classification dividing your options into Safe (1,000+ margin), Moderate (100–1,000 margin), and Risky options.</p>
-                    <a href="/predictor" class="feature-arrow-link">
-                        <span>Check Your Margins</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 reveal-on-scroll">
-                <div class="feature-grid-card spotlight-card">
-                    <div class="feature-icon-badge">
-                        <i class="bi bi-calculator"></i>
-                    </div>
-                    <h3>Score-to-Rank Calculator</h3>
-                    <p>Convert your expected JEE Main score (0–300) into calibrated percentile and All India Rank ranges with verified NTA data.</p>
-                    <a href="/rank-predictor" class="feature-arrow-link">
-                        <span>Calculate AIR</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 reveal-on-scroll">
-                <div class="feature-grid-card spotlight-card">
-                    <div class="feature-icon-badge">
-                        <i class="bi bi-download"></i>
-                    </div>
-                    <h3>1-Click CSV Export</h3>
-                    <p>Download your personalized predicted college list in CSV format to plan offline, share with mentors, or feed into your choice sheet.</p>
-                    <a href="/predictor" class="feature-arrow-link">
-                        <span>Try Export Tool</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6 reveal-on-scroll">
-                <div class="feature-grid-card spotlight-card">
-                    <div class="feature-icon-badge">
-                        <i class="bi bi-robot"></i>
-                    </div>
-                    <h3>AI Counseling Assistant</h3>
-                    <p>Ask complex questions about cutoff benchmarks, branch comparisons, and specific college prospects directly to our AI counselor.</p>
-                    <a href="/about" class="feature-arrow-link">
-                        <span>Learn About AI Support</span>
-                        <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Institute Directory Section -->
-<section class="py-5 bg-surface-elevated border-top border-bottom border-subtle">
-    <div class="container">
-        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4">
-            <div>
-                <h2 class="h3 mb-1">Explore by Institute Tier</h2>
-                <p class="text-secondary small mb-0">Direct access to cutoffs across India's premier engineering systems.</p>
-            </div>
-            <a href="/blog" class="btn btn-secondary-action btn-sm">
-                <span>View Comprehensive College Guides</span>
-                <i class="bi bi-arrow-right ms-1"></i>
-            </a>
+            <h2 class="mb-2">Engineered for Choice-Filling Strategy</h2>
+            <p class="text-secondary">Designed with Apple-level rigor to give you strategic clarity during JoSAA counseling.</p>
         </div>
 
         <div class="row g-3">
-            <div class="col-lg-3 col-md-6">
-                <a href="/predictor?type=IIT" class="directory-card">
-                    <div class="directory-header">
-                        <span class="inst-badge iit">Tier 1</span>
-                        <i class="bi bi-arrow-up-right text-tertiary"></i>
+            <!-- Asymmetrical Bento: Large Span 8 -->
+            <div class="col-lg-8 reveal-on-scroll">
+                <div class="bento-card h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="dock-icon-box mb-3">
+                            <i class="bi bi-bar-chart-steps"></i>
+                        </div>
+                        <h3>Multi-Round Trend Tracking</h3>
+                        <p class="mb-4">
+                            Track cutoff movement across all 6 rounds of JoSAA counseling. Understand how seats float, when branches close early, and where candidates realistically progress into better options between Round 1 and Round 6.
+                        </p>
                     </div>
-                    <div class="directory-title">23 IITs</div>
-                    <div class="directory-desc">Indian Institutes of Technology. Admissions exclusively through JEE Advanced.</div>
-                </a>
+                    <div class="pt-3 border-top border-subtle d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <span class="small text-tertiary">Official Round 1 through Round 6 comparison</span>
+                        <a href="/predictor" class="apple-btn btn-secondary-action btn-sm">
+                            <span>Open Multi-Round View</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-lg-3 col-md-6">
-                <a href="/predictor?type=NIT" class="directory-card">
-                    <div class="directory-header">
-                        <span class="inst-badge nit">Tier 1</span>
-                        <i class="bi bi-arrow-up-right text-tertiary"></i>
+            <!-- Span 4 -->
+            <div class="col-lg-4 reveal-on-scroll">
+                <div class="bento-card h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="dock-icon-box mb-3" style="background: var(--apple-purple);">
+                            <i class="bi bi-funnel"></i>
+                        </div>
+                        <h3>Quota & Category Precision</h3>
+                        <p class="mb-4">
+                            Calibrated algorithms supporting All India (AI), Home State (HS), Other State (OS), and reserved quotas (OBC-NCL, EWS, SC, ST, PwD).
+                        </p>
                     </div>
-                    <div class="directory-title">31 NITs</div>
-                    <div class="directory-desc">National Institutes of Technology with 50% Home State & 50% Other State quotas.</div>
-                </a>
+                    <div class="pt-3 border-top border-subtle">
+                        <a href="/predictor" class="apple-btn btn-secondary-action btn-sm w-100">
+                            <span>Filter by Quota</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-lg-3 col-md-6">
-                <a href="/predictor?type=IIIT" class="directory-card">
-                    <div class="directory-header">
-                        <span class="inst-badge iiit">Specialized</span>
-                        <i class="bi bi-arrow-up-right text-tertiary"></i>
+            <!-- Span 4 -->
+            <div class="col-lg-4 reveal-on-scroll">
+                <div class="bento-card h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="dock-icon-box mb-3" style="background: var(--apple-green);">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h3>Probability Engine</h3>
+                        <p class="mb-4">
+                            Transparent classification dividing your options into Safe (&ge;1,000 rank margin), Moderate (100–1,000 margin), and Risky options.
+                        </p>
                     </div>
-                    <div class="directory-title">26 IIITs</div>
-                    <div class="directory-desc">Institutes of Information Technology specializing in Computer Science, AI, and ECE.</div>
-                </a>
+                    <div class="pt-3 border-top border-subtle">
+                        <a href="/predictor" class="apple-btn btn-secondary-action btn-sm w-100">
+                            <span>Check Your Margins</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-lg-3 col-md-6">
-                <a href="/predictor?type=GFTI" class="directory-card">
-                    <div class="directory-header">
-                        <span class="inst-badge gfti">Central</span>
-                        <i class="bi bi-arrow-up-right text-tertiary"></i>
+            <!-- Span 8 -->
+            <div class="col-lg-8 reveal-on-scroll">
+                <div class="bento-card h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="dock-icon-box mb-3" style="background: var(--apple-orange);">
+                            <i class="bi bi-calculator"></i>
+                        </div>
+                        <h3>NTA Score-to-AIR Engine & 1-Click Export</h3>
+                        <p class="mb-4">
+                            Convert raw marks (0–300) into calibrated All India Rank ranges with verified NTA data, and download your predicted college matrix directly in CSV format to build your choice-filling priority list.
+                        </p>
                     </div>
-                    <div class="directory-title">30+ GFTIs</div>
-                    <div class="directory-desc">Government Funded Technical Institutes including PEC Chandigarh, BIT Mesra, and JNU.</div>
-                </a>
+                    <div class="pt-3 border-top border-subtle d-flex align-items-center justify-content-between flex-wrap gap-2">
+                        <span class="small text-tertiary">Official NTA shift percentiles calibrated</span>
+                        <div class="d-flex gap-2">
+                            <a href="/rank-predictor" class="apple-btn btn-secondary-action btn-sm">
+                                <span>Calculate AIR</span>
+                            </a>
+                            <a href="/predictor" class="apple-btn btn-primary-action btn-sm">
+                                <span>Export CSV</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- FAQ Section -->
-<section class="py-5 my-4">
-    <div class="container">
+    <!-- ==================== Bento Row 4: Institute Tier Bento ==================== -->
+    <section class="mb-5">
+        <div class="bento-card bento-card-large reveal-on-scroll">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 pb-2 border-bottom border-subtle">
+                <div>
+                    <h2 class="h3 mb-1">Explore by Institute Tier</h2>
+                    <p class="text-secondary small mb-0">Direct access to cutoffs across India's premier engineering systems.</p>
+                </div>
+                <a href="/blog" class="apple-btn btn-secondary-action btn-sm">
+                    <span>View Institute Guides</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-lg-3 col-md-6">
+                    <a href="/predictor?type=IIT" class="bento-card p-3 d-block text-decoration-none h-100">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="inst-badge iit">23 IITs</span>
+                            <i class="bi bi-arrow-up-right text-tertiary"></i>
+                        </div>
+                        <div class="fw-bold text-primary mb-1">Indian Institutes of Technology</div>
+                        <div class="small text-secondary">Admissions exclusively through JEE Advanced rank list.</div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="/predictor?type=NIT" class="bento-card p-3 d-block text-decoration-none h-100">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="inst-badge nit">31 NITs</span>
+                            <i class="bi bi-arrow-up-right text-tertiary"></i>
+                        </div>
+                        <div class="fw-bold text-primary mb-1">National Institutes of Technology</div>
+                        <div class="small text-secondary">50% Home State & 50% Other State quota allocation.</div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="/predictor?type=IIIT" class="bento-card p-3 d-block text-decoration-none h-100">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="inst-badge iiit">26 IIITs</span>
+                            <i class="bi bi-arrow-up-right text-tertiary"></i>
+                        </div>
+                        <div class="fw-bold text-primary mb-1">Institutes of Information Tech</div>
+                        <div class="small text-secondary">Specialized in Computer Science, AI, and Electronics.</div>
+                    </a>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <a href="/predictor?type=GFTI" class="bento-card p-3 d-block text-decoration-none h-100">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="inst-badge gfti">30+ GFTIs</span>
+                            <i class="bi bi-arrow-up-right text-tertiary"></i>
+                        </div>
+                        <div class="fw-bold text-primary mb-1">Centrally Funded Institutes</div>
+                        <div class="small text-secondary">Including PEC Chandigarh, BIT Mesra, and JNU.</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== Bento Row 5: Apple Accordion FAQ ==================== -->
+    <section class="mb-5">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="text-center mb-5">
-                    <div class="hero-pill-badge mb-2">Common Inquiries</div>
-                    <h2 class="h2 mb-2">Frequently Asked Questions</h2>
-                    <p class="text-secondary">Essential details about JoSAA counseling data, accuracy, and predictions.</p>
+            <div class="col-lg-9">
+                <div class="text-center mb-4 reveal-on-scroll">
+                    <div class="hero-pill-badge mb-2">Knowledge Base</div>
+                    <h2 class="mb-2">Frequently Asked Questions</h2>
+                    <p class="text-secondary">Essential details about counseling data, accuracy, and quota mechanisms.</p>
                 </div>
 
-                <div class="accordion clean-accordion" id="homeFaq">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                How accurate are the predictions for JoSAA 2026?
-                            </button>
-                        </h2>
-                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#homeFaq">
-                            <div class="accordion-body">
-                                The predictions are calculated directly from official JoSAA 2025 opening and closing rank archives. While cutoff trends are remarkably stable year-over-year, factors like total applicants, new branches, or seat matrix changes can shift closing ranks by 2–5%. We recommend using the "Moderate" and "Safe" classifications for conservative planning.
+                <div class="bento-card p-4 reveal-on-scroll">
+                    <div class="accordion clean-accordion" id="homeFaq">
+                        <div class="accordion-item mb-2 border-0 bg-transparent">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button rounded-3 bg-surface-elevated text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    How accurate are the predictions for JoSAA 2026?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#homeFaq">
+                                <div class="accordion-body text-secondary">
+                                    The predictions are calculated directly from official JoSAA 2025 opening and closing rank archives. While cutoff trends are remarkably stable year-over-year, factors like total applicants, new branches, or seat matrix changes can shift closing ranks by 2–5%. We recommend using the "Moderate" and "Safe" classifications for conservative planning.
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                Should I enter Category Rank or All India CRL Rank?
-                            </button>
-                        </h2>
-                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#homeFaq">
-                            <div class="accordion-body">
-                                If you select a reserved category (such as OBC-NCL, EWS, SC, or ST), JoSAA cutoffs are published as <strong>Category Ranks</strong>. Therefore, you must enter your Category Rank for accurate results. If you are applying under the General/OPEN category, enter your Common Rank List (CRL) rank.
+                        <div class="accordion-item mb-2 border-0 bg-transparent">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded-3 bg-surface-elevated text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Should I enter Category Rank or All India CRL Rank?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#homeFaq">
+                                <div class="accordion-body text-secondary">
+                                    If you select a reserved category (such as OBC-NCL, EWS, SC, or ST), JoSAA cutoffs are published as <strong>Category Ranks</strong>. Therefore, you must enter your Category Rank for accurate results. If you are applying under the General/OPEN category, enter your Common Rank List (CRL) rank.
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                What is the difference between Home State (HS) and Other State (OS) quotas?
-                            </button>
-                        </h2>
-                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#homeFaq">
-                            <div class="accordion-body">
-                                In NITs, 50% of the seats are reserved for students who completed their Class 12 exam within the same state where the NIT is located (Home State Quota). The remaining 50% are open to candidates across the country (Other State Quota). In IITs, all seats are All India (AI) quota with no state reservations.
+                        <div class="accordion-item mb-2 border-0 bg-transparent">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded-3 bg-surface-elevated text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    What is the difference between Home State (HS) and Other State (OS) quotas?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#homeFaq">
+                                <div class="accordion-body text-secondary">
+                                    In NITs, 50% of the seats are reserved for students who completed their Class 12 exam within the same state where the NIT is located (Home State Quota). The remaining 50% are open to candidates across the country (Other State Quota). In IITs, all seats are All India (AI) quota with no state reservations.
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                                Is this tool completely free to use?
-                            </button>
-                        </h2>
-                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#homeFaq">
-                            <div class="accordion-body">
-                                Yes. JoSAA College Predictor is 100% free with no paywalls, registration gates, or hidden charges. We believe high-quality counseling guidance should be freely accessible to every engineering aspirant.
+                        <div class="accordion-item border-0 bg-transparent">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded-3 bg-surface-elevated text-primary" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    Is this platform completely free to use?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#homeFaq">
+                                <div class="accordion-body text-secondary">
+                                    Yes. JoSAA College Predictor is 100% free with no paywalls, registration gates, or hidden charges. We believe high-quality counseling guidance should be freely accessible to every engineering aspirant.
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Clean CTA Block -->
-<section class="py-5">
-    <div class="container">
-        <div class="control-card text-center p-5">
-            <h2 class="h2 mb-3">Begin Exploring Your Options</h2>
-            <p class="text-secondary max-w-xl mx-auto mb-4">
-                Enter your rank and branch preferences to view the exact colleges within your admission threshold.
+    <!-- ==================== Bento Row 6: Apple Action Bento ==================== -->
+    <section class="mb-4">
+        <div class="bento-card bento-card-large text-center reveal-on-scroll">
+            <h2 class="mb-3">Begin Exploring Your Options</h2>
+            <p class="text-secondary max-w-xl mx-auto mb-4" style="font-size: 1.1rem;">
+                Enter your rank and counseling preferences to view the exact colleges within your admission threshold.
             </p>
             <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="/predictor" class="btn btn-primary-action">
+                <a href="/predictor" class="apple-btn btn-primary-action">
                     <i class="bi bi-lightning-charge-fill"></i>
                     <span>Start College Predictor</span>
                 </a>
-                <a href="/cutoffs" class="btn btn-secondary-action">
+                <a href="/cutoffs" class="apple-btn btn-secondary-action">
                     <i class="bi bi-bar-chart"></i>
-                    <span>View Category Cutoffs</span>
+                    <span>View Qualifying Cutoffs</span>
                 </a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+</div>
 {% endblock %}

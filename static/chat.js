@@ -25,18 +25,22 @@ document.addEventListener('DOMContentLoaded', function () {
     // Chat History Management
     let chatHistory = [];
 
-    // Toggle Chat Window
+    // Toggle Chat Window with Apple Sheet Presentation
     chatBubble.addEventListener('click', function () {
         chatWindow.classList.toggle('d-none');
         if (!chatWindow.classList.contains('d-none')) {
+            if (window.openAppleSheet) window.openAppleSheet();
             chatInput.focus();
             scrollToBottom();
+        } else {
+            if (window.closeAppleSheet) window.closeAppleSheet();
         }
     });
 
     if (closeChatBtn) {
         closeChatBtn.addEventListener('click', function () {
             chatWindow.classList.add('d-none');
+            if (window.closeAppleSheet) window.closeAppleSheet();
         });
     }
 

@@ -23,37 +23,41 @@
 {% endblock %}
 
 {% block content %}
-<!-- Page Header -->
-<section class="py-4 border-bottom border-subtle bg-surface">
-    <div class="container">
+<div class="bento-container py-4">
+    <!-- Apple Bento Hero -->
+    <div class="bento-hero mb-4">
         <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
-            <div>
-                <div class="hero-pill-badge mb-2">
+            <div style="max-width: 800px;">
+                <span class="apple-category-pill mb-3">
                     <i class="bi bi-buildings"></i>
-                    <span>College Profile Dossiers</span>
-                </div>
-                <h1 class="h2 mb-1">Premier Engineering Institute Guides</h1>
-                <p class="text-secondary small mb-0">
-                    In-depth analytical profiles covering NIRF rankings, placement metrics, fee structures, and campus environments.
+                    <span>College Profile Intelligence</span>
+                </span>
+                <h1 class="hero-headline mb-3">Premier Engineering Institute Dossiers</h1>
+                <p class="hero-subheadline mb-0">
+                    In-depth analytical profiles covering NIRF 2025 rankings, verified placement metrics, tuition fees, and campus life across India's top IITs, NITs, and IIITs.
                 </p>
             </div>
-            <a href="/predictor" class="btn btn-primary-action btn-sm">
-                <i class="bi bi-search"></i>
-                <span>College Predictor</span>
-            </a>
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <a href="/predictor" class="apple-btn btn-primary-action">
+                    <i class="bi bi-search"></i>
+                    <span>College Predictor</span>
+                </a>
+                <a href="/rank-predictor" class="apple-btn btn-secondary-action">
+                    <i class="bi bi-calculator"></i>
+                    <span>Rank Predictor</span>
+                </a>
+            </div>
         </div>
     </div>
-</section>
 
-<!-- Institute Grid Section -->
-<section class="py-5">
-    <div class="container">
-        <!-- Segmented Filter Control -->
-        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 pb-3 border-bottom border-subtle">
-            <div class="segmented-control">
+    <!-- Apple Filter & Live Search Toolbar -->
+    <div class="bento-card p-3 mb-4">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <!-- Morphing Segmented Control -->
+            <div class="segmented-control" id="instTypeSegmented">
                 <button class="segmented-tab active" data-filter="all" type="button">
                     <span>All Colleges</span>
-                    <span class="meta-badge">{{ institutes | length }}</span>
+                    <span class="meta-badge" id="badgeAll">{{ institutes | length }}</span>
                 </button>
                 <button class="segmented-tab" data-filter="iit" type="button">
                     <span>IITs</span>
@@ -65,78 +69,133 @@
                 </button>
             </div>
 
-            <div class="small text-tertiary">
-                Showing verified data from NIRF 2025 & official placement reports
+            <!-- In-Place Search Pill -->
+            <div class="d-flex align-items-center gap-2" style="min-width: 280px; flex: 1; max-width: 420px;">
+                <div class="position-relative w-100">
+                    <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-tertiary"></i>
+                    <input type="text" id="instSearchInput" class="form-control ps-5 py-2" placeholder="Search by name, city, NIRF..." style="border-radius: var(--radius-pill); font-size: 0.875rem;">
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Cards Grid -->
-        <div class="row g-4" id="institutesGrid">
-            {% for inst in institutes %}
-            <div class="col-lg-4 col-md-6 inst-col" data-type="{{ inst.type | lower }}">
-                <div class="guide-card">
-                    <div class="guide-card-header">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
-                            <span class="inst-badge {{ inst.type | lower }}">{{ inst.type }}</span>
-                            <span class="small text-tertiary tabular-nums"><i class="bi bi-geo-alt me-1"></i>{{ inst.location }}</span>
+    <!-- Institutes Bento Grid -->
+    <div class="row g-4" id="institutesGrid">
+        {% for inst in institutes %}
+        <div class="col-lg-4 col-md-6 inst-col" data-type="{{ inst.type | lower }}" data-search="{{ (inst.name ~ ' ' ~ (inst.short_name or '') ~ ' ' ~ inst.location ~ ' ' ~ (inst.nirf_rank|string)) | lower }}">
+            <div class="guide-bento-card">
+                <div class="guide-card-header">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <span class="inst-badge {{ inst.type | lower }}">{{ inst.type }}</span>
+                        <span class="small text-tertiary tabular-nums"><i class="bi bi-geo-alt me-1"></i>{{ inst.location }}</span>
+                    </div>
+                    <h3 class="h5 mb-1 text-primary fw-bold">{{ inst.short_name or inst.name }}</h3>
+                    <div class="small text-tertiary">Est. {{ inst.established }} • NIRF #{{ inst.nirf_rank or 'Top Ranked' }}</div>
+                </div>
+
+                <div class="guide-card-body">
+                    <p class="small text-secondary mb-3" style="line-height: 1.6;">
+                        {{ inst.description[:140] }}...
+                    </p>
+
+                    <!-- Key Performance Metrics -->
+                    <div class="guide-stat-row mb-3">
+                        <div class="guide-stat-item">
+                            <div>Avg CTC Package</div>
+                            <div class="guide-stat-val tabular-nums text-brand">{{ inst.avg_package }} LPA</div>
                         </div>
-                        <h3 class="h5 mb-1 text-primary fw-bold">{{ inst.short_name or inst.name }}</h3>
-                        <div class="small text-tertiary">Est. {{ inst.established }} • NIRF: {{ inst.nirf_rank or 'Top Ranked' }}</div>
+                        <div class="guide-stat-item">
+                            <div>Tuition Fee / Yr</div>
+                            <div class="guide-stat-val tabular-nums">₹{{ inst.fees }}</div>
+                        </div>
                     </div>
 
-                    <div class="guide-card-body">
-                        <p class="small text-secondary mb-3" style="line-height: 1.6;">
-                            {{ inst.description[:140] }}...
-                        </p>
-
-                        <!-- Key Performance Metrics -->
-                        <div class="guide-stat-row">
-                            <div class="guide-stat-item">
-                                <div>Avg Package</div>
-                                <div class="guide-stat-val tabular-nums text-brand">{{ inst.avg_package }} LPA</div>
-                            </div>
-                            <div class="guide-stat-item">
-                                <div>Tuition Fee</div>
-                                <div class="guide-stat-val tabular-nums">{{ inst.fees }} / yr</div>
-                            </div>
+                    <div class="pt-3 border-top border-subtle d-flex align-items-center justify-content-between mt-auto">
+                        <div class="small text-tertiary">
+                            Highest: <strong class="text-primary tabular-nums">{{ inst.highest_package or 'N/A' }}</strong>
                         </div>
-
-                        <div class="pt-3 mt-3 border-top border-subtle d-flex align-items-center justify-content-between">
-                            <span class="small text-tertiary">High Package: <strong class="text-primary tabular-nums">{{ inst.highest_package or 'N/A' }}</strong></span>
-                            <a href="/blog/{{ inst.slug }}" class="btn btn-secondary-action btn-sm">
-                                <span>Read Profile</span>
-                                <i class="bi bi-arrow-right ms-1"></i>
-                            </a>
-                        </div>
+                        <a href="/blog/{{ inst.slug }}" class="apple-btn btn-secondary-action btn-sm">
+                            <span>Explore Dossier</span>
+                            <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
-</section>
+
+    <!-- Empty State (if search yields 0 matches) -->
+    <div id="noResultsState" class="bento-card text-center py-5 d-none mt-4">
+        <div class="display-6 text-tertiary mb-2"><i class="bi bi-search"></i></div>
+        <h4 class="h5 text-primary mb-1">No Institutes Match Your Search</h4>
+        <p class="text-secondary small mb-3">Try refining your keyword or clearing the institute filter.</p>
+        <button type="button" class="apple-btn btn-secondary-action btn-sm" id="resetInstFilterBtn">
+            <span>Reset Filters</span>
+        </button>
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-    // Segmented tab filter
-    const tabs = document.querySelectorAll('.segmented-tab');
-    const cols = document.querySelectorAll('.inst-col');
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('#instTypeSegmented .segmented-tab');
+        const cols = document.querySelectorAll('.inst-col');
+        const searchInput = document.getElementById('instSearchInput');
+        const emptyState = document.getElementById('noResultsState');
+        const resetBtn = document.getElementById('resetInstFilterBtn');
+        let currentTypeFilter = 'all';
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
+        function applyFilter() {
+            const query = (searchInput.value || '').trim().toLowerCase();
+            let visibleCount = 0;
 
-            const filter = tab.dataset.filter;
             cols.forEach(col => {
-                if (filter === 'all' || col.dataset.type === filter) {
+                const matchesType = (currentTypeFilter === 'all' || col.dataset.type === currentTypeFilter);
+                const matchesSearch = (!query || col.dataset.search.includes(query));
+
+                if (matchesType && matchesSearch) {
                     col.style.display = 'block';
+                    visibleCount++;
                 } else {
                     col.style.display = 'none';
                 }
             });
+
+            if (emptyState) {
+                if (visibleCount === 0) {
+                    emptyState.classList.remove('d-none');
+                } else {
+                    emptyState.classList.add('d-none');
+                }
+            }
+        }
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentTypeFilter = tab.dataset.filter;
+                applyFilter();
+            });
         });
+
+        if (searchInput) {
+            searchInput.addEventListener('input', applyFilter);
+        }
+
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                currentTypeFilter = 'all';
+                tabs.forEach(t => {
+                    if (t.dataset.filter === 'all') t.classList.add('active');
+                    else t.classList.remove('active');
+                });
+                applyFilter();
+            });
+        }
     });
 </script>
 {% endblock %}

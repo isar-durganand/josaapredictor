@@ -600,6 +600,11 @@ JSON Structure (only for Scenario 1):
         return jsonify({'response': "I encountered an error. Please try again."})
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
 # Load data at module level (important for gunicorn/production)
 print("Loading JoSAA 2025 Cutoff Data...")
 load_data()

@@ -1,21 +1,21 @@
 /**
- * JoSAA Predictor - World-Class Interaction & Animation Engine
- * Inspired by Linear, Vercel, and Stripe.
- * Provides:
- * 1. Global Command Palette (Ctrl+K / Cmd+K)
- * 2. Mouse Spotlight Card Shimmer
- * 3. Animated Number Rollers
- * 4. Interactive Segmented Sliding Pills
- * 5. Instant Table Column Sorting & Live Search
- * 6. Interactive Toast Notification System
- * 7. Keyboard Navigation & Accessibility
+ * JoSAA Predictor - The Apple Interaction & Animation Engine
+ * Engineered to strict Apple HIG & iOS/macOS physics guidelines:
+ * 1. The Dynamic Dock & Hover Magnification
+ * 2. Spatial Continuity & Apple Sheet Presentation (Z-axis scale)
+ * 3. macOS Spotlight Command Search (⌘K / ⌘Space)
+ * 4. Fluid Morphing Segmented Pill Controls
+ * 5. Physics-Based Ease-Out Number Rollers
+ * 6. Tactile Slider & Haptic Button Feedback
+ * 7. Apple Dynamic Island Toast Notifications
+ * 8. Real-time Spec Table Sorting & In-place Filtering
  */
 
 (function () {
     'use strict';
 
     // ==========================================
-    // 1. Toast Notification System
+    // 1. Apple Dynamic Island / HUD Toast System
     // ==========================================
     window.showToast = function (title, message = '', icon = 'bi-check-circle-fill', type = 'success') {
         let container = document.getElementById('toast-container');
@@ -27,9 +27,15 @@
         }
 
         const toast = document.createElement('div');
-        toast.className = `custom-toast toast-${type} animate-toast-in`;
+        toast.className = `custom-toast animate-toast-in`;
+        
+        let iconColor = 'var(--brand)';
+        if (type === 'warning') iconColor = 'var(--apple-orange)';
+        if (type === 'danger') iconColor = 'var(--apple-red)';
+        if (type === 'success') iconColor = 'var(--apple-green)';
+
         toast.innerHTML = `
-            <div class="toast-icon"><i class="bi ${icon}"></i></div>
+            <div class="toast-icon" style="color: ${iconColor};"><i class="bi ${icon}"></i></div>
             <div class="toast-body">
                 <div class="toast-title">${title}</div>
                 ${message ? `<div class="toast-desc">${message}</div>` : ''}
@@ -49,20 +55,31 @@
                 toast.classList.add('animate-toast-out');
                 setTimeout(() => toast.remove(), 250);
             }
-        }, 4000);
+        }, 3600);
     };
 
     // ==========================================
-    // 2. Command Palette (Ctrl+K / Cmd+K)
+    // 2. Spatial Continuity: Apple Sheet Presentation
     // ==========================================
-    const commandItems = [
+    window.openAppleSheet = function () {
+        document.body.classList.add('sheet-open');
+    };
+
+    window.closeAppleSheet = function () {
+        document.body.classList.remove('sheet-open');
+    };
+
+    // ==========================================
+    // 3. macOS Spotlight Command Search (⌘K / ⌘Space)
+    // ==========================================
+    const spotlightItems = [
         { title: 'Launch College Predictor', category: 'Tool', url: '/predictor', icon: 'bi-search' },
-        { title: 'Calculate AIR from Score / Percentile', category: 'Tool', url: '/rank-predictor', icon: 'bi-calculator' },
-        { title: 'JEE Main 2025 Cutoff Percentiles', category: 'Data', url: '/cutoffs', icon: 'bi-bar-chart-line' },
-        { title: 'Explore Top 23 IITs', category: 'Institutes', url: '/predictor?type=IIT', icon: 'bi-buildings' },
-        { title: 'Explore Top 31 NITs', category: 'Institutes', url: '/predictor?type=NIT', icon: 'bi-buildings' },
-        { title: 'Explore 26 IIITs', category: 'Institutes', url: '/predictor?type=IIIT', icon: 'bi-cpu' },
-        { title: 'Explore 30+ GFTIs', category: 'Institutes', url: '/predictor?type=GFTI', icon: 'bi-building' },
+        { title: 'AIR & Percentile Calculator', category: 'Tool', url: '/rank-predictor', icon: 'bi-calculator' },
+        { title: 'JEE Main 2025 Cutoff Benchmarks', category: 'Data', url: '/cutoffs', icon: 'bi-bar-chart-line' },
+        { title: 'Top 23 IITs Admissions Directory', category: 'Institutes', url: '/predictor?type=IIT', icon: 'bi-buildings' },
+        { title: 'Top 31 NITs Admissions Directory', category: 'Institutes', url: '/predictor?type=NIT', icon: 'bi-buildings' },
+        { title: 'Top 26 IIITs Admissions Directory', category: 'Institutes', url: '/predictor?type=IIIT', icon: 'bi-cpu' },
+        { title: '30+ GFTIs Admissions Directory', category: 'Institutes', url: '/predictor?type=GFTI', icon: 'bi-building' },
         { title: 'IIT Bombay Profile & Cutoffs', category: 'Guide', url: '/blog/iit-bombay', icon: 'bi-mortarboard' },
         { title: 'IIT Delhi Profile & Cutoffs', category: 'Guide', url: '/blog/iit-delhi', icon: 'bi-mortarboard' },
         { title: 'IIT Madras Profile & Cutoffs', category: 'Guide', url: '/blog/iit-madras', icon: 'bi-mortarboard' },
@@ -73,20 +90,20 @@
         { title: 'Contact Counseling Desk', category: 'Support', url: '/contact', icon: 'bi-envelope' }
     ];
 
-    function initCommandPalette() {
+    function initSpotlight() {
         const modal = document.getElementById('cmd-palette-modal');
         const input = document.getElementById('cmd-palette-input');
         const list = document.getElementById('cmd-palette-list');
         if (!modal || !input || !list) return;
 
         let activeIndex = 0;
-        let filteredItems = [...commandItems];
+        let filteredItems = [...spotlightItems];
 
         function renderItems(items) {
             filteredItems = items;
             list.innerHTML = '';
             if (items.length === 0) {
-                list.innerHTML = `<div class="cmd-empty">No matching pages, colleges, or tools found.</div>`;
+                list.innerHTML = `<div class="cmd-empty">No matching colleges, predictors, or guides found.</div>`;
                 return;
             }
 
@@ -119,31 +136,31 @@
             }
         }
 
-        function openPalette() {
+        function openSpotlight() {
             modal.classList.add('open');
+            window.openAppleSheet();
             input.value = '';
             activeIndex = 0;
-            renderItems(commandItems);
-            setTimeout(() => input.focus(), 50);
-            document.body.style.overflow = 'hidden';
+            renderItems(spotlightItems);
+            setTimeout(() => input.focus(), 60);
         }
 
-        function closePalette() {
+        function closeSpotlight() {
             modal.classList.remove('open');
-            document.body.style.overflow = '';
+            window.closeAppleSheet();
         }
 
-        // Global key shortcut Ctrl+K / Cmd+K
+        // Global hotkeys: Ctrl+K / Cmd+K
         document.addEventListener('keydown', (e) => {
             if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
                 e.preventDefault();
                 if (modal.classList.contains('open')) {
-                    closePalette();
+                    closeSpotlight();
                 } else {
-                    openPalette();
+                    openSpotlight();
                 }
             } else if (e.key === 'Escape' && modal.classList.contains('open')) {
-                closePalette();
+                closeSpotlight();
             } else if (modal.classList.contains('open')) {
                 if (e.key === 'ArrowDown') {
                     e.preventDefault();
@@ -168,18 +185,16 @@
 
         // Trigger buttons
         document.querySelectorAll('.btn-open-cmd').forEach(btn => {
-            btn.addEventListener('click', openPalette);
+            btn.addEventListener('click', openSpotlight);
         });
 
-        // Modal backdrop click
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) closePalette();
+            if (e.target === modal) closeSpotlight();
         });
 
-        // Filter search input
         input.addEventListener('input', () => {
             const q = input.value.toLowerCase().trim();
-            const matches = commandItems.filter(item =>
+            const matches = spotlightItems.filter(item =>
                 item.title.toLowerCase().includes(q) ||
                 item.category.toLowerCase().includes(q)
             );
@@ -189,78 +204,7 @@
     }
 
     // ==========================================
-    // 3. Mouse Spotlight Card Hover Effect (Linear Style)
-    // ==========================================
-    function initSpotlightCards() {
-        const cards = document.querySelectorAll('.spotlight-card, .metric-card, .control-card, .guide-card, .feature-grid-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
-            });
-        });
-    }
-
-    // ==========================================
-    // 4. Smooth Number Rollers (Physics Ease-Out)
-    // ==========================================
-    function initNumberRollers() {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    obs.unobserve(el);
-                    const target = parseInt(el.getAttribute('data-count'), 10);
-                    if (isNaN(target)) return;
-
-                    const duration = 1600;
-                    const startTime = performance.now();
-
-                    function updateNumber(now) {
-                        const elapsed = now - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        // Ease-out cubic curve
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        const current = Math.floor(eased * target);
-
-                        el.textContent = current.toLocaleString() + (target > 100 ? '+' : '');
-
-                        if (progress < 1) {
-                            requestAnimationFrame(updateNumber);
-                        } else {
-                            el.textContent = target.toLocaleString() + (target > 100 ? '+' : '');
-                        }
-                    }
-
-                    requestAnimationFrame(updateNumber);
-                }
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll('[data-count]').forEach(el => observer.observe(el));
-    }
-
-    // ==========================================
-    // 5. Interactive Scroll-Triggered Reveal
-    // ==========================================
-    function initScrollReveals() {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    obs.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-    }
-
-    // ==========================================
-    // 6. Interactive Segmented Sliding Control
+    // 4. Fluid Morphing Segmented Pill Controls
     // ==========================================
     function initSegmentedControls() {
         document.querySelectorAll('.segmented-control').forEach(container => {
@@ -284,7 +228,6 @@
                 indicator.style.width = `${width}px`;
             }
 
-            // Initial positioning
             const activeTab = container.querySelector('.segmented-tab.active') || tabs[0];
             if (activeTab) {
                 setTimeout(() => moveIndicator(activeTab), 50);
@@ -306,17 +249,85 @@
     }
 
     // ==========================================
-    // 7. Interactive Table Utilities (Sort & Live Filter)
+    // 5. Physics-Based Ease-Out Number Rollers
+    // ==========================================
+    function initNumberRollers() {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    obs.unobserve(el);
+                    const target = parseInt(el.getAttribute('data-count'), 10);
+                    if (isNaN(target)) return;
+
+                    const duration = 1500;
+                    const startTime = performance.now();
+
+                    function updateNumber(now) {
+                        const elapsed = now - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // SwiftUI fluid cubic ease-out
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        const current = Math.floor(eased * target);
+
+                        el.textContent = current.toLocaleString() + (target > 100 ? '+' : '');
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateNumber);
+                        } else {
+                            el.textContent = target.toLocaleString() + (target > 100 ? '+' : '');
+                        }
+                    }
+
+                    requestAnimationFrame(updateNumber);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('[data-count]').forEach(el => observer.observe(el));
+    }
+
+    // ==========================================
+    // 6. Scroll-Triggered Reveal (Apple Spatial Entrance)
+    // ==========================================
+    function initScrollReveals() {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    }
+
+    // ==========================================
+    // 7. Dynamic Dock Mobile Navigation Toggle
+    // ==========================================
+    function initDynamicDock() {
+        const trigger = document.getElementById('dockMobileTrigger');
+        const nav = document.getElementById('dockNav');
+        if (trigger && nav) {
+            trigger.addEventListener('click', () => {
+                nav.classList.toggle('mobile-open');
+                const isOpen = nav.classList.contains('mobile-open');
+                trigger.innerHTML = isOpen ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+            });
+        }
+    }
+
+    // ==========================================
+    // 8. Real-Time Spec Table Sorting & In-place Filtering
     // ==========================================
     window.initTableUtilities = function (tableId, filterInputId = null) {
         const table = document.getElementById(tableId);
         if (!table) return;
 
-        // Column Sorting
+        // Column Sorting with Apple HIG Chevrons
         const headers = table.querySelectorAll('th[data-sortable]');
         headers.forEach(header => {
-            header.style.cursor = 'pointer';
-            header.title = 'Click to sort';
             header.addEventListener('click', () => {
                 const tbody = table.querySelector('tbody');
                 const rows = Array.from(tbody.querySelectorAll('tr'));
@@ -343,31 +354,29 @@
             });
         });
 
-        // Instant Live Filter
+        // In-place Live Filter
         if (filterInputId) {
             const input = document.getElementById(filterInputId);
             if (input) {
                 input.addEventListener('input', () => {
                     const query = input.value.toLowerCase().trim();
                     const rows = table.querySelectorAll('tbody tr');
-                    let count = 0;
                     rows.forEach(row => {
                         const match = row.textContent.toLowerCase().includes(query);
                         row.style.display = match ? '' : 'none';
-                        if (match) count++;
                     });
                 });
             }
         }
     };
 
-    // Initialize all modules on DOM ready
+    // DOM Ready initialization
     document.addEventListener('DOMContentLoaded', () => {
-        initCommandPalette();
-        initSpotlightCards();
+        initSpotlight();
+        initDynamicDock();
+        initSegmentedControls();
         initNumberRollers();
         initScrollReveals();
-        initSegmentedControls();
     });
 
 })();
