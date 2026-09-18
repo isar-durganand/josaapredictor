@@ -19,6 +19,16 @@
     <meta name="google-site-verification" content="83-tgvKHNkD9DFArbi7wpYfKQvdTfI-bS6MCsXEkE2I">
     <meta name="google-site-verification" content="Azs9cG9mfvERDQsXA4lDGu3zS8409VZGvoVjmVDR9aw" />
 
+    <!-- Synchronous Theme Script in HEAD to prevent flash of wrong theme -->
+    <script>
+        (function () {
+            try {
+                var savedTheme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } catch (e) {}
+        })();
+    </script>
+
     <!-- Theme Color for mobile browsers -->
     <meta name="theme-color" content="#0d9488">
     <meta name="msapplication-TileColor" content="#090a0f">
@@ -360,34 +370,7 @@
 
     <!-- Global Theme & Navbar State Script -->
     <script>
-        // Synchronous theme restoration to prevent flash of wrong theme
-        (function () {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        })();
-
         document.addEventListener('DOMContentLoaded', function () {
-            // Theme toggle event listener
-            const themeToggle = document.getElementById('themeToggle');
-            if (themeToggle) {
-                themeToggle.addEventListener('click', function () {
-                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                });
-            }
-
-            // Navbar scroll state
-            const navbar = document.querySelector('.navbar-custom');
-            window.addEventListener('scroll', function () {
-                if (window.scrollY > 20) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-            }, { passive: true });
-
             // Quick suggestion chips handler in chat
             document.querySelectorAll('.chat-suggestion-chip').forEach(chip => {
                 chip.addEventListener('click', function () {

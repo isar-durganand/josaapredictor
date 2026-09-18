@@ -370,8 +370,44 @@
         }
     };
 
+    // ==========================================
+    // 9. Apple Theme Manager (Light / Dark HIG)
+    // ==========================================
+    function initThemeManager() {
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            if (themeIcon) {
+                if (theme === 'light') {
+                    themeIcon.className = 'bi bi-moon-stars-fill';
+                    if (themeToggle) themeToggle.setAttribute('title', 'Switch to Dark Mode');
+                } else {
+                    themeIcon.className = 'bi bi-sun-fill';
+                    if (themeToggle) themeToggle.setAttribute('title', 'Switch to Light Mode');
+                }
+            }
+            window.dispatchEvent(new CustomEvent('themechanged', { detail: { theme } }));
+        }
+
+        const initialTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('theme') || 'dark';
+        applyTheme(initialTheme);
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const active = document.documentElement.getAttribute('data-theme') || 'dark';
+                const next = active === 'dark' ? 'light' : 'dark';
+                localStorage.setItem('theme', next);
+                applyTheme(next);
+            });
+        }
+    }
+
     // DOM Ready initialization
     document.addEventListener('DOMContentLoaded', () => {
+        initThemeManager();
         initSpotlight();
         initDynamicDock();
         initSegmentedControls();

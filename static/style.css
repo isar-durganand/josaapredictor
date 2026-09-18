@@ -243,12 +243,50 @@ a:hover {
     color: var(--brand);
 }
 
+/* Global Theme & Bootstrap Utility Overrides */
+.text-primary {
+    color: var(--text-primary) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-tertiary,
+.text-muted {
+    color: var(--text-tertiary) !important;
+}
+
+.text-quaternary {
+    color: var(--text-quaternary) !important;
+}
+
+.bg-surface {
+    background-color: var(--bg-surface) !important;
+    color: var(--text-primary);
+}
+
+.bg-surface-elevated {
+    background-color: var(--bg-surface-elevated) !important;
+    color: var(--text-primary);
+}
+
+.border-subtle,
+.border-custom {
+    border-color: var(--glass-border) !important;
+}
+
+[data-theme="light"] .border-subtle,
+[data-theme="light"] .border-custom {
+    border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
 /* ==========================================================================
    3. The Dynamic Apple Dock (macOS & iOS Inspired Global Navigation)
    ========================================================================== */
 .apple-dock-wrapper {
     position: fixed;
-    top: 18px;
+    top: 14px;
     left: 0;
     right: 0;
     display: flex;
@@ -256,15 +294,18 @@ a:hover {
     align-items: center;
     z-index: 1050;
     pointer-events: none;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
+    width: 100%;
 }
 
 .apple-dock {
     pointer-events: auto;
+    width: 100%;
+    max-width: 1240px;
     display: flex;
     align-items: center;
-    gap: 0.35rem;
-    padding: 6px 10px;
+    justify-content: space-between;
+    padding: 7px 18px;
     background: var(--glass-dock);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
@@ -272,7 +313,6 @@ a:hover {
     border-radius: var(--radius-pill);
     box-shadow: var(--shadow-dock), var(--glass-specular);
     transition: all var(--transition-smooth);
-    max-width: 95vw;
 }
 
 .apple-dock-brand {
@@ -445,15 +485,19 @@ a:hover {
    ========================================================================== */
 .main-wrapper {
     flex: 1;
-    padding-top: 96px;
+    padding-top: 88px;
     padding-bottom: 5rem;
 }
 
-.bento-container {
-    width: 100%;
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+.container,
+.bento-container,
+.footer-section .container {
+    width: 100% !important;
+    max-width: 1240px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
 }
 
 /* Structural Bento Grid */
@@ -509,6 +553,17 @@ a:hover {
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
 }
 
+[data-theme="light"] .bento-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="light"] .bento-card:hover {
+    border-color: rgba(0, 0, 0, 0.14);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
 /* Hero Bento Master */
 .bento-hero {
     background: var(--glass-bg-elevated);
@@ -519,6 +574,12 @@ a:hover {
     position: relative;
     overflow: hidden;
     margin-bottom: 1.5rem;
+}
+
+[data-theme="light"] .bento-hero {
+    background: rgba(255, 255, 255, 0.94);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 /* Subtle monochromatic ambient radial wash */
@@ -653,7 +714,13 @@ a:hover {
     letter-spacing: -0.01em;
 }
 
-.form-control, .form-select {
+.form-control,
+.form-select,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="search"],
+textarea {
     background: rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -667,19 +734,258 @@ a:hover {
     transition: all var(--transition-fast);
 }
 
-[data-theme="light"] .form-control, [data-theme="light"] .form-select {
-    background: rgba(0, 0, 0, 0.03);
+[data-theme="light"] .form-control,
+[data-theme="light"] .form-select,
+[data-theme="light"] input[type="text"],
+[data-theme="light"] input[type="number"],
+[data-theme="light"] input[type="email"],
+[data-theme="light"] input[type="search"],
+[data-theme="light"] textarea {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.14);
+    color: var(--text-primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.form-control:focus, .form-select:focus {
+.form-control::placeholder,
+.form-select::placeholder,
+textarea::placeholder,
+input::placeholder {
+    color: var(--text-tertiary);
+    opacity: 0.85;
+}
+
+.form-control:focus,
+.form-select:focus,
+input:focus,
+textarea:focus {
     border-color: var(--brand);
     background: rgba(255, 255, 255, 0.09);
     box-shadow: 0 0 0 3px var(--brand-subtle);
     color: var(--text-primary);
 }
 
-[data-theme="light"] .form-control:focus, [data-theme="light"] .form-select:focus {
+[data-theme="light"] .form-control:focus,
+[data-theme="light"] .form-select:focus,
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus {
     background: #ffffff;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--brand-subtle);
+    color: var(--text-primary);
+}
+
+/* Custom Select Dropdown Styling & Dynamic Arrow */
+select.form-select,
+.form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23f5f5f7' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.95rem center;
+    background-size: 14px 10px;
+    padding-right: 2.25rem;
+    cursor: pointer;
+}
+
+[data-theme="light"] select.form-select,
+[data-theme="light"] .form-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%231d1d1f' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+/* Native Option Elements across OS / Browsers */
+select option,
+.form-select option {
+    background-color: var(--bg-surface-elevated);
+    color: var(--text-primary);
+    padding: 10px 14px;
+}
+
+[data-theme="light"] select option,
+[data-theme="light"] .form-select option {
+    background-color: #ffffff;
+    color: #1d1d1f;
+}
+
+/* Bootstrap Dropdown Menus */
+.dropdown-menu {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-control);
+    box-shadow: var(--shadow-card);
+    padding: 6px;
+}
+
+[data-theme="light"] .dropdown-menu {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.85rem;
+    font-size: 0.885rem;
+    transition: all var(--transition-fast);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background: var(--bg-surface-hover);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .dropdown-item:hover,
+[data-theme="light"] .dropdown-item:focus {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   TomSelect Searchable Dropdown Complete Theme Overrides
+   ========================================================================== */
+.ts-wrapper {
+    font-family: var(--font-sf-text) !important;
+}
+
+.ts-wrapper.single .ts-control {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--glass-border) !important;
+    border-radius: var(--radius-control) !important;
+    color: var(--text-primary) !important;
+    padding: 0.68rem 0.95rem !important;
+    font-size: 0.95rem !important;
+    box-shadow: none !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+[data-theme="light"] .ts-wrapper.single .ts-control {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.14) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.ts-wrapper.single.focus .ts-control {
+    border-color: var(--brand) !important;
+    box-shadow: 0 0 0 3px var(--brand-subtle) !important;
+}
+
+.ts-control input {
+    color: var(--text-primary) !important;
+    font-family: var(--font-sf-text) !important;
+}
+
+[data-theme="light"] .ts-control input {
+    color: #1d1d1f !important;
+}
+
+.ts-dropdown {
+    background: var(--bg-surface-elevated) !important;
+    border: 1px solid var(--glass-border-strong) !important;
+    border-radius: var(--radius-control) !important;
+    box-shadow: var(--shadow-sheet) !important;
+    color: var(--text-primary) !important;
+    margin-top: 6px !important;
+    padding: 6px !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    z-index: 2000 !important;
+}
+
+[data-theme="light"] .ts-dropdown {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1) !important;
+}
+
+.ts-dropdown .option {
+    padding: 8px 12px !important;
+    border-radius: var(--radius-sm) !important;
+    color: var(--text-secondary) !important;
+    font-size: 0.885rem !important;
+    transition: all var(--transition-fast) !important;
+}
+
+.ts-dropdown .option:hover,
+.ts-dropdown .option.active {
+    background: var(--brand-subtle) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .ts-dropdown .option {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .ts-dropdown .option:hover,
+[data-theme="light"] .ts-dropdown .option.active {
+    background: rgba(0, 113, 227, 0.09) !important;
+    color: var(--apple-blue) !important;
+}
+
+.ts-dropdown .no-results {
+    color: var(--text-tertiary) !important;
+    padding: 10px !important;
+    font-size: 0.85rem !important;
+}
+
+/* ==========================================================================
+   Clean Apple Accordion Theme Support
+   ========================================================================== */
+.clean-accordion .accordion-item {
+    background: transparent;
+    border: none;
+    margin-bottom: 0.75rem;
+}
+
+.clean-accordion .accordion-button {
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-control) !important;
+    box-shadow: none !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 1.15rem 1.35rem;
+    transition: all var(--transition-fast);
+}
+
+[data-theme="light"] .clean-accordion .accordion-button {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    color: var(--text-primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.clean-accordion .accordion-button:not(.collapsed) {
+    background: var(--bg-surface-elevated);
+    color: var(--brand);
+    border-color: var(--brand-border);
+}
+
+[data-theme="light"] .clean-accordion .accordion-button:not(.collapsed) {
+    background: #ffffff;
+    color: var(--brand);
+    border-color: var(--brand-border);
+}
+
+.clean-accordion .accordion-button::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23f5f5f7' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+    transition: transform var(--transition-fast);
+}
+
+[data-theme="light"] .clean-accordion .accordion-button::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%231d1d1f' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+.clean-accordion .accordion-body {
+    color: var(--text-secondary);
+    padding: 1rem 1.35rem 0.5rem;
+    line-height: 1.7;
+    background: transparent;
 }
 
 /* Apple Fluid Segmented Control (Morphing Sliding Pill) */
@@ -967,18 +1273,21 @@ a:hover {
     gap: 0.55rem;
 }
 
-.data-table-scroll {
+.data-table-scroll,
+.spec-table-container {
     overflow-x: auto;
     width: 100%;
 }
 
-.data-table {
+.data-table,
+.data-spec-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.885rem;
 }
 
-.data-table thead th {
+.data-table thead th,
+.data-spec-table thead th {
     background: rgba(255, 255, 255, 0.03);
     color: var(--text-tertiary);
     font-weight: 600;
@@ -990,11 +1299,13 @@ a:hover {
     white-space: nowrap;
 }
 
-[data-theme="light"] .data-table thead th {
+[data-theme="light"] .data-table thead th,
+[data-theme="light"] .data-spec-table thead th {
     background: rgba(0, 0, 0, 0.02);
 }
 
-.data-table tbody td {
+.data-table tbody td,
+.data-spec-table tbody td {
     padding: 0.95rem 1.25rem;
     border-bottom: 1px solid var(--glass-border);
     color: var(--text-secondary);
@@ -1002,16 +1313,19 @@ a:hover {
     transition: background-color var(--transition-fast);
 }
 
-.data-table tbody tr:hover td {
+.data-table tbody tr:hover td,
+.data-spec-table tbody tr:hover td {
     background: rgba(255, 255, 255, 0.04);
     color: var(--text-primary);
 }
 
-[data-theme="light"] .data-table tbody tr:hover td {
+[data-theme="light"] .data-table tbody tr:hover td,
+[data-theme="light"] .data-spec-table tbody tr:hover td {
     background: rgba(0, 0, 0, 0.03);
 }
 
-.data-table .td-institute {
+.data-table .td-institute,
+.data-spec-table .td-institute {
     color: var(--text-primary);
     font-weight: 600;
 }
@@ -1155,6 +1469,21 @@ th[data-sortable].sort-desc::after {
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-sheet), var(--glass-specular);
     overflow: hidden;
+}
+
+[data-theme="light"] .cmd-palette-dialog {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+}
+
+[data-theme="light"] .cmd-search-input {
+    color: #1d1d1f;
+}
+
+[data-theme="light"] .cmd-footer {
+    background: #fbfbfd;
+    border-color: rgba(0, 0, 0, 0.08);
 }
 
 .cmd-search-bar {
@@ -1486,6 +1815,57 @@ th[data-sortable].sort-desc::after {
     transform: scale(0.94);
 }
 
+/* Light Theme Overrides for Chat & Spotlight */
+[data-theme="light"] .chat-window {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+}
+
+[data-theme="light"] .chat-header {
+    background: #fbfbfd;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .chat-messages {
+    background: #f5f5f7;
+}
+
+[data-theme="light"] .bot-message .message-content {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #1d1d1f;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .chat-quick-suggestions {
+    background: #fbfbfd;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .chat-suggestion-chip {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.12);
+    color: #1d1d1f;
+}
+
+[data-theme="light"] .chat-suggestion-chip:hover {
+    background: rgba(0, 113, 227, 0.08);
+    color: var(--apple-blue);
+    border-color: var(--brand-border);
+}
+
+[data-theme="light"] .chat-input-area {
+    background: #fbfbfd;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] #chat-input {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.14);
+    color: #1d1d1f;
+}
+
 /* ==========================================================================
    12. Apple Editorial Guide, Article & Bento Subpage Styles
    ========================================================================== */
@@ -1772,6 +2152,34 @@ th[data-sortable].sort-desc::after {
     text-align: center;
 }
 
+[data-theme="light"] .guide-card,
+[data-theme="light"] .guide-bento-card,
+[data-theme="light"] .pipeline-step-bento,
+[data-theme="light"] .support-channel-tile,
+[data-theme="light"] .legal-bento-card,
+[data-theme="light"] .error-404-bento,
+[data-theme="light"] .stat-tile-bento {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="light"] .guide-card-header {
+    background: #fbfbfd;
+    border-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .article-callout {
+    background: #fbfbfd;
+    border-color: rgba(0, 0, 0, 0.08);
+    border-left: 3px solid var(--brand);
+}
+
+[data-theme="light"] .support-channel-icon {
+    background: rgba(0, 113, 227, 0.08);
+    color: var(--apple-blue);
+}
+
 /* ==========================================================================
    13. Global Toast Notifications (Apple Dynamic Island Style)
    ========================================================================== */
@@ -2018,8 +2426,18 @@ th[data-sortable].sort-desc::after {
 }
 
 @media (max-width: 768px) {
+    .apple-dock-wrapper {
+        padding: 0 1rem;
+        top: 10px;
+    }
+    .container,
+    .bento-container,
+    .footer-section .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
     .main-wrapper {
-        padding-top: 80px;
+        padding-top: 76px;
     }
     .bento-hero {
         padding: 1.85rem 1.25rem;
