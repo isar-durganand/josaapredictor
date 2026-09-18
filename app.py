@@ -2,7 +2,7 @@
 JoSAA College Predictor - Enhanced Flask Application
 Multi-page architecture with stunning UI and advanced filtering features.
 Refactored to use built-in csv module for Vercel deployment (no pandas).
-Now using OpenRouter API with DeepSeek model for chat.
+Powered by Google Gemini 3.1 Flash Lite API for AI counseling.
 """
 
 from flask import Flask, render_template, request, jsonify
@@ -15,13 +15,13 @@ import re
 
 load_dotenv()
 
-# Configure OpenRouter API
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
-MODEL = "deepseek/deepseek-r1-0528:free"
+# Configure Google Gemini API
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
+GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models"
 
-if not OPENROUTER_API_KEY:
-    print("WARNING: OPENROUTER_API_KEY not found in .env file")
+if not GEMINI_API_KEY:
+    print("WARNING: GEMINI_API_KEY not found in .env file")
 
 app = Flask(__name__)
 
@@ -445,45 +445,58 @@ def api_stats():
     return jsonify(stats)
 
 
+def call_gemini(contents, system_instruction=None):
+    """Call Google Gemini API and return generated text."""
+    if not GEMINI_API_KEY:
+        print("Gemini API Error: GEMINI_API_KEY not configured")
+        return None
+
+    url = f"{GEMINI_BASE_URL}/{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
+    headers = {
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "contents": contents,
+        "generationConfig": {
+            "temperature": 0.3,
+            "maxOutputTokens": 1024
+        }
+    }
+    if system_instruction:
+        payload["systemInstruction"] = {
+            "parts": [{"text": system_instruction}]
+        }
+
+    try:
+        resp = requests.post(url, headers=headers, json=payload, timeout=30)
+        resp.raise_for_status()
+        result = resp.json()
+        candidates = result.get("candidates", [])
+        if candidates:
+            parts = candidates[0].get("content", {}).get("parts", [])
+            if parts:
+                return parts[0].get("text", "").strip()
+        return None
+    except Exception as e:
+        print(f"Gemini API Error: {e}")
+        return None
+
+
 @app.route('/chat', methods=['POST'])
 def chat():
-    """Handle chat requests with OpenRouter AI (DeepSeek)."""
-    if not OPENROUTER_API_KEY:
-        return jsonify({'response': "AI service is not configured. Please set OPENROUTER_API_KEY."})
+    """Handle chat requests with Google Gemini 3.1 Flash Lite AI."""
+    if not GEMINI_API_KEY:
+        return jsonify({'response': "AI counselor is not configured. Please set GEMINI_API_KEY in .env file."})
 
-    data = request.json
-    user_message = data.get('message', '')
+    data = request.json or {}
+    user_message = data.get('message', '').strip()
     history = data.get('history', [])
 
     if not user_message:
         return jsonify({'response': "Please say something!"})
 
-    def call_openrouter(messages):
-        """Call OpenRouter API and return response text."""
-        headers = {
-            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-            "Content-Type": "application/json",
-            "HTTP-Referer": "https://josaacollegepredictor.vercel.app",
-            "X-Title": "JoSAA College Predictor"
-        }
-        payload = {
-            "model": MODEL,
-            "messages": messages
-        }
-        try:
-            resp = requests.post(OPENROUTER_URL, headers=headers, json=payload, timeout=60)
-            resp.raise_for_status()
-            result = resp.json()
-            return result['choices'][0]['message']['content'].strip()
-        except Exception as e:
-            print(f"OpenRouter API Error: {e}")
-            return None
-
     try:
-        # Construct messages for OpenRouter
-        messages = []
-        
-        system_instruction = """You are a friendly, helpful assistant for a JoSAA College Predictor app. You help students with JEE counseling, college predictions, cutoff queries, and general guidance.
+        system_instruction = """You are a friendly, expert counseling assistant for the JoSAA College Predictor web application. You help students with JEE Main and JEE Advanced counseling, college choices (IITs, NITs, IIITs, GFTIs), cutoff queries, rank predictions, and general guidance.
 
 Analyze the user's query:
 
@@ -492,7 +505,7 @@ If the user asks for cutoffs, rank predictions, or college chances, return a JSO
 CRITICAL: If a prediction query lacks Rank (or Marks/Percentile) AND Category, return intent "missing_info".
 
 Scenario 2: GENERAL CHAT
-If the user inputs a greeting, asks general questions, or follows up conversationally without needing data, DIRECTLY answer the user in natural language. Be friendly and encouraging. Do NOT return JSON.
+If the user inputs a greeting, asks general questions, or follows up conversationally without needing data, DIRECTLY answer the user in natural language. Be friendly, empathetic, and encouraging. Do NOT return JSON.
 
 JSON Structure (only for Scenario 1):
 {
@@ -509,26 +522,38 @@ JSON Structure (only for Scenario 1):
     "missing_fields": ["rank", "category"] (if intent is missing_info)
 }"""
 
-        messages.append({"role": "system", "content": system_instruction})
-        
-        # Add conversation history (last 5 messages)
-        for msg in history[-5:]:
-            role = "user" if msg['role'] == 'user' else "assistant"
-            text = msg['parts'][0] if isinstance(msg['parts'], list) else msg['parts']
-            messages.append({"role": role, "content": text})
-        
-        # Add current user message
-        messages.append({"role": "user", "content": user_message})
-        
-        text_response = call_openrouter(messages)
-        
+        # Format history properly for Gemini API contents
+        gemini_contents = []
+        for msg in history[-6:]:
+            role = "user" if msg.get('role') == 'user' else "model"
+            parts_val = msg.get('parts', '')
+            text = parts_val[0] if isinstance(parts_val, list) and parts_val else str(parts_val)
+            text = text.strip()
+            if text:
+                # Gemini requires user first
+                if not gemini_contents and role != "user":
+                    continue
+                # Merge consecutive identical roles
+                if gemini_contents and gemini_contents[-1]["role"] == role:
+                    gemini_contents[-1]["parts"].append({"text": text})
+                else:
+                    gemini_contents.append({"role": role, "parts": [{"text": text}]})
+
+        # Append current user message
+        if gemini_contents and gemini_contents[-1]["role"] == "user":
+            gemini_contents[-1]["parts"].append({"text": user_message})
+        else:
+            gemini_contents.append({"role": "user", "parts": [{"text": user_message}]})
+
+        text_response = call_gemini(gemini_contents, system_instruction=system_instruction)
+
         if not text_response:
-            return jsonify({'response': "I encountered an error connecting to the AI service. Please try again."})
-        
+            return jsonify({'response': "I encountered an error connecting to the AI counselor. Please try again."})
+
         # Parse response for JSON intent
         json_pattern = r'\{.*\}'
         match = re.search(json_pattern, text_response, re.DOTALL)
-        
+
         if match:
             json_str = match.group()
             try:
@@ -542,36 +567,36 @@ JSON Structure (only for Scenario 1):
 
             if intent == 'missing_info':
                 pass 
-                
+
             elif intent == 'cutoff':
                 round_num = entities.get('round') if entities.get('round') else 6
                 if round_num not in data_frames:
                     round_num = 6
                 records = data_frames.get(round_num, [])
-                
+
                 filtered = records[:]
-                
+
                 if entities.get('institute'):
                     inst_search = entities['institute'].lower()
                     filtered = [r for r in filtered if inst_search in r.get('Institute', '').lower()]
-                
+
                 if entities.get('program'):
                     prog_search = entities['program'].lower()
                     filtered = [r for r in filtered if prog_search in r.get('Academic Program Name', '').lower()]
-                
+
                 if entities.get('category'):
                     cat_map = {'OPEN': 'OPEN', 'GEN': 'OPEN', 'OBC': 'OBC-NCL', 'SC': 'SC', 'ST': 'ST', 'EWS': 'EWS'}
                     search_cat = cat_map.get(entities['category'].upper(), entities['category']).lower()
                     filtered = [r for r in filtered if search_cat in r.get('Seat Type', '').lower()]
-                
+
                 if entities.get('rank'):
                     rank = int(entities['rank'])
                     filtered = [r for r in filtered if (r.get('Closing Rank Numeric') or 0) >= rank]
                     filtered.sort(key=lambda x: x.get('Closing Rank Numeric') or 0)
-                
+
                 results = filtered[:10]
                 if not results:
-                    context_data = "No matching cutoff data found."
+                    context_data = "No matching cutoff data found in JoSAA 2025 records."
                 else:
                     context_data = "Matches (Round 6):\n" + "\n".join([
                         f"- {r.get('Institute')}, {r.get('Academic Program Name')}, {r.get('Seat Type')}, Closing Rank: {r.get('Closing Rank')}" 
@@ -585,13 +610,16 @@ JSON Structure (only for Scenario 1):
                     context_data = "Rank data unavailable."
 
             # Get final response with context
-            final_messages = [
-                {"role": "system", "content": "You are a helpful JoSAA counseling assistant. Answer the user's question based on the provided context. Be friendly and encouraging."},
-                {"role": "user", "content": f"User asked: \"{user_message}\"\n\nContext found:\n{context_data}\n\nTask: Answer the user naturally based on the context. If 'missing_info', ask for missing details politely."}
+            final_system = "You are a helpful and encouraging JoSAA counseling assistant. Answer the user's question clearly based on the provided official context. Format key points with bullet points."
+            final_contents = [
+                {
+                    "role": "user",
+                    "parts": [{"text": f"User asked: \"{user_message}\"\n\nOfficial JoSAA Data Context:\n{context_data}\n\nTask: Answer the student's question accurately and helpfully using the context data above. If details were missing (missing_info), kindly ask the student for their JEE Main/Advanced Rank, Category, and preferred branches."}]
+                }
             ]
-            final_resp = call_openrouter(final_messages)
-            return jsonify({'response': final_resp if final_resp else "I couldn't process that. Please try again."})
-            
+            final_resp = call_gemini(final_contents, system_instruction=final_system)
+            return jsonify({'response': final_resp if final_resp else "I found the data but had trouble formulating a response. Please try again."})
+
         else:
             return jsonify({'response': text_response})
 
