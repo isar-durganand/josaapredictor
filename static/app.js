@@ -309,11 +309,41 @@
     function initDynamicDock() {
         const trigger = document.getElementById('dockMobileTrigger');
         const nav = document.getElementById('dockNav');
+        const backdrop = document.getElementById('dockBackdrop');
+
         if (trigger && nav) {
-            trigger.addEventListener('click', () => {
-                nav.classList.toggle('mobile-open');
-                const isOpen = nav.classList.contains('mobile-open');
+            function toggleMenu(forceClose = false) {
+                const isOpen = forceClose ? false : !nav.classList.contains('mobile-open');
+                nav.classList.toggle('mobile-open', isOpen);
+                if (backdrop) backdrop.classList.toggle('active', isOpen);
                 trigger.innerHTML = isOpen ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+                trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                document.body.classList.toggle('mobile-menu-open', isOpen);
+            }
+
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleMenu();
+            });
+
+            if (backdrop) {
+                backdrop.addEventListener('click', () => toggleMenu(true));
+            }
+
+            nav.querySelectorAll('.dock-item-link').forEach(link => {
+                link.addEventListener('click', () => toggleMenu(true));
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && nav.classList.contains('mobile-open')) {
+                    toggleMenu(true);
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 992 && nav.classList.contains('mobile-open')) {
+                    toggleMenu(true);
+                }
             });
         }
     }

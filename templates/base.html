@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
 
     <!-- SEO Meta Tags -->
     <title>{% block title %}JoSAA College Predictor 2026{% endblock %} | Find Your Dream IIT, NIT, IIIT</title>
@@ -155,6 +159,7 @@
 
         <!-- The Dynamic Apple Dock (macOS & iOS Global Navigation) -->
         <header class="apple-dock-wrapper">
+            <div class="apple-dock-backdrop" id="dockBackdrop"></div>
             <nav class="apple-dock" aria-label="Global Navigation">
                 <a class="apple-dock-brand" href="/" aria-label="JoSAA Predictor Home">
                     <span class="dock-icon-box">
