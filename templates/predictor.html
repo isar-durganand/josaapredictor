@@ -227,8 +227,8 @@
                 </div>
 
                 <!-- Action Toolbar -->
-                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 pt-4 mt-2 border-top border-subtle">
-                    <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3 pt-4 mt-2 border-top border-subtle predictor-action-toolbar">
+                    <div class="d-flex align-items-center gap-2 predictor-btn-group">
                         <button type="submit" class="apple-btn btn-primary-action" id="predictBtn">
                             <span class="btn-text">
                                 <i class="bi bi-lightning-charge-fill me-1"></i>Predict Eligible Colleges
@@ -282,13 +282,18 @@
 
                 <!-- Live Filter Toolbar -->
                 <div class="px-3 py-2 border-bottom border-subtle bg-surface-elevated d-flex align-items-center justify-content-between gap-3 flex-wrap">
-                    <div class="d-flex align-items-center gap-2" style="min-width: 260px; max-width: 380px;">
+                    <div class="d-flex align-items-center gap-2 table-search-wrap">
                         <i class="bi bi-funnel text-tertiary"></i>
                         <input type="text" id="predictorTableFilter" class="form-control form-control-sm" placeholder="Filter these results (e.g., Computer, Bombay, HS)..." autocomplete="off" style="font-size: 0.85rem;">
                     </div>
                     <div class="small text-tertiary d-none d-sm-block">
                         <i class="bi bi-arrow-down-up me-1"></i>Click any column header to sort
                     </div>
+                </div>
+
+                <div class="table-scroll-hint">
+                    <i class="bi bi-arrow-left-right text-brand"></i>
+                    <span>Swipe horizontally to view full cutoff data</span>
                 </div>
 
                 <!-- Table Container -->
