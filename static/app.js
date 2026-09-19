@@ -137,6 +137,7 @@
         }
 
         function openSpotlight() {
+            if (window.closeMobileNav) window.closeMobileNav();
             modal.classList.add('open');
             window.openAppleSheet();
             input.value = '';
@@ -304,48 +305,123 @@
     }
 
     // ==========================================
-    // 7. Dynamic Dock Mobile Navigation Toggle
+    // 7. Dynamic Dock & Mobile Navigation Engine
     // ==========================================
     function initDynamicDock() {
         const trigger = document.getElementById('dockMobileTrigger');
-        const nav = document.getElementById('dockNav');
-        const backdrop = document.getElementById('dockBackdrop');
+        const drawer = document.getElementById('mobileNavDrawer');
+        const backdrop = document.getElementById('mobileNavBackdrop');
+        const closeBtn = document.getElementById('mobileNavClose');
+        const dockWrapper = document.getElementById('dockWrapper');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        const masterThemeToggle = document.getElementById('themeToggle');
 
-        if (trigger && nav) {
-            function toggleMenu(forceClose = false) {
-                const isOpen = forceClose ? false : !nav.classList.contains('mobile-open');
-                nav.classList.toggle('mobile-open', isOpen);
-                if (backdrop) backdrop.classList.toggle('active', isOpen);
-                trigger.innerHTML = isOpen ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
-                trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-                document.body.classList.toggle('mobile-menu-open', isOpen);
+        if (!trigger && !drawer) return;
+
+        function updateMobileThemeUI() {
+            if (!mobileThemeToggle) return;
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const icon = mobileThemeToggle.querySelector('i');
+            const label = mobileThemeToggle.querySelector('span');
+            if (currentTheme === 'light') {
+                if (icon) icon.className = 'bi bi-moon-stars';
+                if (label) label.textContent = 'Dark Mode';
+            } else {
+                if (icon) icon.className = 'bi bi-sun';
+                if (label) label.textContent = 'Light Mode';
             }
+        }
 
-            trigger.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleMenu();
-            });
-
+        function setMenuState(open) {
+            const isOpen = Boolean(open);
+            if (drawer) {
+                drawer.classList.toggle('active', isOpen);
+                drawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+            }
             if (backdrop) {
-                backdrop.addEventListener('click', () => toggleMenu(true));
+                backdrop.classList.toggle('active', isOpen);
+                backdrop.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
             }
+            if (trigger) {
+                trigger.classList.toggle('active', isOpen);
+                trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                trigger.innerHTML = isOpen ? '<i class="bi bi-x-lg"></i>' : '<i class="bi bi-list"></i>';
+            }
+            if (dockWrapper) {
+                dockWrapper.classList.toggle('menu-active', isOpen);
+            }
+            document.body.classList.toggle('mobile-menu-open', isOpen);
+            if (isOpen) updateMobileThemeUI();
+        }
 
-            nav.querySelectorAll('.dock-item-link').forEach(link => {
-                link.addEventListener('click', () => toggleMenu(true));
-            });
+        let lastToggle = 0;
+        function toggleMenu(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            const now = Date.now();
+            if (now - lastToggle < 250) return;
+            lastToggle = now;
 
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && nav.classList.contains('mobile-open')) {
-                    toggleMenu(true);
-                }
-            });
+            const isOpen = drawer ? drawer.classList.contains('active') : false;
+            setMenuState(!isOpen);
+        }
 
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 992 && nav.classList.contains('mobile-open')) {
-                    toggleMenu(true);
-                }
+        if (trigger) {
+            trigger.addEventListener('click', toggleMenu);
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setMenuState(false);
             });
         }
+
+        if (backdrop) {
+            backdrop.addEventListener('click', (e) => {
+                e.preventDefault();
+                setMenuState(false);
+            });
+        }
+
+        if (drawer) {
+            drawer.querySelectorAll('.mobile-sheet-link, .mobile-sheet-cta').forEach(link => {
+                link.addEventListener('click', () => {
+                    setMenuState(false);
+                });
+            });
+        }
+
+        if (mobileThemeToggle && masterThemeToggle) {
+            mobileThemeToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                masterThemeToggle.click();
+                updateMobileThemeUI();
+            });
+        }
+
+        window.addEventListener('themechanged', updateMobileThemeUI);
+        updateMobileThemeUI();
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && drawer && drawer.classList.contains('active')) {
+                setMenuState(false);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992 && drawer && drawer.classList.contains('active')) {
+                setMenuState(false);
+            }
+        }, { passive: true });
+
+        // Global helper
+        window.closeMobileNav = function () {
+            setMenuState(false);
+        };
     }
 
     // ==========================================

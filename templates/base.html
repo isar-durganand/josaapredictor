@@ -148,18 +148,91 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Master Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3.2">
 
     {% block head_extra %}{% endblock %}
 </head>
 
 <body>
+    <!-- Dedicated Mobile Navigation Overlay & Sheet (Decoupled from dock to eliminate clipping) -->
+    <div class="apple-mobile-backdrop" id="mobileNavBackdrop" aria-hidden="true"></div>
+    <aside class="apple-mobile-sheet" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Navigation Menu" aria-hidden="true">
+        <div class="mobile-sheet-header">
+            <a class="mobile-sheet-brand" href="/" aria-label="JoSAA Predictor Home">
+                <span class="dock-icon-box">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </span>
+                <span>JoSAA Predictor</span>
+            </a>
+            <button class="mobile-sheet-close" id="mobileNavClose" aria-label="Close navigation menu">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="mobile-sheet-body">
+            <nav class="mobile-sheet-nav" aria-label="Mobile Navigation">
+                <a class="mobile-sheet-link {% if request.endpoint == 'index' %}active{% endif %}" href="/">
+                    <span class="mobile-link-icon"><i class="bi bi-house-door-fill"></i></span>
+                    <span class="mobile-link-text">Home</span>
+                    <i class="bi bi-chevron-right mobile-link-chevron"></i>
+                </a>
+                <a class="mobile-sheet-link {% if request.endpoint == 'predictor' %}active{% endif %}" href="/predictor">
+                    <span class="mobile-link-icon"><i class="bi bi-mortarboard-fill"></i></span>
+                    <span class="mobile-link-text">College Predictor</span>
+                    <span class="mobile-link-badge">2026</span>
+                    <i class="bi bi-chevron-right mobile-link-chevron"></i>
+                </a>
+                <a class="mobile-sheet-link {% if request.endpoint == 'rank_predictor' %}active{% endif %}" href="/rank-predictor">
+                    <span class="mobile-link-icon"><i class="bi bi-calculator-fill"></i></span>
+                    <span class="mobile-link-text">Rank Calculator</span>
+                    <i class="bi bi-chevron-right mobile-link-chevron"></i>
+                </a>
+                <a class="mobile-sheet-link {% if request.endpoint == 'cutoffs' %}active{% endif %}" href="/cutoffs">
+                    <span class="mobile-link-icon"><i class="bi bi-bar-chart-fill"></i></span>
+                    <span class="mobile-link-text">Cutoffs Analytics</span>
+                    <i class="bi bi-chevron-right mobile-link-chevron"></i>
+                </a>
+                <a class="mobile-sheet-link {% if request.endpoint == 'blog' or request.endpoint == 'blog_post' %}active{% endif %}" href="/blog">
+                    <span class="mobile-link-icon"><i class="bi bi-journal-text"></i></span>
+                    <span class="mobile-link-text">Guides & Institutes</span>
+                    <i class="bi bi-chevron-right mobile-link-chevron"></i>
+                </a>
+                <a class="mobile-sheet-link {% if request.endpoint == 'about' %}active{% endif %}" href="/about">
+                    <span class="mobile-link-icon"><i class="bi bi-info-circle-fill"></i></span>
+                    <span class="mobile-link-text">Methodology</span>
+                    <i class="bi bi-chevron-right mobile-link-chevron"></i>
+                </a>
+                <a class="mobile-sheet-link {% if request.endpoint == 'contact' %}active{% endif %}" href="/contact">
+                    <span class="mobile-link-icon"><i class="bi bi-envelope-fill"></i></span>
+                    <span class="mobile-link-text">Contact Support</span>
+                    <i class="bi bi-chevron-right mobile-link-chevron"></i>
+                </a>
+            </nav>
+
+            <div class="mobile-sheet-actions">
+                <a href="/predictor" class="mobile-sheet-cta">
+                    <i class="bi bi-lightning-charge-fill me-1"></i>
+                    <span>Launch College Predictor</span>
+                </a>
+                <div class="mobile-sheet-quick-row">
+                    <button class="mobile-quick-btn btn-open-cmd" type="button" aria-label="Spotlight search">
+                        <i class="bi bi-search"></i>
+                        <span>Search</span>
+                    </button>
+                    <button class="mobile-quick-btn" type="button" id="mobileThemeToggle" aria-label="Toggle theme">
+                        <i class="bi bi-moon-stars"></i>
+                        <span>Appearance</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
     <!-- Spatial Continuity Z-Axis Scaling Wrapper -->
     <div class="page-scale-wrapper" id="pageScaleWrapper">
 
         <!-- The Dynamic Apple Dock (macOS & iOS Global Navigation) -->
-        <header class="apple-dock-wrapper">
-            <div class="apple-dock-backdrop" id="dockBackdrop"></div>
+        <header class="apple-dock-wrapper" id="dockWrapper">
             <nav class="apple-dock" aria-label="Global Navigation">
                 <a class="apple-dock-brand" href="/" aria-label="JoSAA Predictor Home">
                     <span class="dock-icon-box">
@@ -194,7 +267,7 @@
                     <a href="/predictor" class="dock-btn dock-cta-btn">
                         <span>Predict</span>
                     </a>
-                    <button class="dock-btn dock-mobile-trigger" id="dockMobileTrigger" aria-label="Toggle menu">
+                    <button class="dock-btn dock-mobile-trigger" id="dockMobileTrigger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer">
                         <i class="bi bi-list"></i>
                     </button>
                 </div>
@@ -368,10 +441,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Master Interaction & Animation Engine -->
-    <script src="{{ url_for('static', filename='app.js') }}?v=3.0"></script>
+    <script src="{{ url_for('static', filename='app.js') }}?v=3.2"></script>
 
     <!-- Chat Client Script -->
-    <script src="{{ url_for('static', filename='chat.js') }}?v=3.0"></script>
+    <script src="{{ url_for('static', filename='chat.js') }}?v=3.2"></script>
 
     <!-- Global Theme & Navbar State Script -->
     <script>
